@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context>
+    <Resource name="jdbc/FunOlympic" auth="Container"
+              type="javax.sql.DataSource" maxActive="20"  maxIdle="5" maxWait="10000"
+              username="shatty" password="Lorato910"
+              driverClassName="com.mysql.cj.jdbc.Driver"
+              url="jdbc:mysql://dwmpc-1.ciesishcjgv3.us-east-2.rds.amazonaws.com:3306/FunOlmpic?user&amp;serverTimezone=UTC"/>
+</Context>
