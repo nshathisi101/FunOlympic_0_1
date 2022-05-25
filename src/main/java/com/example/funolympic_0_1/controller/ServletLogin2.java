@@ -117,7 +117,7 @@ public class ServletLogin2 extends HttpServlet {
             String id_String=request.getParameter("id");
             id_String.replace(" ","");
             System.out.println(action);
-            userinfo=new Userinfo(id_String,fullName,email,password,userType,country,null,null);
+            userinfo=new Userinfo(id_String,fullName,email,password,userType,country,null,null,null,null);
             List<Userinfo> userinfos=connectionUtil.setRepresentatives(userinfo,action);
             if(userinfos!=null){
                 if (session.getAttribute("alertError") != null){
@@ -131,7 +131,7 @@ public class ServletLogin2 extends HttpServlet {
                 request.getRequestDispatcher("Country_representatives.jsp").forward(request, response);
             }
         }else{
-            userinfo=new Userinfo("null",fullName,email,password,userType,null,null,null);
+            userinfo=new Userinfo("null",fullName,email,password,userType,null,null,null,null,null);
             String msg=connectionUtil.setUserInfo(userinfo,"upload");
             if(msg.equals("Successful")){
                 if (session.getAttribute("userInfo") != null){
@@ -323,6 +323,8 @@ public class ServletLogin2 extends HttpServlet {
         String id =request.getParameter("id");
         String action =request.getParameter("action");
         String sport =request.getParameter("sport");
+        String age =request.getParameter("action");
+        String gender =request.getParameter("sex");
         String fullName2=fullName11.replace(" ","_");
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
         String ApplicationDate= String.valueOf(timestamp.getTime());
@@ -339,7 +341,7 @@ public class ServletLogin2 extends HttpServlet {
             InputStream hazardous_waste1 = hazardous_waste.getInputStream();
             fileName=fullName2+"_UserImager"+ApplicationDate+".jpg";
             Files.copy(hazardous_waste1, Paths.get(uploadPath6 + File.separator + fileName), StandardCopyOption.REPLACE_EXISTING);
-            Userinfo user=new Userinfo(id,fullName11,email,"2021","Athlete",country,sport,fileName);
+            Userinfo user=new Userinfo(id,fullName11,email,"2021","Athlete",country,sport,fileName,gender,age);
             List<Userinfo>  userinfos=connectionUtil.getAthlete(user,action);
             if(!userinfos.isEmpty()){
                 if (session.getAttribute("alertEmailError") != null){

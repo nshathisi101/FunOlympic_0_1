@@ -2,10 +2,10 @@ package com.example.funolympic_0_1.model.bean;
 
 public class Userinfo {
     String Id;
-    String fullName,email,password, userType,country,sport,dp;
+    String fullName,email,password, userType,country,sport,dp,sex,age;
 
 
-    public Userinfo(String id, String fullName, String email, String password, String userType, String country, String sport, String dp) {
+    public Userinfo(String id, String fullName, String email, String password, String userType, String country, String sport, String dp, String sex, String age) {
         Id = id;
         this.fullName = fullName;
         this.email = email;
@@ -14,6 +14,8 @@ public class Userinfo {
         this.country = country;
         this.sport = sport;
         this.dp = dp;
+        this.sex = sex;
+        this.age = age;
     }
 
     public Userinfo(String id) {
@@ -23,6 +25,22 @@ public class Userinfo {
     public Userinfo(String id, String country) {
         Id = id;
         this.country = country;
+    }
+
+    public String getSex() {
+        return sex;
+    }
+
+    public void setSex(String sex) {
+        this.sex = sex;
+    }
+
+    public String getAge() {
+        return age;
+    }
+
+    public void setAge(String age) {
+        this.age = age;
     }
 
     public String getSport() {

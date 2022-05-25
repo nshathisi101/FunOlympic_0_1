@@ -60,10 +60,12 @@ public class Connection_Util {
                         myStmt = myConn.prepareStatement(sql);
                         myStmt.setString(3, userinfo.getCountry());
                     } else if(action.equals("updateAthlete")){
-                        sql = "UPDATE `FunOlmpic`.`User_accounting` SET `fullName` = ?, `email` = ?,`sport`=?, `userImage` = ? WHERE (`id` = '" + userinfo.getId() + "');";
+                        sql = "UPDATE `FunOlmpic`.`User_accounting` SET `fullName` = ?, `email` = ?,`sport`=?, `userImage` = ?, `sex` = ?, `age` = ? WHERE (`id` = '" + userinfo.getId() + "');";
                         myStmt = myConn.prepareStatement(sql);
                         myStmt.setString(3, userinfo.getSport());
                         myStmt.setString(4, userinfo.getDp());
+                        myStmt.setString(5, userinfo.getSex());
+                        myStmt.setString(6, userinfo.getAge());
                 }
                     else{
                         sql = "INSERT INTO `FunOlmpic`.`User_accounting` (`fullName`, `email`, `password`, `UserType`,`country`,`sport`,`userImage`) VALUES (?,?,?,?,?,?,?);";
@@ -122,7 +124,9 @@ public class Connection_Util {
         String email=myRs.getString("email");
         String sport=myRs.getString("sport");
         String dp=myRs.getString("userImage");
-        Userinfo userinfo=new Userinfo(id,fullName,email,"null",userType,country,sport,dp);
+        String sex=myRs.getString("sex");
+        String age=myRs.getString("age");
+        Userinfo userinfo=new Userinfo(id,fullName,email,"null",userType,country,sport,dp,sex,age);
         return userinfo;
 
     }
