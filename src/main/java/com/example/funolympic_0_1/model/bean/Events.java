@@ -1,9 +1,16 @@
 package com.example.funolympic_0_1.model.bean;
 
 public class Events {
-    String id, sport,event,date,startTime,endTime,venue,broadcast;
+    String id, sport,event,date,startTime,endTime,venue,broadcast,status;
 
-    public Events(String id, String sport, String event, String date, String startTime, String endTime, String venue, String broadcast) {
+    public Events() {
+    }
+
+    public Events(String id) {
+        this.id = id;
+    }
+
+    public Events(String id, String sport, String event, String date, String startTime, String endTime, String venue, String broadcast, String status) {
         this.id = id;
         this.sport = sport;
         this.event = event;
@@ -12,6 +19,15 @@ public class Events {
         this.endTime = endTime;
         this.venue = venue;
         this.broadcast = broadcast;
+        this.status = status;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public String getId() {

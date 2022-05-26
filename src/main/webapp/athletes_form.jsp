@@ -129,10 +129,10 @@
         <li class="nav-item dropdown user-profile-dropdown mr-5  d-lg-inline-block d-none">
             <a href="javascript:void(0);" class="nav-link dropdown-toggle user" id="user-profile-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <div class="media">
-                    <img src="assets/img/90x90.jpg" class="img-fluid mr-2" alt="admin-profile">
+                    <img src="UserImages/${userInfo.dp}" data-ce-placeholder="assets/img/90x90.jpg" class="img-fluid mr-2" alt="admin-profile">
                     <div class="media-body align-self-center">
-                        <h6 class="mb-1">Alan Green</h6>
-                        <p class="mb-0">UI/UX Designer</p>
+                        <h6 class="mb-1">${userInfo.fullName}</h6>
+                        <p class="mb-0">${userInfo.userType}</p>
                     </div>
                 </div>
             </a>
@@ -275,11 +275,14 @@
         </li>
 
         <li class="nav-item dropdown cs-toggle ml-3 mr-lg-4">
-            <a href="#" class="nav-link toggle-control-sidebar suffle">
+            <a onclick="document.getElementById('logout').submit()">
                 <span class="icon flaticon-log-3"></span>
             </a>
         </li>
     </ul>
+    <form action="ServletLogin2" method="post" style="display: none">
+        <input type="hidden" name="command" value="logout">
+    </form>
 </header>
 <!--  END NAVBAR  -->
 
@@ -297,1043 +300,68 @@
                 <li class="menu">
                     <a href="#dashboard" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
                         <div class="">
-                            <i class="flaticon-computer-6"></i>
-                            <span>Dashboard</span>
-                        </div>
-
-                        <div>
-                            <i class="flaticon-down-arrow"></i>
+                            <i class="flaticon-home-line"></i>
+                            <span>Home</span>
                         </div>
                     </a>
-                    <ul class="collapse submenu list-unstyled" id="dashboard" data-parent="#topAccordion">
-                        <li>
-                            <a href="#dashboards" data-toggle="collapse" aria-expanded="true" class="dropdown-toggle"> ADMIN <i class="flaticon-dot-three"></i> </a>
-                            <ul class="collapse list-unstyled sub-submenu show" id="dashboards">
-                                <li>
-                                    <a href="index.html"> Default </a>
-                                </li>
-                                <li>
-                                    <a href="ecommerce_dashboard.html"> Ecommerce </a>
-                                </li>
-                                <li>
-                                    <a href="accounting_dashboard.html"> Accounting </a>
-                                </li>
-                                <li>
-                                    <a href="analytics_dashboard.html"> Analytics </a>
-                                </li>
-                                <li>
-                                    <a href="car_dashboard.html"> Car </a>
-                                </li>
-                                <li>
-                                    <a href="classic_dashboard.html"> Classic </a>
-                                </li>
-                                <li>
-                                    <a href="stock_market_dashboard.html"> Stock Market </a>
-                                </li>
-                                <li>
-                                    <a href="cryptocurrency_dashboard.html">Cryptocurrency </a>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
                 </li>
 
                 <li class="menu">
-                    <a href="#uiAndComponents" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                    <a href="${pageContext.request.contextPath}/EventForm.jsp">
                         <div class="">
-                            <i class="flaticon-3d-cube"></i>
-                            <span>UI & Components</span>
-                        </div>
-                        <div>
-                            <i class="flaticon-down-arrow"></i>
+                            <i class="flaticon-calendar-12"></i>
+                            <span>Event</span>
                         </div>
                     </a>
-                    <div class="collapse submenu list-unstyled" id="uiAndComponents" data-parent="#topAccordion">
-                        <div class="row">
-                            <div class="col-lg-4">
-                                <ul class="list-unstyled">
-                                    <li>
-                                        <a href="#ui-features" data-toggle="collapse" aria-expanded="true" class="dropdown-toggle"> UI KIT <i class="flaticon-dot-three"></i> </a>
-                                        <ul class="collapse list-unstyled sub-submenu show" id="ui-features">
-                                            <li>
-                                                <a href="ui_helper_classes.html"> Helper Classes </a>
-                                            </li>
-                                            <li>
-                                                <a href="ui_color_library.html"> Color Library </a>
-                                            </li>
-                                            <li>
-                                                <a href="ui_grid.html"> Grid System </a>
-                                            </li>
-                                            <li>
-                                                <a href="ui_typography.html"> Typography </a>
-                                            </li>
-                                            <li>
-                                                <a href="ui_shadows.html"> Shadow </a>
-                                            </li>
-                                            <li>
-                                                <a href="ui_miscellaneous.html"> Miscellaneous </a>
-                                            </li>
-                                            <li>
-                                                <a href="ui_pagination.html">Pagination</a>
-                                            </li>
-                                            <li>
-                                                <a href="ui_alert.html"> Alerts </a>
-                                            </li>
-                                            <li>
-                                                <a href="ui_tooltips_and_popovers.html"> Tooltips And Popovers </a>
-                                            </li>
-                                            <li>
-                                                <a href="ui_loader.html"> Loaders </a>
-                                            </li>
-                                            <li class="sub-sub-submenu-list">
-                                                <a href="#ui-buttons" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"> Buttons <i class="flaticon-right-arrow"></i> </a>
-                                                <ul class="collapse list-unstyled sub-submenu" id="ui-buttons" data-parent="#ui-features">
-                                                    <li>
-                                                        <a href="ui_buttons.html"> Bootstrap </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="ui_creative.html"> Creative </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="ui_switches.html"> Switches </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="ui_social_button.html"> Social </a>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                            <li>
-                                                <a href="ui_sweetalert.html"> Sweet Alerts </a>
-                                            </li>
-                                            <li class="sub-sub-submenu-list">
-                                                <a href="#ui-font-icons" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"> Font Icons <i class="flaticon-right-arrow"></i> </a>
-                                                <ul class="collapse list-unstyled sub-submenu" id="ui-font-icons" data-parent="#ui-features">
-                                                    <li>
-                                                        <a href="ui_flaticon_icon.html"> Flaticon </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="ui_linea_icon.html"> Linea </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="ui_themify_icon.html"> Themify </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="ui_pixeden_icon.html"> Pixeden </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="ui_fontawesome_icon.html"> Fontawesome </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="ui_metro_icon.html"> Metro </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="ui_weather_icon.html"> Weather </a>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                            <li>
-                                                <a href="ui_tabs.html"> Tabs </a>
-                                            </li>
-                                            <li>
-                                                <a href="ui_accordion.html"> Accordions  </a>
-                                            </li>
-                                            <li>
-                                                <a href="ui_modal.html"> Modals </a>
-                                            </li>
-                                            <li>
-                                                <a href="ui_sliders.html"> Range Sliders </a>
-                                            </li>
-                                            <li>
-                                                <a href="ui_timeline.html"> Timeline </a>
-                                            </li>
-                                            <li>
-                                                <a href="ui_tree.html"> Tree View </a>
-                                            </li>
-                                            <li class="sub-sub-submenu-list">
-                                                <a href="#ui-progress" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"> Progress Bar <i class="flaticon-right-arrow"></i> </a>
-                                                <ul class="collapse list-unstyled sub-submenu" id="ui-progress" data-parent="#ui-features">
-                                                    <li>
-                                                        <a href="ui_bootstrap_progress_bar.html"> Bootstrap </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="ui_material_progress_bar.html"> Custom </a>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                            <li class="sub-sub-submenu-list">
-                                                <a href="#ui-notification" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"> Notifications <i class="flaticon-right-arrow"></i> </a>
-                                                <ul class="collapse list-unstyled sub-submenu" id="ui-notification" data-parent="#ui-features">
-                                                    <li>
-                                                        <a href="ui_toastr.html"> Toastr </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="ui_notification.html"> Creative </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="ui_snackbar.html"> Snackbar </a>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                            <li>
-                                                <a href="ui_session_timeout.html"> Session Timeout </a>
-                                            </li>
-                                            <li>
-                                                <a href="ui_media_object.html"> Media Object </a>
-                                            </li>
-                                            <li>
-                                                <a href="ui_list_group.html"> List Group </a>
-                                            </li>
-                                            <li>
-                                                <a href="ui_nestable_list.html"> Nested List </a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="col-lg-4">
-                                <ul class="list-unstyled">
-                                    <li>
-                                        <a href="#components" data-toggle="collapse" aria-expanded="true" class="dropdown-toggle"> COMPONENTS <i class="flaticon-dot-three"></i> </a>
-                                        <ul class="collapse list-unstyled sub-submenu show" id="components">
-                                            <li>
-                                                <a href="component_portlet.html"> Portlets </a>
-                                            </li>
-                                            <li>
-                                                <a href="component_keypad.html"> Keypad </a>
-                                            </li>
-
-                                            <li class="sub-sub-submenu-list">
-                                                <a href="#component-carousel" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"> Carousel <i class="flaticon-right-arrow"></i> </a>
-                                                <ul class="collapse list-unstyled sub-submenu" id="component-carousel" data-parent="#components">
-                                                    <li>
-                                                        <a href="component_bootstrap_carousel.html">Bootstrap</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="component_carousel.html">Metro</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="component_sliders.html">Swiper</a>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                            <li>
-                                                <a href="component_rating.html"> Rating </a>
-                                            </li>
-                                            <li>
-                                                <a href="component_blockui.html"> Block UI </a>
-                                            </li>
-                                            <li>
-                                                <a href="component_popup.html"> Popup </a>
-                                            </li>
-                                            <li>
-                                                <a href="component_scroll_bars_basic.html"> Scrollbar </a>
-                                            </li>
-                                            <li>
-                                                <a href="component_todo_list.html"> Todo List </a>
-                                            </li>
-                                            <li>
-                                                <a href="component_scrollspy.html"> Scrollspy </a>
-                                            </li>
-                                            <li>
-                                                <a href="component_countdown.html"> Countdown </a>
-                                            </li>
-
-                                            <li>
-                                                <a href="component_counter.html"> Counter </a>
-                                            </li>
-                                            <li>
-                                                <a href="component_datetime_picker.html"> Date &amp; Time Picker </a>
-                                            </li>
-                                            <li>
-                                                <a href="component_lightbox.html"> LightBox </a>
-                                            </li>
-                                            <li>
-                                                <a href="component_color_picker.html"> Color Picker </a>
-                                            </li>
-                                            <li class="sub-sub-submenu-list">
-                                                <a href="#component-media" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"> Media <i class="flaticon-right-arrow"></i> </a>
-                                                <ul class="collapse list-unstyled sub-submenu" id="component-media" data-parent="#components">
-                                                    <li>
-                                                        <a href="component_video_player.html"> Video Player </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="component_audio_player.html"> Audio Player </a>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                            <li>
-                                                <a href="component_clipboard.html"> Clipboard </a>
-                                            </li>
-                                            <li>
-                                                <a href="component_typeahead.html"> Typeahead </a>
-                                            </li>
-                                            <li class="sub-sub-submenu-list">
-                                                <a href="#component-search" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"> Search <i class="flaticon-right-arrow"></i> </a>
-                                                <ul class="collapse list-unstyled sub-submenu show" id="component-search" data-parent="#components">
-                                                    <li>
-                                                        <a href="component_search_multiple.html"> Multiple </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="component_search_web.html"> Web </a>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                            <li class="sub-sub-submenu-list">
-                                                <a href="#component-animation" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"> Animations <i class="flaticon-right-arrow"></i> </a>
-                                                <ul class="collapse list-unstyled sub-submenu" id="component-animation" data-parent="#components">
-                                                    <li>
-                                                        <a href="component_animation_buttons.html"> Buttons </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="component_animation_css.html"> CSS </a>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                            <li class="sub-sub-submenu-list">
-                                                <a href="#component-img-crop" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"> Image Cropping <i class="flaticon-right-arrow"></i> </a>
-                                                <ul class="collapse list-unstyled sub-submenu" id="component-img-crop" data-parent="#components">
-                                                    <li>
-                                                        <a href="component_image_cropping_basic.html"> Basic </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="component_image_cropping_advanced.html"> Advanced </a>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="col-lg-4">
-                                <ul class="list-unstyled">
-                                    <li>
-                                        <a href="#element" data-toggle="collapse" aria-expanded="true" class="dropdown-toggle"> ELEMENTS <i class="flaticon-dot-three"></i> </a>
-                                        <ul class="collapse list-unstyled sub-submenu show" id="element">
-                                            <li>
-                                                <a href="element_steps.html"> Steps </a>
-                                            </li>
-                                            <li>
-                                                <a href="element_list.html"> List </a>
-                                            </li>
-                                            <li>
-                                                <a href="element_ribbon.html"> Ribbons </a>
-                                            </li>
-                                            <li>
-                                                <a href="element_overlays.html"> Overlays </a>
-                                            </li>
-                                            <li>
-                                                <a href="element_weatherapp.html"> Weather Apps </a>
-                                            </li>
-                                            <li>
-                                                <a href="element_testimonial.html"> Testimonials </a>
-                                            </li>
-                                            <li>
-                                                <a href="element_team.html"> Team </a>
-                                            </li>
-                                            <li>
-                                                <a href="element_contacts.html"> Contacts </a>
-                                            </li>
-                                            <li>
-                                                <a href="element_blog.html"> Blog Elements </a>
-                                            </li>
-                                            <li>
-                                                <a href="element_pricing_table.html"> Pricing Tables </a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </div>
+                </li>
+                <li class="menu">
+                    <a href="${pageContext.request.contextPath}/results.jsp">
+                        <div class="">
+                            <i class="flaticon-calendar-12"></i>
+                            <span>Event Results</span>
                         </div>
-                    </div>
+                    </a>
                 </li>
 
                 <li class="menu">
-                    <a href="#tables-forms" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                    <a href="${pageContext.request.contextPath}/broadcast_form.jsp" >
                         <div class="">
-                            <i class="flaticon-table"></i>
-                            <span>Tables & Forms</span>
-                        </div>
-                        <div>
-                            <i class="flaticon-down-arrow"></i>
+                            <i class="flaticon-calendar-12"></i>
+                            <span>Broadcasts</span>
                         </div>
                     </a>
-                    <div class="collapse submenu list-unstyled" id="tables-forms"  data-parent="#topAccordion">
-                        <div class="row">
-                            <div class="col-lg-4">
-                                <ul class="list-unstyled">
-                                    <li>
-                                        <a href="#tables" data-toggle="collapse" aria-expanded="true" class="dropdown-toggle"> TABLES <i class="flaticon-dot-three"></i> </a>
-                                        <ul class="collapse list-unstyled sub-submenu show" id="tables">
-                                            <li>
-                                                <a href="table_basic.html"> Basic </a>
-                                            </li>
-                                            <li>
-                                                <a href="table_tablesaw.html"> Tablesaw</a>
-                                            </li>
-                                            <li>
-                                                <a href="table_sticky_table_header.html"> Sticky Headers</a>
-                                            </li>
-                                            <li class="sub-sub-submenu-list">
-                                                <a href="#tables-editable" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"> Editable <i class="flaticon-right-arrow"></i> </a>
-                                                <ul class="collapse list-unstyled sub-submenu" id="tables-editable" data-parent="#tables">
-                                                    <li>
-                                                        <a href="table_jq_spreadsheet.html"> Spreadsheet </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="table_jquery_tabledit.html"> TableEdit </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="table_editablegrid.html"> Editable Grid </a>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                            <li class="sub-sub-submenu-list">
-                                                <a href="#tables-data-tables" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"> DataTables <i class="flaticon-right-arrow"></i> </a>
-                                                <ul class="collapse list-unstyled sub-submenu" id="tables-data-tables" data-parent="#tables">
-                                                    <li>
-                                                        <a href="table_dt_zero_configuration.html"> Basic </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="table_dt_ordering_sorting.html"> Order Sorting </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="table_dt_multi-column_ordering.html"> Multi-Column </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="table_dt_multiple_tables.html"> Multiple Tables</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="table_dt_alternative_pagination.html"> Alternative Pagination</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="table_dt_miscellaneous.html"> Miscellaneous </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="table_dt_custom.html"> Custom </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="table_dt_scrollable.html"> Scrollable </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="table_dt_range_search.html"> Range Search </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="table_dt_html5.html"> HTML5 Export </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="table_dt_live_dom_ordering.html"> Live DOM ordering </a>
-                                                    </li>
+                </li>
 
-                                                </ul>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="col-lg-4">
-                                <ul class="list-unstyled">
-                                    <li>
-                                        <a href="#forms" data-toggle="collapse" aria-expanded="true" class="dropdown-toggle"> FORM <i class="flaticon-dot-three"></i> </a>
-                                        <ul class="collapse list-unstyled sub-submenu show" id="forms">
-                                            <li class="sub-sub-submenu-list">
-                                                <a href="#forms-bootstrap" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"> Bootstrap <i class="flaticon-right-arrow"></i> </a>
-                                                <ul class="collapse list-unstyled sub-submenu" id="forms-bootstrap" data-parent="#forms">
-                                                    <li>
-                                                        <a href="form_bootstrap_basic.html"> Basic </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="form_bootstrap_rounded.html"> Rounded </a>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                            <li class="sub-sub-submenu-list">
-                                                <a href="#forms-input-group" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"> Input Group <i class="flaticon-right-arrow"></i> </a>
-                                                <ul class="collapse list-unstyled sub-submenu" id="forms-input-group" data-parent="#forms">
-                                                    <li>
-                                                        <a href="form_input_group_basic.html"> Basic </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="form_input_group_rounded.html"> Rounded </a>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                            <li>
-                                                <a href="form_bootstrap_material.html"> Material </a>
-                                            </li>
-                                            <li class="sub-sub-submenu-list">
-                                                <a href="#forms-layout" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"> Layouts <i class="flaticon-right-arrow"></i> </a>
-                                                <ul class="collapse list-unstyled sub-submenu" id="forms-layout" data-parent="#forms">
-                                                    <li>
-                                                        <a href="form_layouts.html"> Basic </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="form_layouts_rounded.html"> Rounded </a>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                            <li class="sub-sub-submenu-list">
-                                                <a href="#forms-validation" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"> Validation <i class="flaticon-right-arrow"></i> </a>
-                                                <ul class="collapse list-unstyled sub-submenu" id="forms-validation" data-parent="#forms">
-                                                    <li>
-                                                        <a href="form_validation.html"> Bootstrap </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="form_jqvalidation.html"> jQuery </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="form_validation_material.html"> Custom </a>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                            <li>
-                                                <a href="form_input_mask.html"> Input Mask </a>
-                                            </li>
-                                            <li>
-                                                <a href="form_bootstrap_select.html"> Bootstrap Select </a>
-                                            </li>
-                                            <li>
-                                                <a href="form_select2.html"> Select2 </a>
-                                            </li>
-                                            <li>
-                                                <a href="form_bootstrap_touchspin.html"> TouchSpin </a>
-                                            </li>
-                                            <li>
-                                                <a href="form_multiselect.html"> Multi Select </a>
-                                            </li>
-                                            <li>
-                                                <a href="form_maxlength.html"> Maxlength </a>
-                                            </li>
-                                            <li>
-                                                <a href="form_repeater.html"> Repeater </a>
-                                            </li>
-                                            <li>
-                                                <a href="form_checkbox_radio.html"> Checkbox and Radio </a>
-                                            </li>
-
-                                            <li class="sub-sub-submenu-list">
-                                                <a href="#forms-wizard" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"> Wizards <i class="flaticon-right-arrow"></i> </a>
-                                                <ul class="collapse list-unstyled sub-submenu" id="forms-wizard" data-parent="#forms">
-                                                    <li>
-                                                        <a href="form_bs_wizard.html"> Bootstrap </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="form_wizard.html"> jQuery Steps </a>
-                                                    </li>
-                                                </ul>
-                                            </li>
-
-                                            <li>
-                                                <a href="form_fileupload.html"> File Upload </a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="col-lg-4">
-                                <ul class="list-unstyled">
-                                    <li>
-                                        <a href="#editors" data-toggle="collapse" aria-expanded="true" class="dropdown-toggle"> EDITORS <i class="flaticon-dot-three"></i> </a>
-                                        <ul class="collapse list-unstyled sub-submenu show" id="editors">
-                                            <li>
-                                                <a href="editor_tinymce.html"> Tinymce </a>
-                                            </li>
-                                            <li>
-                                                <a href="editor_quill.html"> Quill </a>
-                                            </li>
-                                            <li>
-                                                <a href="editor_markdown.html"> Markdown </a>
-                                            </li>
-                                            <li>
-                                                <a href="editor_contenttools.html"> ContentTools </a>
-                                            </li>
-                                            <li>
-                                                <a href="editor_summernote.html"> Summernote </a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </div>
+                <li class="menu">
+                    <a href="${pageContext.request.contextPath}/medals.jsp" >
+                        <div class="">
+                            <i class="flaticon-cup"></i>
+                            <span>Medals</span>
                         </div>
-                    </div>
+                    </a>
+                </li>
+                <li class="menu">
+                    <a href="${pageContext.request.contextPath}/athletes_form.jsp">
+                        <div class="">
+                            <i class="flaticon-user-group"></i>
+                            <span>Athletes</span>
+                        </div>
+                    </a>
                 </li>
 
                 <li class="menu">
                     <a href="#pages" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
                         <div class="">
-                            <i class="flaticon-copy"></i>
-                            <span>Pages</span>
-                        </div>
-                        <div>
-                            <i class="flaticon-down-arrow"></i>
+                            <i class="flaticon-file"></i>
+                            <span>About us</span>
                         </div>
                     </a>
-                    <div class="collapse submenu list-unstyled" id="pages" data-parent="#topAccordion">
-                        <div class="row">
-                            <div class="col-lg-4">
-                                <ul class="list-unstyled">
-                                    <li>
-                                        <a href="#ecommerce" data-toggle="collapse" aria-expanded="true" class="dropdown-toggle"> ECOMMERCE <i class="flaticon-dot-three"></i> </a>
-                                        <ul class="collapse list-unstyled sub-submenu show" id="ecommerce">
-                                            <li>
-                                                <a href="ecommerce_orders.html"> Orders </a>
-                                            </li>
-                                            <li>
-                                                <a href="ecommerce_product.html"> Products </a>
-                                            </li>
-                                            <li>
-                                                <a href="ecommerce_product_catalog.html"> Product Catalog </a>
-                                            </li>
-                                            <li class="sub-sub-submenu-list">
-                                                <a href="#product-details" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"  data-parent="#ecommerce"> Product Details <i class="flaticon-right-arrow"></i> </a>
-                                                <ul class="collapse list-unstyled sub-submenu" id="product-details">
-                                                    <li>
-                                                        <a href="ecommerce_product_details_1.html"> Product Details 1 </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="ecommerce_product_details_2.html"> Product Details 2 </a>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                            <li>
-                                                <a href="ecommerce_addedit_product.html"> Add/Edit Products </a>
-                                            </li>
-                                            <li>
-                                                <a href="ecommerce_addedit_categories.html"> Add/Edit Categories </a>
-                                            </li>
-                                            <li>
-                                                <a href="ecommerce_view_cart.html"> View Cart </a>
-                                            </li>
-                                            <li>
-                                                <a href="ecommerce_view_payments.html"> View Payments </a>
-                                            </li>
-                                            <li class="active">
-                                                <a href="ecommerce_view_customers.html"> View Customers </a>
-                                            </li>
-                                            <li>
-                                                <a href="ecommerce_checkout.html"> Checkout </a>
-                                            </li>
-                                            <li>
-                                                <a href="ecommerce_invoices.html"> Invoice </a>
-                                            </li>
-                                            <li>
-                                                <a href="ecommerce_shipments.html"> Shipments </a>
-                                            </li>
-                                            <li>
-                                                <a href="ecommerce_products_cart.html"> Products in Cart </a>
-                                            </li>
-                                            <li>
-                                                <a href="ecommerce_coupons.html"> Coupons </a>
-                                            </li>
-                                            <li>
-                                                <a href="ecommerce_low_stock.html"> Low Stock </a>
-                                            </li>
-                                            <li>
-                                                <a href="ecommerce_best_sellers.html"> Best Sellers </a>
-                                            </li>
-                                            <li>
-                                                <a href="ecommerce_refunds.html"> Refunds </a>
-                                            </li>
-                                            <li>
-                                                <a href="ecommerce_search_terms.html"> Search Terms </a>
-                                            </li>
-                                            <li>
-                                                <a href="ecommerce_newsletters.html"> Newsletters </a>
-                                            </li>
-                                            <li>
-                                                <a href="ecommerce_wizards.html"> Payment Wizard </a>
-                                            </li>
-                                            <li>
-                                                <a href="ecommerce_reviews.html"> Reviews </a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="col-lg-4">
-                                <ul class="list-unstyled">
-                                    <li>
-                                        <a href="#page" data-toggle="collapse" aria-expanded="true" class="dropdown-toggle"> PAGES <i class="flaticon-dot-three"></i> </a>
-                                        <ul class="collapse list-unstyled sub-submenu show" id="page">
-                                            <li>
-                                                <a href="pages_blank_page.html"> Blank Page</a>
-                                            </li>
-                                            <li>
-                                                <a href="pages_helpdesk.html"> Helpdesk </a>
-                                            </li>
-                                            <li>
-                                                <a href="pages_contact_us.html"> Contact Form </a>
-                                            </li>
-                                            <li>
-                                                <a href="pages_faq.html"> FAQ </a>
-                                            </li>
-                                            <li>
-                                                <a href="pages_blog.html"> Blog </a>
-                                            </li>
-                                            <li>
-                                                <a href="pages_privacy.html"> Privacy Policy </a>
-                                            </li>
-                                            <li>
-                                                <a href="pages_cookie_consent.html"> Cookie Consent </a>
-                                            </li>
-                                            <li>
-                                                <a href="pages_landing_page.html" target="_blank"> Landing Page </a>
-                                            </li>
-                                            <li>
-                                                <a href="pages_coming_soon.html"> Coming Soon </a>
-                                            </li>
-
-                                            <li class="sub-sub-submenu-list">
-                                                <a href="#pages-error" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"> Error <i class="flaticon-right-arrow"></i> </a>
-                                                <ul class="collapse list-unstyled sub-submenu" id="pages-error" data-parent="#pages">
-                                                    <li>
-                                                        <a href="pages_error404.html"> 404 1 </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="pages_error404-2.html"> 404 2 </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="pages_error500.html"> 500 1 </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="pages_error500-2.html"> 500 2 </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="pages_error503.html"> 503 1 </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="pages_error503-2.html"> 503 2 </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="pages_maintenence.html"> Maintanence </a>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="col-lg-4">
-                                <ul class="list-unstyled">
-                                    <li>
-                                        <a href="#users" data-toggle="collapse" aria-expanded="true" class="dropdown-toggle"> USERS <i class="flaticon-dot-three"></i> </a>
-                                        <ul class="collapse list-unstyled sub-submenu show" id="users">
-                                            <li>
-                                                <a href="user_profile.html"> Profile </a>
-                                            </li>
-                                            <li>
-                                                <a href="user_account_setting.html"> Account Settings </a>
-                                            </li>
-                                            <li class="sub-sub-submenu-list">
-                                                <a href="#user-login" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"> Login <i class="flaticon-right-arrow"></i> </a>
-                                                <ul class="collapse list-unstyled sub-submenu" id="user-login" data-parent="#users">
-                                                    <li>
-                                                        <a href="user_login_1.html"> Login 1 </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="user_login_2.html"> Login 2 </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="user_login_3.html"> Login 3 </a>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                            <li class="sub-sub-submenu-list">
-                                                <a href="#user-register" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"> Register <i class="flaticon-right-arrow"></i> </a>
-                                                <ul class="collapse list-unstyled sub-submenu" id="user-register" data-parent="#users">
-                                                    <li>
-                                                        <a href="user_register_1.html"> Register 1 </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="user_register_2.html"> Register 2 </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="user_register_3.html"> Register 3 </a>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                            <li class="sub-sub-submenu-list">
-                                                <a href="#user-passRecovery" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"> Password Recovery <i class="flaticon-right-arrow"></i> </a>
-                                                <ul class="collapse list-unstyled sub-submenu" id="user-passRecovery" data-parent="#users">
-                                                    <li>
-                                                        <a href="user_pass_recovery_1.html"> Password Recovery 1 </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="user_pass_recovery_2.html"> Password Recovery 2 </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="user_pass_recovery_3.html"> Password Recovery 3 </a>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                            <li class="sub-sub-submenu-list">
-                                                <a href="#user-lockscreen" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"> Lockscreen <i class="flaticon-right-arrow"></i> </a>
-                                                <ul class="collapse list-unstyled sub-submenu" id="user-lockscreen" data-parent="#users">
-                                                    <li>
-                                                        <a href="user_lockscreen_1.html"> Lockscreen 1 </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="user_lockscreen_2.html"> Lockscreen 2 </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="user_lockscreen_3.html"> Lockscreen 3 </a>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
                 </li>
-
-                <li class="menu">
-                    <a href="#more" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
-                        <div class="">
-                            <i class="flaticon-plus"></i>
-                            <span class="d-lg-none">More</span>
-                        </div>
-                        <div class="d-lg-none">
-                            <i class="flaticon-down-arrow"></i>
-                        </div>
-                    </a>
-                    <div class="collapse submenu list-unstyled" id="more" data-parent="#topAccordion">
-                        <div class="row">
-                            <div class="col-lg-3">
-                                <ul class="list-unstyled">
-                                    <li>
-                                        <a href="#modules" data-toggle="collapse" aria-expanded="true" class="dropdown-toggle"> MODULES <i class="flaticon-dot-three"></i> </a>
-                                        <ul class="collapse list-unstyled sub-submenu show" id="modules">
-                                            <li>
-                                                <a href="modules_widgets.html"> Widgets </a>
-                                            </li>
-                                            <li>
-                                                <a href="modules_table_and_event.html"> Tables &amp; Events </a>
-                                            </li>
-                                            <li>
-                                                <a href="modules_charts_and_maps.html"> Charts &amp; Maps </a>
-                                            </li>
-                                            <li>
-                                                <a href="modules_weather_and_calendar.html"> Weather &amp; Calendar </a>
-                                            </li>
-                                            <li>
-                                                <a href="modules_cards.html"> Cards </a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li>
-                                        <a href="#dragndrop" data-toggle="collapse" aria-expanded="true" class="dropdown-toggle"> DRAG AND DROP <i class="flaticon-dot-three"></i> </a>
-                                        <ul class="collapse list-unstyled sub-submenu show" id="dragndrop">
-                                            <li>
-                                                <a href="dragndrop_gridstack.html"> Grid Stack</a>
-                                            </li>
-                                            <li>
-                                                <a href="dragndrop_dragula.html"> Dragula</a>
-                                            </li>
-                                            <li class="sub-sub-submenu-list">
-                                                <a href="#dragndrop-jqueryui" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"> jQuery UI <i class="flaticon-right-arrow"></i> </a>
-                                                <ul class="collapse list-unstyled sub-submenu" id="dragndrop-jqueryui" data-parent="#dragndrop">
-                                                    <li>
-                                                        <a href="dragndrop_ui_product_cart.html"> Shopping Cart </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="dragndrop_scrumboard.html"> Scrum Task Board</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="dragndrop_scroll_bars.html"> Scrollbar</a>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="col-lg-3">
-                                <ul class="list-unstyled">
-                                    <li>
-                                        <a href="#charts" data-toggle="collapse" aria-expanded="true" class="dropdown-toggle"> CHARTS <i class="flaticon-dot-three"></i> </a>
-                                        <ul class="collapse list-unstyled sub-submenu show" id="charts">
-                                            <li class="sub-sub-submenu-list">
-                                                <a href="#chart-amcharts" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"> amCharts <i class="flaticon-right-arrow"></i> </a>
-                                                <ul class="collapse list-unstyled sub-submenu" id="chart-amcharts" data-parent="#charts">
-                                                    <li>
-                                                        <a href="am_column_and_barchart.html"> Column &amp; Bar </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="am_line_and_areachart.html"> Line &amp; Area </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="am_pie_and_donutchart.html"> Pie &amp; Donut </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="am_gauge_and_otherchart.html"> Gauges  &amp; Other </a>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                            <li class="sub-sub-submenu-list">
-                                                <a href="#chart-c3chart" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"> C3 <i class="flaticon-right-arrow"></i> </a>
-                                                <ul class="collapse list-unstyled sub-submenu" id="chart-c3chart" data-parent="#charts">
-                                                    <li>
-                                                        <a href="charts_c3_chart.html"> Simple</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="charts_c3_api.html"> Api </a>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                            <li>
-                                                <a href="charts_cssplot.html"> CSS Plot </a>
-                                            </li>
-                                            <li>
-                                                <a href="charts_morris.html"> Morris </a>
-                                            </li>
-                                            <li>
-                                                <a href="charts_flowchart.html"> Flowcharts </a>
-                                            </li>
-                                            <li>
-                                                <a href="charts_jQuery_sparklines.html"> jQuery Sparklines </a>
-                                            </li>
-                                            <li class="sub-sub-submenu-list">
-                                                <a href="#chart-echart" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"> eCharts <i class="flaticon-right-arrow"></i> </a>
-                                                <ul class="collapse list-unstyled sub-submenu" id="chart-echart" data-parent="#charts">
-                                                    <li>
-                                                        <a href="charts_echart_basic.html"> Basic </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="charts_echart_candlestick.html"> Candlestick </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="charts_echart_funnel_radar.html"> Funnel & Radar  </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="charts_echart_scatters.html"> Scatter </a>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                            <li class="sub-sub-submenu-list">
-                                                <a href="#chart-chartist" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"> Chartist <i class="flaticon-right-arrow"></i> </a>
-                                                <ul class="collapse list-unstyled sub-submenu" id="chart-chartist" data-parent="#charts">
-                                                    <li>
-                                                        <a href="charts_chartist_bar.html"> Bar </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="charts_chartist_line.html"> Line &amp; Area </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="charts_chartist_pie.html"> Pie </a>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                            <li>
-                                                <a href="charts_google.html"> Google </a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="col-lg-3">
-                                <ul class="list-unstyled">
-                                    <li>
-                                        <a href="#maps" data-toggle="collapse" aria-expanded="true" class="dropdown-toggle"> MAPS <i class="flaticon-dot-three"></i> </a>
-                                        <ul class="collapse list-unstyled sub-submenu show" id="maps">
-                                            <li class="sub-sub-submenu-list">
-                                                <a href="#map-googleMaps" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"> Google <i class="flaticon-right-arrow"></i> </a>
-                                                <ul class="collapse list-unstyled sub-submenu" id="map-googleMaps" data-parent="#maps">
-                                                    <li>
-                                                        <a href="map_google_basic.html"> Basic </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="map_google_event.html"> Event </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="map_google_controls_interaction.html"> Controls and Interaction </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="map_google_styles.html"> Styles </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="map_google_other.html"> Other </a>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                            <li class="sub-sub-submenu-list">
-                                                <a href="#map-jqMapael" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"> jquery Mapael <i class="flaticon-right-arrow"></i> </a>
-                                                <ul class="collapse list-unstyled sub-submenu" id="map-jqMapael" data-parent="#maps">
-                                                    <li>
-                                                        <a href="map_jquerymapael_basic.html"> Basic </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="map_jquerymapael_advanced.html"> Advanced </a>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                            <li>
-                                                <a href="map_jhere.html"> jhere </a>
-                                            </li>
-                                            <li>
-                                                <a href="map_open_layers.html"> OpenLayers </a>
-                                            </li>
-                                            <li class="sub-sub-submenu-list">
-                                                <a href="#map-vMaps" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"> Vector Maps <i class="flaticon-right-arrow"></i> </a>
-                                                <ul class="collapse list-unstyled sub-submenu" id="map-vMaps" data-parent="#maps">
-                                                    <li>
-                                                        <a href="map_amvector.html"> amVector</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="map_jvector.html"> jVector</a>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="col-lg-3">
-                                <ul class="list-unstyled">
-                                    <li>
-                                        <a href="#apps" data-toggle="collapse" aria-expanded="true" class="dropdown-toggle"> APPS <i class="flaticon-dot-three"></i> </a>
-                                        <ul class="collapse list-unstyled sub-submenu show" id="apps">
-                                            <li>
-                                                <a href="apps_chat.html"> Chat </a>
-                                            </li>
-                                            <li>
-                                                <a href="apps_mailbox.html"> Mailbox </a>
-                                            </li>
-                                            <li>
-                                                <a href="apps_mailbox_with_chat.html"> Mailbox With Chat </a>
-                                            </li>
-                                            <li>
-                                                <a href="apps_newsletter.html"> Newsletter </a>
-                                            </li>
-                                            <li>
-                                                <a href="apps_scheduler.html"> Scheduler </a>
-                                            </li>
-                                            <li class="sub-sub-submenu-list">
-                                                <a href="#apps-calendars" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"> Calendar <i class="flaticon-right-arrow"></i> </a>
-                                                <ul class="collapse list-unstyled sub-submenu" id="apps-calendars" data-parent="#apps-calendars">
-                                                    <li>
-                                                        <a href="apps_basic_calendar.html"> Basic </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="apps_full_calendar.html"> Full Calendar </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="apps_drag_n_drop_calendar.html"> Drag n Drop </a>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-
             </ul>
         </nav>
     </div>
     <!--  END TOPBAR  -->
+
 
     <!--  BEGIN CONTENT PART  -->
     <div id="content" class="main-content">
@@ -1346,6 +374,57 @@
             <div class="widget-content widget-content-area">
                 <a class="btn btn-success ml-2 mb-4 mt-2  popup-with-form" id="popup" onclick="cleanForm();" href="#test-form">Add</a>
             </div>
+
+            <!-- Modal -->
+            <div class="modal fade" id="formInputModal" tabindex="-1" role="dialog" aria-labelledby="formInputModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="formInputModalLabel">Country's Representatives</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <form method="post" action="ServletLogin2">
+                            <div class="modal-body">
+
+                                <input type="hidden" name="command" value="athletes">
+                                <input type="hidden" name="userType" value="${userInfo.userType}">
+                                <input type="hidden" name="country" value="${userInfo.country}">
+                                <input type="hidden" name="id" id="id" value="0">
+                                <input type="hidden" name="action" id="action" value="setAthlete">
+
+
+
+                                <div class="form-group mb-4">
+                                    <label for="fullName">Full Name</label>
+                                    <input type="text" name="fullName" class="form-control" id="fullName" placeholder="">
+                                </div>
+
+
+                                <div class="form-group mb-4">
+                                    <label for="email">Email address</label>
+                                    <input type="email" name="email" class="form-control" id="email" placeholder="">
+                                </div>
+
+
+                                <div class="form-group mb-4">
+                                    <label for="sport">Country</label>
+                                    <select name="sport" class="form-control" id="sport">
+
+                                    </select>
+                                </div>
+
+                            </div>
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-primary btn-rounded mt-3 mb-3">Submit</button>
+                                <button type="button" class="btn btn-dark btn-rounded mt-3 mb-3" data-dismiss="modal">Close</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
 
             <div class="row" id="cancel-row">
                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 layout-spacing">
@@ -1415,64 +494,6 @@
 
 
                         </div>
-                        <form method="post" action="ServletLogin2" id="test-form" enctype="multipart/form-data" class="white-popup-block mfp-hide col-xl-12 col-lg-12 col-md-12 layout-spacing">
-                            <c:if test="${alertEmailError=='Email Exits'}">
-                                <div class="alert alert-arrow-left alert-icon-left alert-light-danger mb-4" role="alert">
-                                    <i class="flaticon-cancel-12 close" data-dismiss="alert"></i>
-                                    <i class="flaticon-bell-13"></i>
-                                    <strong>${alertEmailError}!</strong><br>
-                                    The email you used exists.
-                                </div>
-                            </c:if>
-                            <div class="info">
-                                <h6 class="mt-4">General Information</h6>
-                                <div class="row">
-                                        <div class="form">
-                                            <input type="hidden" name="command" value="athletes">
-                                            <input type="hidden" name="userType" value="${userInfo.userType}">
-                                            <input type="hidden" name="country" value="${userInfo.country}">
-                                            <input type="hidden" name="id" id="id" value="0">
-                                            <input type="hidden" name="action" id="action" value="setAthlete">
-                                            <div class="upload ml-md-5 mt-4 pr-md-4">
-                                                <input type="file" id="input-file-max-fs"   name="image" class="dropify" data-default-file="asserts/img/200x200.jpg" data-max-file-size="2M" />
-                                                <p class="mt-2"><i class="flaticon-cloud-upload mr-1"></i> Upload Picture</p>
-                                            </div>
-                                            <div class="form-group col-md-9">
-                                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                                    <input class="mdl-textfield__input" name="fullName" type="text" id="fullName" value="${alertEmailError2.fullName}">
-                                                    <label class="mdl-textfield__label" for="fullName">Full Name</label>
-                                                </div>
-                                            </div>
-
-                                            <div class="form-group col-md-9">
-                                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                                    <input class="mdl-textfield__input" name="email" type="email" id="email" value="${alertEmailError2.email}">
-                                                    <label class="mdl-textfield__label" for="email">Email address</label>
-                                                </div>
-                                            </div>
-                                            <div class="form-group col-md-9">
-                                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                                    <label class="mdl-textfield__label" for="sport">Sport</label>
-                                                    <select name="sport" class="mdl-textfield__input form-control basic" aria-selected="${alertEmailError2.sport}" id="sport">
-
-                                                    </select>
-                                                </div>
-                                            </div>
-
-                                            <div class="col-md-12 text-center">
-                                                <button id="button" class="btn btn-warning btn-rounded mt-5 mb-0">Submit</button>
-                                            </div>
-                                        </div>
-                                </div>
-                            </div>
-                        </form>
-                        <c:if test="${alertEmailError2!=null}">
-                           <script>
-                               window.onload=function (){
-                                   document.getElementById("popup").click();
-                               }
-                           </script>
-                        </c:if>
 
                     </div>
                 </div>

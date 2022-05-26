@@ -1,7 +1,7 @@
 package com.example.funolympic_0_1.controller;
 
 
-import com.example.funolympic_0_1.model.bean.Userinfo;
+import com.example.funolympic_0_1.model.bean.*;
 
 import javax.annotation.Resource;
 import javax.servlet.ServletException;
@@ -86,11 +86,30 @@ public class ServletLogin2 extends HttpServlet {
             session.setAttribute("alertSuccessful","Successfully login");
             session.setAttribute("userInfo",userinfo);
 
+            Broadcast broadcast1=new Broadcast();
+            List<Broadcast> broadcasts=connectionUtil.getBroadcast(broadcast1,"login");
+            session.setAttribute("broadcastInfo",broadcasts);
+
             if (userinfo.getUserType().equals("Admin")){
                 List<Userinfo> userinfos=connectionUtil.setRepresentatives(userinfo,"login");
                 List<Userinfo> athleteInfo=connectionUtil.getAthlete(userinfo,"login");
                 session.setAttribute("RepresentativeInfo",userinfos);
                 session.setAttribute("athleteInfo",athleteInfo);
+
+                //event List
+                Events events=new Events();
+                List<Events> eventsList=connectionUtil.getEvent(events,"login");
+                session.setAttribute("eventInfo",eventsList);
+
+                //event List
+                Results results=new Results();
+                List<Results> resultsList=connectionUtil.getEventResult(results,"login");
+                session.setAttribute("resultsInfo",resultsList);
+
+                //medal
+                getMedalSummary(request,response);
+
+                getAllAthletes(request,response,userinfo.getUserType());
                 request.getRequestDispatcher("Country_representatives.jsp").forward(request, response);
             }else if(userinfo.getUserType().equals("Representatives")){
                 List<Userinfo> athleteInfo=connectionUtil.getAthlete(userinfo,"login");
@@ -187,6 +206,27 @@ public class ServletLogin2 extends HttpServlet {
                 case "changePassword":
                     changePassword(request,response);
                     break;
+                case "Broadcast":
+                    Broadcast(request,response);
+                    break;
+                case "deleteBroadcast":
+                    deleteBroadcast(request,response);
+                    break;
+                case "Event":
+                    event(request,response);
+                    break;
+                case "deleteEvent":
+                    deleteEvent(request,response);
+                    break;
+                case "EventResults":
+                    eventResults(request,response);
+                    break;
+                case "deleteResults":
+                    deleteResults(request,response);
+                    break;
+                case "volunteer":
+                    volunteer(request,response);
+                    break;
             }
 
             // listStudents(request, response);String fileName = null;
@@ -196,6 +236,216 @@ public class ServletLogin2 extends HttpServlet {
 
         }
     }
+
+    private void volunteer(HttpServletRequest request, HttpServletResponse response) throws Exception  {
+        HttpSession session=request.getSession();
+        String id =request.getParameter("id");
+        String age =request.getParameter("age");
+        String gender=request.getParameter("gender");
+        String country =request.getParameter("country");
+        String userType =request.getParameter("userType");
+        String interest1 =request.getParameter("interest1");
+        String interest2 =request.getParameter("interest2");
+        String interest3 =request.getParameter("interest3");
+        if(userType.equals("Spector")){
+            String msg=connectionUtil.setVolunteer(id,age,gender,country,interest1,interest2,interest3);
+            if(msg.equals("Successful")){
+                request.getRequestDispatcher("schedule.jsp").forward(request, response);
+            }else{
+                request.getRequestDispatcher("volunteer.jsp").forward(request, response);
+            }
+        }else{
+            session.setAttribute("alertErrorLogin","Your not login Please login");
+            request.getRequestDispatcher("user_login.jsp").forward(request, response);
+        }
+
+    }
+
+    private void eventResults(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        HttpSession session=request.getSession();
+        String id =request.getParameter("id");
+        String action =request.getParameter("action");
+        String userType =request.getParameter("userType");
+        String event_id =request.getParameter("event");
+        String athlete =request.getParameter("athlete");
+        String position =request.getParameter("position");
+        String medal =request.getParameter("medal");
+        System.out.println("Before "+action);
+        if(userType.equals("Admin")){
+            Results results=new Results(id,"Nothng","Nothing","Nothing",medal,position,"nothing",athlete,event_id,"Nothing");
+            List<Results> eventsList=connectionUtil.getEventResult(results,action);
+            if(eventsList.isEmpty()){
+                session.setAttribute("alertError","Something is wrong");
+                request.getRequestDispatcher("event_results_form.jsp").forward(request, response);
+            }else{
+                session.setAttribute("resultsInfo",eventsList);
+                request.getRequestDispatcher("event_results_form.jsp").forward(request, response);
+            }
+        }else {
+            session.setAttribute("alertErrorLogin","Your not login Please login");
+            request.getRequestDispatcher("user_login.jsp").forward(request, response);
+        }
+    }
+
+    private void deleteResults(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        HttpSession session=request.getSession();
+        String id =request.getParameter("id");
+        String userType =request.getParameter("userType");
+        if(userType.equals("Admin")){
+            Results results=new Results(id);
+            List<Results> resultsList=connectionUtil.getEventResult(results,"deleting");
+            if(resultsList.isEmpty()){
+                System.out.println("Empty ");
+                session.setAttribute("resultsInfo",resultsList);
+                request.getRequestDispatcher("event_results_form.jsp").forward(request, response);
+            }else{
+                String test= resultsList.get(0).getId();
+                System.out.println("test is "+test);
+                if(test.equals("Error")){
+                    session.setAttribute("alertError","Something is wrong");
+                    request.getRequestDispatcher("event_results_form.jsp").forward(request, response);
+                }else{
+                    System.out.println("No errors");
+                    session.setAttribute("resultsInfo",resultsList);
+                    request.getRequestDispatcher("event_results_form.jsp").forward(request, response);
+                }
+            }
+
+        }else {
+            session.setAttribute("alertErrorLogin","Your not login Please login");
+            request.getRequestDispatcher("user_login.jsp").forward(request, response);
+        }
+    }
+
+    private void deleteEvent(HttpServletRequest request, HttpServletResponse response) throws  Exception{
+        HttpSession session=request.getSession();
+        String id =request.getParameter("id");
+        String userType =request.getParameter("userType");
+        if(userType.equals("Admin")){
+            Events events=new Events(id);
+            List<Events> eventsList=connectionUtil.getEvent(events,"deleting");
+            if(eventsList.isEmpty()){
+                System.out.println("Empty ");
+                session.setAttribute("eventInfo",eventsList);
+                request.getRequestDispatcher("EventForm.jsp").forward(request, response);
+            }else{
+                String test= eventsList.get(0).getId();
+                System.out.println("test is "+test);
+                if(test.equals("Error")){
+                    session.setAttribute("alertError","Something is wrong");
+                    request.getRequestDispatcher("EventForm.jsp").forward(request, response);
+                }else{
+                    System.out.println("No errors");
+                    session.setAttribute("eventInfo",eventsList);
+                    request.getRequestDispatcher("EventForm.jsp").forward(request, response);
+                }
+            }
+
+        }else {
+            session.setAttribute("alertErrorLogin","Your not login Please login");
+            request.getRequestDispatcher("user_login.jsp").forward(request, response);
+        }
+    }
+    private void event(HttpServletRequest request, HttpServletResponse response) throws Exception{
+        HttpSession session=request.getSession();
+        String id =request.getParameter("id");
+        String action =request.getParameter("action");
+        String userType =request.getParameter("userType");
+        String sport =request.getParameter("sport");
+        String date =request.getParameter("date");
+        String startTime =request.getParameter("timeStart");
+        String endTime =request.getParameter("timeEnd");
+        String venue =request.getParameter("Venue");
+        String event=request.getParameter("event");
+        System.out.println("Before "+action);
+        if(userType.equals("Admin")){
+            Events events=new Events(id,sport,event,date,startTime,endTime,venue,"Nothing","Nothing" );
+            List<Events> eventsList=connectionUtil.getEvent(events,action);
+            if(eventsList.isEmpty()){
+                System.out.println("Error in event");
+                session.setAttribute("alertError","Something is wrong");
+                request.getRequestDispatcher("EventForm.jsp").forward(request, response);
+            }else{
+                session.setAttribute("eventInfo",eventsList);
+                request.getRequestDispatcher("EventForm.jsp").forward(request, response);
+            }
+        }else {
+            session.setAttribute("alertErrorLogin","Your not login Please login");
+            request.getRequestDispatcher("user_login.jsp").forward(request, response);
+        }
+
+    }
+
+
+    private void Broadcast(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        HttpSession session=request.getSession();
+        String id =request.getParameter("id");
+        String action =request.getParameter("action");
+        String userType =request.getParameter("userType");
+        String[] add_Roles=request.getParameterValues("my-select[]");
+        String sport="Nothing";
+        if (add_Roles != null) {
+            String add_Roles2 = null;
+            for (int i = 0; i < add_Roles.length; i++) {
+                System.out.println("<b>" + add_Roles[i] + "<b>");
+                if(add_Roles2==null){
+                    add_Roles2 = add_Roles[i];
+                }else{
+                    add_Roles2 = add_Roles2 + ", "+add_Roles[i] ;
+                }
+
+            }
+            StringBuffer sb = new StringBuffer(add_Roles2);
+            sb.deleteCharAt(sb.length() - 2);
+            sport = String.valueOf(sb);
+        }
+
+
+        String broadcast =request.getParameter("broadcast");
+        if(userType.equals("Admin")){
+            Broadcast broadcast1=new Broadcast(id,broadcast,sport);
+            List<Broadcast> broadcasts=connectionUtil.getBroadcast(broadcast1,action);
+            if(broadcasts.isEmpty()){
+                session.setAttribute("alertError","Something is wrong");
+                request.getRequestDispatcher("broadcast_form.jsp").forward(request, response);
+            }else{
+                session.setAttribute("broadcastInfo",broadcasts);
+                request.getRequestDispatcher("broadcast_form.jsp").forward(request, response);
+            }
+        }else {
+            session.setAttribute("alertErrorLogin","Your not login Please login");
+            request.getRequestDispatcher("user_login.jsp").forward(request, response);
+        }
+
+    }
+
+    private void deleteBroadcast(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        HttpSession session=request.getSession();
+        String id =request.getParameter("id");
+        String userType =request.getParameter("userType");
+        if(userType.equals("Admin")){
+            Broadcast broadcast1=new Broadcast(id);
+            List<Broadcast> broadcasts=connectionUtil.getBroadcast(broadcast1,"deleting");
+            if(broadcasts.isEmpty()){
+                session.setAttribute("broadcastInfo",broadcasts);
+                request.getRequestDispatcher("broadcast_form.jsp").forward(request, response);
+            }else{
+                String test= broadcasts.get(0).getId();
+                if(test.equals("Error")){
+                    session.setAttribute("alertError","Something is wrong");
+                    request.getRequestDispatcher("broadcast_form.jsp").forward(request, response);
+                }else{
+                    session.setAttribute("broadcastInfo",broadcasts);
+                    request.getRequestDispatcher("broadcast_form.jsp").forward(request, response);
+                }
+            }
+
+        }else {
+            session.setAttribute("alertErrorLogin","Your not login Please login");
+            request.getRequestDispatcher("user_login.jsp").forward(request, response);
+        }
+    }
+
 
     private void changePassword(HttpServletRequest request, HttpServletResponse response)throws Exception {
         HttpSession session=request.getSession();
@@ -277,6 +527,15 @@ public class ServletLogin2 extends HttpServlet {
         }
         if (session.getAttribute("email") != null){
             session.removeAttribute("email");
+        }
+        if (session.getAttribute("eventInfo") != null){
+            session.removeAttribute("eventInfo");
+        }
+        if (session.getAttribute("resultsInfo") != null){
+            session.removeAttribute("resultsInfo");
+        }
+        if (session.getAttribute("medalInfo") != null){
+            session.removeAttribute("medalInfo");
         }
         request.getRequestDispatcher("user_login.jsp").forward(request, response);
     }
@@ -363,6 +622,19 @@ public class ServletLogin2 extends HttpServlet {
             request.getRequestDispatcher("user_login.jsp").forward(request, response);
         }
 
+    }
+
+    private void getAllAthletes(HttpServletRequest request, HttpServletResponse response,String userType) throws Exception{
+        HttpSession session=request.getSession();
+        Userinfo userinfo=new Userinfo(userType);
+        List<Userinfo> userinfoList=connectionUtil.getAthlete(userinfo,"login");
+        session.setAttribute("allAthletes",userinfoList);
+    }
+
+    private void getMedalSummary(HttpServletRequest request, HttpServletResponse response) throws Exception{
+        HttpSession session=request.getSession();
+        List<Medal> medals=connectionUtil.getMedals();
+        session.setAttribute("medalInfo",medals);
     }
 
 }

@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="icons" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="64px" height="64px" viewBox="0 0 64 64" enable-background="new 0 0 64 64" xml:space="preserve">
+<g>
+	<g>
+		<g>
+			<polygon fill="#545C66" points="44.01,22.01 44.01,28.01 41.03,28.01 41.01,28 40.99,27.99 40.99,22.01 41.03,22.01 			"/>
+		</g>
+		<g>
+			<polygon fill="#545C66" points="44.01,10 44.01,16.01 41.03,16.01 40.99,16.01 40.99,10 41.03,10 			"/>
+		</g>
+		<g>
+			<rect x="50.01" y="22.01" fill="#545C66" width="5.99" height="6"/>
+		</g>
+		<g>
+			<rect x="44.01" y="28.01" fill="#545C66" width="6" height="5.98"/>
+		</g>
+		<g>
+			<rect x="44.01" y="16.01" fill="#545C66" width="6" height="6"/>
+		</g>
+		<g>
+			<rect x="50.01" y="10" fill="#545C66" width="5.99" height="6.01"/>
+		</g>
+	</g>
+	<g>
+		<g>
+			<rect x="50.01" y="16.01" fill="#CCD1D9" width="5.99" height="6"/>
+		</g>
+		<g>
+			<polygon fill="#CCD1D9" points="44.01,16.01 44.01,22.01 41.03,22.01 40.99,22.01 40.99,16.01 41.03,16.01 			"/>
+		</g>
+		<g>
+			<polygon fill="#CCD1D9" points="44.01,28.01 44.01,33.99 35.021,33.99 41.01,28 41.03,28.01 			"/>
+		</g>
+		<g>
+			<rect x="50.01" y="28.01" fill="#CCD1D9" width="5.99" height="5.98"/>
+		</g>
+		<g>
+			<rect x="44.01" y="10" fill="#CCD1D9" width="6" height="6.01"/>
+		</g>
+		<g>
+			<rect x="44.01" y="22.01" fill="#CCD1D9" width="6" height="6"/>
+		</g>
+	</g>
+	<g>
+		<g>
+			<rect x="23.01" y="4" fill="#656D78" width="5.99" height="6"/>
+		</g>
+		<g>
+			<rect x="11" y="4" fill="#656D78" width="6" height="6"/>
+		</g>
+		<g>
+			<rect x="35" y="4" fill="#656D78" width="5.99" height="6"/>
+		</g>
+		<g>
+			<rect x="11" y="16.01" fill="#656D78" width="6" height="6"/>
+		</g>
+		<g>
+			<rect x="17" y="10" fill="#656D78" width="6.01" height="6.01"/>
+		</g>
+		<g>
+			<rect x="23.01" y="16.01" fill="#656D78" width="5.99" height="6"/>
+		</g>
+		<g>
+			<rect x="17" y="22.01" fill="#656D78" width="6.01" height="5.98"/>
+		</g>
+		<g>
+			<rect x="35" y="16.01" fill="#656D78" width="5.99" height="6"/>
+		</g>
+		<g>
+			<rect x="29" y="22.01" fill="#656D78" width="6" height="5.98"/>
+		</g>
+		<g>
+			<rect x="29" y="10" fill="#656D78" width="6" height="6.01"/>
+		</g>
+	</g>
+	<g>
+		<g>
+			<rect x="17" y="4" fill="#E6E9ED" width="6.01" height="6"/>
+		</g>
+		<g>
+			<rect x="29" y="4" fill="#E6E9ED" width="6" height="6"/>
+		</g>
+		<g>
+			<rect x="17" y="16.01" fill="#E6E9ED" width="6.01" height="6"/>
+		</g>
+		<g>
+			<rect x="35" y="10" fill="#E6E9ED" width="5.99" height="6.01"/>
+		</g>
+		<g>
+			<rect x="11" y="22.01" fill="#E6E9ED" width="6" height="5.98"/>
+		</g>
+		<g>
+			<rect x="29" y="16.01" fill="#E6E9ED" width="6" height="6"/>
+		</g>
+		<g>
+			<rect x="11" y="10" fill="#E6E9ED" width="6" height="6.01"/>
+		</g>
+		<g>
+			<rect x="23.01" y="22.01" fill="#E6E9ED" width="5.99" height="5.98"/>
+		</g>
+		<g>
+			<rect x="35" y="22.01" fill="#E6E9ED" width="5.99" height="5.98"/>
+		</g>
+		<g>
+			<rect x="23.01" y="10" fill="#E6E9ED" width="5.99" height="6.01"/>
+		</g>
+	</g>
+	<g>
+		<path fill="#545C66" d="M11,3c0,0.55,0,1.45,0,2v4c0,0.55,0,1.45,0,2v4.01c0,0.55,0,1.45,0,2v4c0,0.55,0,1.45,0,2v3.98
+			c0,0.55,0,1.45,0,2V62c0,0.55-0.45,1-1,1H9c-0.55,0-1-0.45-1-1V2c0-0.55,0.45-1,1-1h1c0.55,0,1,0.45,1,1V3z"/>
+	</g>
+</g>
+</svg>

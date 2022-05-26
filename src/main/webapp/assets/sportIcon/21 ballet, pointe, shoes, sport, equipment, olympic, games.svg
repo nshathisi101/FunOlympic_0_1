@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="icons" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="64px" height="64px" viewBox="0 0 64 64" enable-background="new 0 0 64 64" xml:space="preserve">
+<g>
+	<g>
+		<polygon fill="#D3B1A9" points="46.49,34.011 46.49,50 39.51,37.44 39.51,34.011 39.6,34.011 		"/>
+	</g>
+	<g>
+		<polygon fill="#D770AD" points="46.49,30 46.49,34.011 39.6,34.011 39.51,34.011 39.51,30 		"/>
+	</g>
+	<g>
+		<rect x="39.51" y="23.011" fill="#D3B1A9" width="6.98" height="6.989"/>
+	</g>
+	<g>
+		<rect x="39.51" y="19.011" fill="#D770AD" width="6.98" height="4"/>
+	</g>
+	<g>
+		<rect x="39.51" y="12" fill="#D3B1A9" width="6.98" height="7.011"/>
+	</g>
+	<g>
+		<rect x="39.51" y="8" fill="#D770AD" width="6.98" height="4"/>
+	</g>
+	<g>
+		<polygon fill="#D770AD" points="39.51,37.44 46.49,50 44.949,60 37.969,60 39.51,50 		"/>
+	</g>
+	<g>
+		<polygon fill="#CE629D" points="44.949,60 44.49,63 37.51,63 37.969,60 		"/>
+	</g>
+	<g>
+		<polygon fill="#EAC6BB" points="39.51,37.44 39.51,50 30.619,34.011 39.51,34.011 		"/>
+	</g>
+	<g>
+		<polygon fill="#EC87C0" points="39.51,30 39.51,34.011 30.619,34.011 28.391,30 39.379,30 		"/>
+	</g>
+	<g>
+		<polygon fill="#EAC6BB" points="39.51,23.011 39.51,30 39.379,30 28.391,30 24.51,23.011 39.49,23.011 		"/>
+	</g>
+	<g>
+		<path fill="#EC87C0" d="M39.51,19.011v4h-0.02H24.51c1.65,0,3-1.351,3-3v-1h11.98H39.51z"/>
+	</g>
+	<g>
+		<polygon fill="#EAC6BB" points="39.51,12 39.51,19.011 39.49,19.011 27.51,19.011 27.51,12 39.49,12 		"/>
+	</g>
+	<g>
+		<polygon fill="#EC87C0" points="39.51,8 39.51,12 39.49,12 27.51,12 27.51,8 39.49,8 		"/>
+	</g>
+	<g>
+		<path fill="#EC87C0" d="M30.619,34.011L39.51,50l-1.541,10H30.18c-2.359-18.369-8.891-21.899-11.42-25.989
+			c-0.791-1.141-1.25-2.521-1.25-4c0-3.87,3.131-7,7-7L28.391,30L30.619,34.011z"/>
+	</g>
+	<g>
+		<path fill="#D770AD" d="M37.969,60l-0.459,3h-0.02h-6.98c-0.1-1.039-0.211-2.039-0.33-3H37.969z"/>
+	</g>
+	<g>
+		<rect x="27.51" y="1" fill="#EAC6BB" width="12" height="7"/>
+	</g>
+	<g>
+		<rect x="39.379" y="1" fill="#D3B1A9" width="7.111" height="7"/>
+	</g>
+</g>
+</svg>

@@ -1,3 +1,5 @@
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -40,7 +42,7 @@
         <div class="col-md-12">
             <input class="inputs" type="hidden" name="command" value="Login_User">
             <label for="inputEmail" class="">Login</label>
-            <input type="email" id="inputEmail" name="email" class="form-control mb-4" placeholder="Login" required >
+            <input type="email" id="inputEmail" name="email" class="form-control mb-4" value="${email}" placeholder="Login" required >
             <label for="inputPassword" class="">Password</label>
             <input type="password" id="inputPassword" name="password" class="form-control mb-5" placeholder="Password" required>
             <div class="checkbox d-flex justify-content-between mb-4 mt-3">

@@ -70,8 +70,8 @@
                 <div class="media">
                     <img src="assets/img/90x90.jpg" class="img-fluid mr-2" alt="admin-profile">
                     <div class="media-body align-self-center">
-                        <h6 class="mb-1">Alan Green</h6>
-                        <p class="mb-0">UI/UX Designer</p>
+                        <h6 class="mb-1">${userInfo.fullName}</h6>
+                        <p class="mb-0">${userInfo.userType}</p>
                     </div>
                 </div>
             </a>
@@ -154,10 +154,10 @@
         <li class="nav-item dropdown user-profile-dropdown mr-5  d-lg-inline-block d-none">
             <a href="javascript:void(0);" class="nav-link dropdown-toggle user" id="user-profile-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <div class="media">
-                    <img src="assets/img/90x90.jpg" class="img-fluid mr-2" alt="admin-profile">
+                    <img src="UserImages/${userInfo.dp}" data-ce-placeholder="assets/img/90x90.jpg" class="img-fluid mr-2" alt="admin-profile">
                     <div class="media-body align-self-center">
-                        <h6 class="mb-1">Alan Green</h6>
-                        <p class="mb-0">UI/UX Designer</p>
+                        <h6 class="mb-1">${userInfo.fullName}</h6>
+                        <p class="mb-0">${userInfo.userType}</p>
                     </div>
                 </div>
             </a>
@@ -300,11 +300,14 @@
         </li>
 
         <li class="nav-item dropdown cs-toggle ml-3 mr-lg-4">
-            <a href="#" class="nav-link toggle-control-sidebar suffle">
+            <a onclick="document.getElementById('logout').submit()">
                 <span class="icon flaticon-log-3"></span>
             </a>
         </li>
     </ul>
+    <form action="ServletLogin2" method="post" style="display: none">
+        <input type="hidden" name="command" value="logout">
+    </form>
 </header>
 <!--  END NAVBAR  -->
 
@@ -320,7 +323,7 @@
         <nav id="topbar">
             <ul class="list-unstyled menu-categories d-lg-flex justify-content-lg-around mb-0" id="topAccordion">
                 <li class="menu">
-                    <a href="schedule.jsp" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                    <a href="#dashboard" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
                         <div class="">
                             <i class="flaticon-home-line"></i>
                             <span>Home</span>
@@ -329,7 +332,15 @@
                 </li>
 
                 <li class="menu">
-                    <a href="results.jsp" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                    <a href="${pageContext.request.contextPath}/EventForm.jsp">
+                        <div class="">
+                            <i class="flaticon-calendar-12"></i>
+                            <span>Event</span>
+                        </div>
+                    </a>
+                </li>
+                <li class="menu">
+                    <a href="${pageContext.request.contextPath}/event_results_form.jsp">
                         <div class="">
                             <i class="flaticon-calendar-12"></i>
                             <span>Event Results</span>
@@ -338,28 +349,36 @@
                 </li>
 
                 <li class="menu">
-                    <a href="medals.jsp" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                    <a href="${pageContext.request.contextPath}/broadcast_form.jsp" >
+                        <div class="">
+                            <i class="flaticon-calendar-12"></i>
+                            <span>Broadcasts</span>
+                        </div>
+                    </a>
+                </li>
+
+                <li class="menu">
+                    <a href="${pageContext.request.contextPath}/medals.jsp" >
                         <div class="">
                             <i class="flaticon-cup"></i>
                             <span>Medals</span>
                         </div>
                     </a>
                 </li>
-
                 <li class="menu">
-                    <a href="athletes.jsp" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                    <a href="${pageContext.request.contextPath}/all_Users.jsp">
                         <div class="">
                             <i class="flaticon-user-group"></i>
-                            <span>Athletes</span>
+                            <span>Users</span>
                         </div>
                     </a>
                 </li>
 
                 <li class="menu">
-                    <a href="#more" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                    <a href="#pages" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
                         <div class="">
-                            <i class="flaticon-plus"></i>
-                            <span class="d-lg-none">More</span>
+                            <i class="flaticon-file"></i>
+                            <span>About us</span>
                         </div>
                     </a>
                 </li>
@@ -396,61 +415,26 @@
                                         <th>Gold</th>
                                         <th>Silver</th>
                                         <th>Bronze</th>
+                                        <th>Total</th>
                                     </tr>
                                     </thead>
                                     <tbody>
+                                    <c:forEach var="medal" items="${medalInfo}">
                                     <tr>
                                         <td>
                                             <div class="d-flex">
                                                 <div class="usr-img-frame mr-2 rounded-circle">
-                                                    <img alt="admin-profile" class="img-fluid rounded-circle" src="assets/img/fr.png">
+                                                    <img alt="admin-profile" class="img-fluid rounded-circle" src="assets/icons/${medal.country.toLowerCase()}-circular.png">
                                                 </div>
-                                                <p class="align-self-center mb-0"> France</p>
+                                                <p class="align-self-center mb-0"> ${medal.country}</p>
                                             </div>
                                         </td>
-                                        <td>3</td>
-                                        <td>1</td>
-                                        <td>9</td>
+                                        <td>${medal.gold}</td>
+                                        <td>${medal.silver}</td>
+                                        <td>${medal.bronze}</td>
+                                        <td>${medal.total}</td>
                                     </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="d-flex">
-                                                <div class="usr-img-frame mr-2 rounded-circle">
-                                                    <img alt="admin-profile" class="img-fluid rounded-circle" src="assets/img/jp.png">
-                                                </div>
-                                                <p class="align-self-center mb-0"> Japan</p>
-                                            </div>
-                                        </td>
-                                        <td>0</td>
-                                        <td>1</td>
-                                        <td>21</td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="d-flex">
-                                                <div class="usr-img-frame mr-2 rounded-circle">
-                                                    <img alt="admin-profile" class="img-fluid rounded-circle" src="assets/img/de.png">
-                                                </div>
-                                                <p class="align-self-center mb-0"> Germany</p>
-                                            </div>
-                                        </td>
-                                        <td>7</td>
-                                        <td>10</td>
-                                        <td>25</td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="d-flex">
-                                                <div class="usr-img-frame mr-2 rounded-circle">
-                                                    <img alt="admin-profile" class="img-fluid rounded-circle" src="assets/img/ca.png">
-                                                </div>
-                                                <p class="align-self-center mb-0"> Canada</p>
-                                            </div>
-                                        </td>
-                                        <td>1</td>
-                                        <td>1</td>
-                                        <td>0</td>
-                                    </tr>
+                                    </c:forEach>
                                     </tbody>
                                     <tfoot>
                                     <tr>

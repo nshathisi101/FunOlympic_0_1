@@ -154,10 +154,10 @@
         <li class="nav-item dropdown user-profile-dropdown mr-5  d-lg-inline-block d-none">
             <a href="javascript:void(0);" class="nav-link dropdown-toggle user" id="user-profile-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <div class="media">
-                    <img src="assets/img/90x90.jpg" class="img-fluid mr-2" alt="admin-profile">
+                    <img src="UserImages/${userInfo.dp}" data-ce-placeholder="assets/img/90x90.jpg" class="img-fluid mr-2" alt="admin-profile">
                     <div class="media-body align-self-center">
-                        <h6 class="mb-1">Alan Green</h6>
-                        <p class="mb-0">UI/UX Designer</p>
+                        <h6 class="mb-1">${userInfo.fullName}</h6>
+                        <p class="mb-0">${userInfo.userType}</p>
                     </div>
                 </div>
             </a>
@@ -300,11 +300,14 @@
         </li>
 
         <li class="nav-item dropdown cs-toggle ml-3 mr-lg-4">
-            <a href="#" class="nav-link toggle-control-sidebar suffle">
+            <a onclick="document.getElementById('logout').submit()">
                 <span class="icon flaticon-log-3"></span>
             </a>
         </li>
     </ul>
+    <form action="ServletLogin2" method="post" style="display: none">
+        <input type="hidden" name="command" value="logout">
+    </form>
 </header>
 <!--  END NAVBAR  -->
 
@@ -401,35 +404,40 @@
                                     </tr>
                                     </thead>
                                     <tbody>
+                                    <c:set var="countRepre" value="0" scope="page"/>
+                                    <c:forEach var="results" items="${resultsInfo}">
+                                    <c:set var="countRepre" value="${countRepre+1}" scope="page"/>
                                     <tr>
                                         <td>
                                             <div class="d-flex">
                                                 <div class="usr-img-frame mr-2 rounded-circle">
-                                                    <img alt="admin-profile" class="img-fluid rounded-circle" src="assets/img/90x90.jpg">
+                                                    <img alt="admin-profile" class="img-fluid rounded-circle" src="UserImages/${results.dp}">
                                                 </div>
-                                                <p class="align-self-center mb-0"> Max Holgate </p>
+                                                <p class="align-self-center mb-0"> ${results.fullName} </p>
                                             </div>
                                         </td>
-                                        <td>Sprint</td>
-                                        <td>Men's 100m</td>
+                                        <td>${results.sport}</td>
+                                        <td>${results.event}</td>
                                         <td>
                                             <div class="d-flex">
                                                 <div style="size: 1px">
-                                                    <img alt="admin-profile" class="img-fluid " src="assets/img/medal1.png">
+                                                    <img alt="admin-profile" class="img-fluid " src="assets/img/${results.medal}.png">
                                                 </div>
                                             </div>
                                         </td>
-                                        <td>3nd</td>
+                                        <td>${results.position}</td>
                                         <td>
                                             <div class="d-flex">
                                                 <div class="usr-img-frame mr-2 rounded-circle">
-                                                    <img alt="admin-profile" class="img-fluid rounded-circle" src="assets/img/de.png">
+                                                    <img alt="admin-profile" class="img-fluid rounded-circle" src="assets/icons/${results.country.toLowerCase()}-circular.png">
                                                 </div>
-                                                <p class="align-self-center mb-0"> Germany </p>
+                                                <p class="align-self-center mb-0"> ${results.country} </p>
                                             </div>
                                         </td>
                                     </tr>
+                                    </c:forEach>
                                     <tr>
+
                                         <td>
                                             <div class="d-flex">
                                                 <div class="usr-img-frame mr-2 rounded-circle">
@@ -454,34 +462,6 @@
                                                     <img alt="admin-profile" class="img-fluid rounded-circle" src="assets/img/fr.png">
                                                 </div>
                                                 <p class="align-self-center mb-0"> France </p>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="d-flex">
-                                                <div class="usr-img-frame mr-2 rounded-circle">
-                                                    <img alt="admin-profile" class="img-fluid rounded-circle" src="assets/img/90x90.jpg">
-                                                </div>
-                                                <p class="align-self-center mb-0"> Yi Yung </p>
-                                            </div>
-                                        </td>
-                                        <td>Sprint</td>
-                                        <td>Men's 100m</td>
-                                        <td>
-                                            <div class="d-flex">
-                                                <div style="size: 1px">
-                                                    <img alt="admin-profile" class="img-fluid " src="assets/img/medal3.png">
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td>1st</td>
-                                        <td>
-                                            <div class="d-flex">
-                                                <div class="usr-img-frame mr-2 rounded-circle">
-                                                    <img alt="admin-profile" class="img-fluid rounded-circle" src="assets/img/jp.png">
-                                                </div>
-                                                <p class="align-self-center mb-0"> Japan </p>
                                             </div>
                                         </td>
                                     </tr>

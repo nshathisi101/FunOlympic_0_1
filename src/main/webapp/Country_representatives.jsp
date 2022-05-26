@@ -135,10 +135,10 @@
         <li class="nav-item dropdown user-profile-dropdown mr-5  d-lg-inline-block d-none">
             <a href="javascript:void(0);" class="nav-link dropdown-toggle user" id="user-profile-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <div class="media">
-                    <img src="assets/img/90x90.jpg" class="img-fluid mr-2" alt="admin-profile">
+                    <img src="UserImages/${userInfo.dp}" data-ce-placeholder="assets/img/90x90.jpg" class="img-fluid mr-2" alt="admin-profile">
                     <div class="media-body align-self-center">
-                        <h6 class="mb-1">Alan Green</h6>
-                        <p class="mb-0">UI/UX Designer</p>
+                        <h6 class="mb-1">${userInfo.fullName}</h6>
+                        <p class="mb-0">${userInfo.userType}</p>
                     </div>
                 </div>
             </a>
@@ -281,11 +281,14 @@
         </li>
 
         <li class="nav-item dropdown cs-toggle ml-3 mr-lg-4">
-            <a href="#" class="nav-link toggle-control-sidebar suffle">
+            <a onclick="document.getElementById('logout').submit()">
                 <span class="icon flaticon-log-3"></span>
             </a>
         </li>
     </ul>
+    <form action="ServletLogin2" method="post" style="display: none">
+        <input type="hidden" name="command" value="logout">
+    </form>
 </header>
 <!--  END NAVBAR  -->
 
@@ -310,7 +313,15 @@
                 </li>
 
                 <li class="menu">
-                    <a href="#uiAndComponents" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                    <a href="${pageContext.request.contextPath}/EventForm.jsp">
+                        <div class="">
+                            <i class="flaticon-calendar-12"></i>
+                            <span>Event</span>
+                        </div>
+                    </a>
+                </li>
+                <li class="menu">
+                    <a href="${pageContext.request.contextPath}/event_results_form.jsp">
                         <div class="">
                             <i class="flaticon-calendar-12"></i>
                             <span>Event Results</span>
@@ -319,10 +330,27 @@
                 </li>
 
                 <li class="menu">
-                    <a href="#tables-forms" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                    <a href="${pageContext.request.contextPath}/broadcast_form.jsp" >
+                        <div class="">
+                            <i class="flaticon-calendar-12"></i>
+                            <span>Broadcasts</span>
+                        </div>
+                    </a>
+                </li>
+
+                <li class="menu">
+                    <a href="${pageContext.request.contextPath}/medals.jsp" >
                         <div class="">
                             <i class="flaticon-cup"></i>
                             <span>Medals</span>
+                        </div>
+                    </a>
+                </li>
+                <li class="menu">
+                    <a href="${pageContext.request.contextPath}/all_Users.jsp">
+                        <div class="">
+                            <i class="flaticon-user-group"></i>
+                            <span>Users</span>
                         </div>
                     </a>
                 </li>
@@ -335,19 +363,11 @@
                         </div>
                     </a>
                 </li>
-
-                <li class="menu">
-                    <a href="#more" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
-                        <div class="">
-                            <i class="flaticon-plus"></i>
-                            <span class="d-lg-none">More</span>
-                        </div>
-                    </a>
-                </li>
             </ul>
         </nav>
     </div>
     <!--  END TOPBAR  -->
+
 
     <!--  BEGIN CONTENT PART  -->
     <div id="content" class="main-content">
@@ -380,32 +400,28 @@
                                 <input type="hidden" name="password" value="2021">
                                 <input type="hidden" name="id" value="0" id="id">
 
-                                <div class="form-group col-md-9">
-                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                        <input class="mdl-textfield__input"  name="fullName" type="text" id="fullName">
-                                        <label class="mdl-textfield__label" for="fullName">Full Name *</label>
-                                    </div>
-                                </div>
+                            <div class="form-group mb-4">
+                                <label for="fullName">Full Name</label>
+                                <input type="text" name="fullName" class="form-control" id="fullName" placeholder="">
+                            </div>
 
-                                <div class="form-group col-md-12">
-                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                        <input class="mdl-textfield__input" name="email" type="email" id="email">
-                                        <label class="mdl-textfield__label" for="email">Email address *</label>
-                                    </div>
-                                </div>
 
-                                <div class="form-group col-md-9">
-                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                        <label class="mdl-textfield__label" for="country">Country</label>
-                                        <select name="country" class="mdl-textfield__input" id="country">
+                            <div class="form-group mb-4">
+                                <label for="email">Email address</label>
+                                <input type="email" name="email" class="form-control" id="email" placeholder="">
+                            </div>
+
+
+                                <div class="form-group mb-4">
+                                        <label for="country">Country</label>
+                                        <select name="country" class="form-control" id="country">
 
                                         </select>
-                                    </div>
                                 </div>
 
                         </div>
                         <div class="modal-footer">
-                            <button type="submit" class="btn btn-primary btn-rounded mt-3 mb-3">Save changes</button>
+                            <button type="submit" class="btn btn-primary btn-rounded mt-3 mb-3">Submit</button>
                             <button type="button" class="btn btn-dark btn-rounded mt-3 mb-3" data-dismiss="modal">Close</button>
                         </div>
                         </form>

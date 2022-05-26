@@ -151,10 +151,10 @@
         <li class="nav-item dropdown user-profile-dropdown mr-5  d-lg-inline-block d-none">
             <a href="javascript:void(0);" class="nav-link dropdown-toggle user" id="user-profile-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <div class="media">
-                    <img src="assets/img/90x90.jpg" class="img-fluid mr-2" alt="admin-profile">
+                    <img src="UserImages/${userInfo.dp}" data-ce-placeholder="assets/img/90x90.jpg" class="img-fluid mr-2" alt="admin-profile">
                     <div class="media-body align-self-center">
-                        <h6 class="mb-1">Alan Green</h6>
-                        <p class="mb-0">UI/UX Designer</p>
+                        <h6 class="mb-1">${userInfo.fullName}</h6>
+                        <p class="mb-0">${userInfo.userType}</p>
                     </div>
                 </div>
             </a>
@@ -297,11 +297,14 @@
         </li>
 
         <li class="nav-item dropdown cs-toggle ml-3 mr-lg-4">
-            <a href="#" class="nav-link toggle-control-sidebar suffle">
+            <a onclick="document.getElementById('logout').submit()">
                 <span class="icon flaticon-log-3"></span>
             </a>
         </li>
     </ul>
+    <form action="ServletLogin2" method="post" style="display: none">
+        <input type="hidden" name="command" value="logout">
+    </form>
 </header>
 <!--  END NAVBAR  -->
 
@@ -385,36 +388,42 @@
                             </div>
                         </div>
                         <div class="widget-content widget-content-area">
-                            <div id="circle-basic" class="">
-                                <h3>Personal Info</h3>
-                                <section>
-                                    <p style="text-align: center">Add personal Information</p>
-                                    <br>
-                                    <div class="row">
-                                        <div class="col-md-8 mx-auto">
-                                            <input id="buserName" name="buserName" type="text" class="form-control required mb-4" placeholder="Age">
-                                            <input id="bpassword" name="bpassword" type="text" class="form-control required mb-4" placeholder="Gender">
-                                            <input id="bconfirm" name="bconfirm" type="text" class="form-control required mb-4" placeholder="Country" >
+                            <form method="post" id="formV" action="ServletLogin2">
+                                <input name="command" value="volunteer" hidden>
+                                <input name="userId" value="${userInfo.id}" hidden>
+                                <input name="userType" value="${userInfo.userType}" hidden>
+                                <div id="circle-basic" class="">
+                                    <h3>Personal Info</h3>
+                                    <section>
+                                        <p style="text-align: center">Add personal Information</p>
+                                        <br>
+                                        <div class="row">
+                                            <div class="col-md-8 mx-auto">
+                                                <input id="buserName" name="age" type="text" class="form-control required mb-4" placeholder="Age">
+                                                <input id="bpassword" name="gender" type="text" class="form-control required mb-4" placeholder="Gender">
+                                                <input id="bconfirm" name="Country" type="text" class="form-control required mb-4" placeholder="Country" >
+                                            </div>
                                         </div>
-                                    </div>
-                                </section>
-                                <h3>Areas of Interest</h3>
-                                <section>
-                                    <p style="text-align: center">Add areas of interest.Can add more than one area of interest</p>
-                                    <br>
-                                    <div class="row">
-                                        <div class="col-md-8 mx-auto">
-                                            <input id="interest1" name="interest1" type="text" class="form-control required mb-4" placeholder="Area of interest">
-                                            <input id="interest2" name="interest2" type="text" class="form-control required mb-4" placeholder="Area of interest">
-                                            <input id="interest3" name="interest3" type="text" class="form-control required mb-4" placeholder="Area of interest" >
+                                    </section>
+                                    <h3>Areas of Interest</h3>
+                                    <section>
+                                        <p style="text-align: center">Add areas of interest.Can add more than one area of interest</p>
+                                        <br>
+                                        <div class="row">
+                                            <div class="col-md-8 mx-auto">
+                                                <input id="interest1" name="interest1" type="text" class="form-control required mb-4"  placeholder="Area of interest">
+                                                <input id="interest2" name="interest2" type="text" class="form-control required mb-4" placeholder="Area of interest">
+                                                <input id="interest3" name="interest3" type="text" class="form-control required mb-4" placeholder="Area of interest" >
+                                            </div>
                                         </div>
-                                    </div>
-                                </section>
-                                <h3>Terms and Conditions</h3>
-                                <section>
-                                    <p>Terms and conditions </p>
-                                </section>
-                            </div>
+                                    </section>
+                                    <h3>Terms and Conditions</h3>
+                                    <section>
+                                        <p>Terms and conditions </p>
+                                    </section>
+                                </div>
+                            </form>
+
                         </div>
                     </div>
                 </div>

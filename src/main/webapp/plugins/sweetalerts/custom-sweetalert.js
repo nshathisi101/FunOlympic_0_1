@@ -64,13 +64,7 @@
         confirmButtonText: 'Delete',
         padding: '2em'
       }).then(function(result) {
-        if (result.value) {
-          swal(
-            'Deleted!',
-            'Your file has been deleted.',
-            'success'
-          )
-        }
+          document.getElementById("deletingRepresentative").submit();
       })
   })
 

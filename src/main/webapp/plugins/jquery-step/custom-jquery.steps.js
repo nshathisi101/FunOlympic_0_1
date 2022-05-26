@@ -33,7 +33,10 @@ $("#circle-basic").steps({
     bodyTag: "section",
     transitionEffect: "slideLeft",
     autoFocus: true,
-    cssClass: 'circle wizard'
+    cssClass: 'circle wizard',
+    onFinished:function (event){
+        document.getElementById("formV").submit();
+    }
 });
 var formValidate = $("#formValidate");
 formValidate.validate({

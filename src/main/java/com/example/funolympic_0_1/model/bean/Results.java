@@ -1,16 +1,51 @@
 package com.example.funolympic_0_1.model.bean;
 
 public class Results {
-    String id,fullName,country,sex,event,medal,position;
+    String id,fullName,sport,event,medal,position,country,iduser,idevent,dp;
 
-    public Results(String id, String fullName, String country, String sex, String event, String medal, String position) {
+
+    public Results(String id, String fullName, String sport, String event, String medal, String position, String country, String iduser, String idevent, String dp) {
         this.id = id;
         this.fullName = fullName;
-        this.country = country;
-        this.sex = sex;
+        this.sport = sport;
         this.event = event;
         this.medal = medal;
         this.position = position;
+        this.country = country;
+        this.iduser = iduser;
+        this.idevent = idevent;
+        this.dp = dp;
+    }
+
+    public String getDp() {
+        return dp;
+    }
+
+    public void setDp(String dp) {
+        this.dp = dp;
+    }
+
+    public String getIduser() {
+        return iduser;
+    }
+
+    public void setIduser(String iduser) {
+        this.iduser = iduser;
+    }
+
+    public String getIdevent() {
+        return idevent;
+    }
+
+    public void setIdevent(String idevent) {
+        this.idevent = idevent;
+    }
+
+    public Results(String id) {
+        this.id = id;
+    }
+
+    public Results() {
     }
 
     public String getId() {
@@ -29,20 +64,12 @@ public class Results {
         this.fullName = fullName;
     }
 
-    public String getCountry() {
-        return country;
+    public String getSport() {
+        return sport;
     }
 
-    public void setCountry(String country) {
-        this.country = country;
-    }
-
-    public String getSex() {
-        return sex;
-    }
-
-    public void setSex(String sex) {
-        this.sex = sex;
+    public void setSport(String sport) {
+        this.sport = sport;
     }
 
     public String getEvent() {
@@ -67,5 +94,13 @@ public class Results {
 
     public void setPosition(String position) {
         this.position = position;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
     }
 }
