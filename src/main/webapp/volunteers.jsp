@@ -14,6 +14,7 @@
     <link href="assets/css/plugins.css" rel="stylesheet" type="text/css" />
     <!-- END GLOBAL MANDATORY STYLES -->
 
+
     <!--  BEGIN CUSTOM STYLE FILE  -->
     <link rel="stylesheet" type="text/css" href="plugins/table/datatable/datatables.css">
     <link rel="stylesheet" type="text/css" href="assets/css/ecommerce/view_customers.css">
@@ -25,14 +26,29 @@
     <link rel="stylesheet" type="text/css" href="plugins/mdl/material.css">
     <!-- END PAGE LEVEL STYLES -->
 
+
     <!-- BEGIN PAGE LEVEL PLUGINS -->
     <link href="plugins/animate/animate.css" rel="stylesheet" type="text/css" />
     <link href="assets/css/modals/component.css" rel="stylesheet" type="text/css" />
     <!-- END PAGE LEVEL PLUGINS -->
 
     <!--  BEGIN CUSTOM STYLE FILE  -->
+    <link rel="stylesheet" type="text/css" href="plugins/jquery-step/jquery.steps.css">
+    <style>
+        #formValidate .wizard > .content {min-height: 25em;}
+        #example-vertical.wizard > .content {min-height: 24.5em;}
+    </style>
+    <!--  END CUSTOM STYLE FILE  -->
+
+
+    <!--  BEGIN CUSTOM STYLE FILE  -->
     <link href="assets/css/ui-kit/custom-modal.css" rel="stylesheet" type="text/css" />
     <!--  END CUSTOM STYLE FILE  -->
+    <style>
+        .logob{
+            margin: 40px 0px 10px 50px;
+        }
+    </style>
 
 
 </head>
@@ -301,7 +317,7 @@
         <nav id="topbar">
             <ul class="list-unstyled menu-categories d-lg-flex justify-content-lg-around mb-0" id="topAccordion">
                 <li class="menu">
-                    <a href="#dashboard" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                    <a href="schedule.jsp" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
                         <div class="">
                             <i class="flaticon-home-line"></i>
                             <span>Home</span>
@@ -310,7 +326,7 @@
                 </li>
 
                 <li class="menu">
-                    <a href="#uiAndComponents" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                    <a href="results.jsp" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
                         <div class="">
                             <i class="flaticon-calendar-12"></i>
                             <span>Event Results</span>
@@ -319,7 +335,7 @@
                 </li>
 
                 <li class="menu">
-                    <a href="#tables-forms" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                    <a href="medals.jsp" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
                         <div class="">
                             <i class="flaticon-cup"></i>
                             <span>Medals</span>
@@ -328,10 +344,10 @@
                 </li>
 
                 <li class="menu">
-                    <a href="#pages" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                    <a href="athletes.jsp" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
                         <div class="">
-                            <i class="flaticon-file"></i>
-                            <span>About us</span>
+                            <i class="flaticon-user-group"></i>
+                            <span>Athletes</span>
                         </div>
                     </a>
                 </li>
@@ -354,142 +370,56 @@
         <div class="container">
             <div class="page-header">
                 <div class="page-title">
-                    <h3>View Country Representatives</h3>
+                    <h3>Volunteer</h3>
                 </div>
             </div>
-            <div class="widget-content widget-content-area" style="float: right">
-                <a class="btn btn-primary ml-2 mb-4 mt-2" class="flaticon-note-1" onclick="document.getElementById('action').value='registering'" data-toggle="modal" data-target="#formInputModal">Add</a>
-            </div>
-
-            <!-- Modal -->
-            <div class="modal fade" id="formInputModal" tabindex="-1" role="dialog" aria-labelledby="formInputModalLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="formInputModalLabel">Country's Representatives</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <form method="post" action="ServletLogin2">
-                        <div class="modal-body">
-
-                                <input type="hidden" name="command" value="Registering_User">
-                                <input type="hidden" name="action" id="action" value="">
-                                <input type="hidden" name="userType" value="${userInfo.userType}">
-                                <input type="hidden" name="password" value="2021">
-                                <input type="hidden" name="id" value="0" id="id">
-
-                                <div class="form-group col-md-9">
-                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                        <input class="mdl-textfield__input"  name="fullName" type="text" id="fullName">
-                                        <label class="mdl-textfield__label" for="fullName">Full Name *</label>
-                                    </div>
-                                </div>
-
-                                <div class="form-group col-md-12">
-                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                        <input class="mdl-textfield__input" name="email" type="email" id="email">
-                                        <label class="mdl-textfield__label" for="email">Email address *</label>
-                                    </div>
-                                </div>
-
-                                <div class="form-group col-md-9">
-                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                        <label class="mdl-textfield__label" for="country">Country</label>
-                                        <select name="country" class="mdl-textfield__input" id="country">
-
-                                        </select>
-                                    </div>
-                                </div>
-
-                        </div>
-                        <div class="modal-footer">
-                            <button type="submit" class="btn btn-primary btn-rounded mt-3 mb-3">Save changes</button>
-                            <button type="button" class="btn btn-dark btn-rounded mt-3 mb-3" data-dismiss="modal">Close</button>
-                        </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-
 
             <div class="row" id="cancel-row">
-                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 layout-spacing">
+                <div class="col-lg-12 layout-spacing">
                     <div class="statbox widget box box-shadow">
                         <div class="widget-header">
                             <div class="row">
                                 <div class="col-xl-12 col-md-12 col-sm-12 col-12">
-                                    <h4>Country Representatives </h4>
+                                    <h4>Volunteers Form</h4>
                                 </div>
                             </div>
                         </div>
                         <div class="widget-content widget-content-area">
-                            <div class="table-responsive mb-4">
-                                <table id="ecommerce-product-customers" class="table table-bordered table-hover">
-                                    <thead>
-                                    <tr>
-                                        <th class="checkbox-column"> Record No. </th>
-                                        <th>Full Name</th>
-                                        <th>Email</th>
-                                        <th>Country</th>
-                                        <th style="display: none">Country</th>
-                                        <th style="display: none">number</th>
-                                        <th class="">Action</th>
-
-                                    </tr>
-
-                                    </thead>
-                                    <tbody>
-                                    <c:set var="countRepre" value="0" scope="page"/>
-                                    <c:forEach var="Repr" items="${RepresentativeInfo}">
-                                        <c:set var="countRepre" value="${countRepre+1}" scope="page"/>
-                                        <tr>
-                                            <td class="checkbox-column"> ${Repr.id} </td>
-                                            <td class="customer-name-1 fullName">${Repr.fullName}</td>
-                                            <td class="email">${Repr.email}</td>
-                                            <td class="">
-                                                <div class="d-flex">
-                                                    <div class="usr-img-frame mr-2 rounded-circle">
-                                                        <img alt="admin-profile" class="img-fluid rounded-circle" src="assets/icons/${Repr.country.toLowerCase()}-circular.png">
-                                                    </div>
-                                                    <p class="align-self-center mb-0"> ${Repr.country} </p>
-                                                </div>
-                                            </td>
-                                            <td  style="display: none" class="country">${Repr.country} </td>
-                                            <td style="display: none"> ${Repr.id} </td>
-                                            <td class="">
-                                                <ul class="table-controls">
-                                                    <li>
-                                                        <a  data-toggle="modal" data-target="#formInputModal" id="${countRepre}" onclick="productDisplay(this)" data-placement="top" title="Edit">
-                                                            <i class="flaticon-edit"></i>
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="javascript:void(0);" class="warning confirm" id="" onclick="document.getElementById('delete_id').value='${Repr.id}'" data-toggle="tooltip" data-placement="top" title="Delete">
-                                                            <i class="flaticon-delete-5"></i>
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                            </td>
-                                        </tr>
-
-                                    </c:forEach>
-
-                                    </tbody>
-
-
-                                </table>
+                            <div id="circle-basic" class="">
+                                <h3>Personal Info</h3>
+                                <section>
+                                    <p style="text-align: center">Add personal Information</p>
+                                    <br>
+                                    <div class="row">
+                                        <div class="col-md-8 mx-auto">
+                                            <input id="buserName" name="buserName" type="text" class="form-control required mb-4" placeholder="Age">
+                                            <input id="bpassword" name="bpassword" type="text" class="form-control required mb-4" placeholder="Gender">
+                                            <input id="bconfirm" name="bconfirm" type="text" class="form-control required mb-4" placeholder="Country" >
+                                        </div>
+                                    </div>
+                                </section>
+                                <h3>Areas of Interest</h3>
+                                <section>
+                                    <p style="text-align: center">Add areas of interest.Can add more than one area of interest</p>
+                                    <br>
+                                    <div class="row">
+                                        <div class="col-md-8 mx-auto">
+                                            <input id="interest1" name="interest1" type="text" class="form-control required mb-4" placeholder="Area of interest">
+                                            <input id="interest2" name="interest2" type="text" class="form-control required mb-4" placeholder="Area of interest">
+                                            <input id="interest3" name="interest3" type="text" class="form-control required mb-4" placeholder="Area of interest" >
+                                        </div>
+                                    </div>
+                                </section>
+                                <h3>Terms and Conditions</h3>
+                                <section>
+                                    <p>Terms and conditions </p>
+                                </section>
                             </div>
-
-
                         </div>
-
-
-
                     </div>
                 </div>
             </div>
+
         </div>
     </div>
     <!--  END CONTENT PART  -->
@@ -571,7 +501,7 @@
         $("#action").val("updating");
         //$("#country").selectpicker("refresh");
         // Change Update Button Text
-       // $("#button").text("Update");
+        // $("#button").text("Update");
     }
 
 
@@ -683,5 +613,39 @@
     });
 </script>
 <!--  END CUSTOM SCRIPT FILE  -->
+
+<!-- END GLOBAL MANDATORY STYLES -->
+<script src="plugins/timepicker/jquery.timepicker.js"></script>
+<script src="plugins/date_time_pickers/bootstrap_date_range_picker/moment.min.js"></script>
+<script src="plugins/date_time_pickers/bootstrap_date_range_picker/daterangepicker.js"></script>
+
+<!-- BEGIN PAGE LEVEL SCRIPTS -->
+<script src="plugins/table/datatable/datatables.js"></script>
+<script>
+    $('#multi-column-ordering').DataTable({
+        "language": {
+            "paginate": { "previous": "<i class='flaticon-arrow-left-1'></i>", "next": "<i class='flaticon-arrow-right'></i>" },
+            "info": "Showing page _PAGE_ of _PAGES_"
+        },
+        columnDefs: [ {
+            targets: [ 0 ],
+            orderData: [ 0, 1 ]
+        }, {
+            targets: [ 1 ],
+            orderData: [ 1, 0 ]
+        }, {
+            targets: [ 4 ],
+            orderData: [ 4, 0 ]
+        } ]
+    });
+</script>
+<!-- END PAGE LEVEL SCRIPTS -->
+
+<!-- BEGIN PAGE LEVEL SCRIPTS -->
+<script src="plugins/jquery-step/jquery.steps.min.js"></script>
+<script src="plugins/jquery-step/jquery.validate.min.js"></script>
+<script src="plugins/jquery-step/custom-jquery.steps.js"></script>
+<!-- END PAGE LEVEL SCRIPTS -->
+
 </body>
 </html>

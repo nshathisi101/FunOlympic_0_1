@@ -14,6 +14,11 @@
     <link href="assets/css/plugins.css" rel="stylesheet" type="text/css" />
     <!-- END GLOBAL MANDATORY STYLES -->
 
+    <!-- BEGIN PAGE LEVEL STYLES -->
+    <link href="plugins/timepicker/jquery.timepicker.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="plugins/date_time_pickers/bootstrap_date_range_picker/daterangepicker.css">
+    <!-- END PAGE LEVEL STYLES -->
+
     <!--  BEGIN CUSTOM STYLE FILE  -->
     <link rel="stylesheet" type="text/css" href="plugins/table/datatable/datatables.css">
     <link rel="stylesheet" type="text/css" href="assets/css/ecommerce/view_customers.css">
@@ -31,8 +36,17 @@
     <!-- END PAGE LEVEL PLUGINS -->
 
     <!--  BEGIN CUSTOM STYLE FILE  -->
+    <link href="assets/css/apps/scheduler.css" rel="stylesheet" type="text/css" />
+    <!--  END CUSTOM STYLE FILE  -->
+
+    <!--  BEGIN CUSTOM STYLE FILE  -->
     <link href="assets/css/ui-kit/custom-modal.css" rel="stylesheet" type="text/css" />
     <!--  END CUSTOM STYLE FILE  -->
+    <style>
+        .logob{
+            margin: 40px 0px 10px 50px;
+        }
+    </style>
 
 
 </head>
@@ -301,7 +315,7 @@
         <nav id="topbar">
             <ul class="list-unstyled menu-categories d-lg-flex justify-content-lg-around mb-0" id="topAccordion">
                 <li class="menu">
-                    <a href="#dashboard" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                    <a href="schedule.jsp" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
                         <div class="">
                             <i class="flaticon-home-line"></i>
                             <span>Home</span>
@@ -310,7 +324,7 @@
                 </li>
 
                 <li class="menu">
-                    <a href="#uiAndComponents" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                    <a href="results.jsp" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
                         <div class="">
                             <i class="flaticon-calendar-12"></i>
                             <span>Event Results</span>
@@ -319,7 +333,7 @@
                 </li>
 
                 <li class="menu">
-                    <a href="#tables-forms" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                    <a href="medals.jsp" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
                         <div class="">
                             <i class="flaticon-cup"></i>
                             <span>Medals</span>
@@ -328,10 +342,10 @@
                 </li>
 
                 <li class="menu">
-                    <a href="#pages" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                    <a href="athletes.jsp" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
                         <div class="">
-                            <i class="flaticon-file"></i>
-                            <span>About us</span>
+                            <i class="flaticon-user-group"></i>
+                            <span>Athletes</span>
                         </div>
                     </a>
                 </li>
@@ -354,142 +368,230 @@
         <div class="container">
             <div class="page-header">
                 <div class="page-title">
-                    <h3>View Country Representatives</h3>
-                </div>
-            </div>
-            <div class="widget-content widget-content-area" style="float: right">
-                <a class="btn btn-primary ml-2 mb-4 mt-2" class="flaticon-note-1" onclick="document.getElementById('action').value='registering'" data-toggle="modal" data-target="#formInputModal">Add</a>
-            </div>
-
-            <!-- Modal -->
-            <div class="modal fade" id="formInputModal" tabindex="-1" role="dialog" aria-labelledby="formInputModalLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="formInputModalLabel">Country's Representatives</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <form method="post" action="ServletLogin2">
-                        <div class="modal-body">
-
-                                <input type="hidden" name="command" value="Registering_User">
-                                <input type="hidden" name="action" id="action" value="">
-                                <input type="hidden" name="userType" value="${userInfo.userType}">
-                                <input type="hidden" name="password" value="2021">
-                                <input type="hidden" name="id" value="0" id="id">
-
-                                <div class="form-group col-md-9">
-                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                        <input class="mdl-textfield__input"  name="fullName" type="text" id="fullName">
-                                        <label class="mdl-textfield__label" for="fullName">Full Name *</label>
-                                    </div>
-                                </div>
-
-                                <div class="form-group col-md-12">
-                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                        <input class="mdl-textfield__input" name="email" type="email" id="email">
-                                        <label class="mdl-textfield__label" for="email">Email address *</label>
-                                    </div>
-                                </div>
-
-                                <div class="form-group col-md-9">
-                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                        <label class="mdl-textfield__label" for="country">Country</label>
-                                        <select name="country" class="mdl-textfield__input" id="country">
-
-                                        </select>
-                                    </div>
-                                </div>
-
-                        </div>
-                        <div class="modal-footer">
-                            <button type="submit" class="btn btn-primary btn-rounded mt-3 mb-3">Save changes</button>
-                            <button type="button" class="btn btn-dark btn-rounded mt-3 mb-3" data-dismiss="modal">Close</button>
-                        </div>
-                        </form>
-                    </div>
+                    <h3>Schedule</h3>
                 </div>
             </div>
 
+            <div class="scheduler">
+                <div class="row" id="cancel-row">
 
-            <div class="row" id="cancel-row">
-                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 layout-spacing">
-                    <div class="statbox widget box box-shadow">
-                        <div class="widget-header">
-                            <div class="row">
-                                <div class="col-xl-12 col-md-12 col-sm-12 col-12">
-                                    <h4>Country Representatives </h4>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="widget-content widget-content-area">
-                            <div class="table-responsive mb-4">
-                                <table id="ecommerce-product-customers" class="table table-bordered table-hover">
-                                    <thead>
-                                    <tr>
-                                        <th class="checkbox-column"> Record No. </th>
-                                        <th>Full Name</th>
-                                        <th>Email</th>
-                                        <th>Country</th>
-                                        <th style="display: none">Country</th>
-                                        <th style="display: none">number</th>
-                                        <th class="">Action</th>
+                    <!--  Left tab open   -->
+                    <div class="col-xl-3 col-lg-4 col-md-4 layout-spacing">
+                        <div class="card">
+                            <div class="card-body">
 
-                                    </tr>
+                                <form class="appointment-form">
 
-                                    </thead>
-                                    <tbody>
-                                    <c:set var="countRepre" value="0" scope="page"/>
-                                    <c:forEach var="Repr" items="${RepresentativeInfo}">
-                                        <c:set var="countRepre" value="${countRepre+1}" scope="page"/>
-                                        <tr>
-                                            <td class="checkbox-column"> ${Repr.id} </td>
-                                            <td class="customer-name-1 fullName">${Repr.fullName}</td>
-                                            <td class="email">${Repr.email}</td>
-                                            <td class="">
-                                                <div class="d-flex">
-                                                    <div class="usr-img-frame mr-2 rounded-circle">
-                                                        <img alt="admin-profile" class="img-fluid rounded-circle" src="assets/icons/${Repr.country.toLowerCase()}-circular.png">
-                                                    </div>
-                                                    <p class="align-self-center mb-0"> ${Repr.country} </p>
+
+                                    <div class="mt-5">
+
+                                        <h4 class="mt-4 mb-4"><i class="flaticon-computer-6"></i> Available Channels</h4>
+
+                                        <div class="a-slots">
+
+                                            <div class="slots-1">
+                                                <div class="custom-control custom-checkbox pl-0">
+                                                    <input type="checkbox" class="custom-control-input" id="customCheck1">
+                                                    <label class="custom-control-label" for="customCheck1">Badminton 23 Jun, 2018 - 9:30 am</label>
                                                 </div>
-                                            </td>
-                                            <td  style="display: none" class="country">${Repr.country} </td>
-                                            <td style="display: none"> ${Repr.id} </td>
-                                            <td class="">
-                                                <ul class="table-controls">
-                                                    <li>
-                                                        <a  data-toggle="modal" data-target="#formInputModal" id="${countRepre}" onclick="productDisplay(this)" data-placement="top" title="Edit">
-                                                            <i class="flaticon-edit"></i>
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="javascript:void(0);" class="warning confirm" id="" onclick="document.getElementById('delete_id').value='${Repr.id}'" data-toggle="tooltip" data-placement="top" title="Delete">
-                                                            <i class="flaticon-delete-5"></i>
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                            </td>
-                                        </tr>
+                                            </div>
 
-                                    </c:forEach>
+                                            <div class="slots-1">
+                                                <div class="custom-control custom-checkbox pl-0">
+                                                    <input type="checkbox" class="custom-control-input" id="customCheck2">
+                                                    <label class="custom-control-label" for="customCheck2">Swimming 24 Jun, 2018 - 10:30 am</label>
+                                                </div>
+                                            </div>
 
-                                    </tbody>
+                                            <div class="slots-1">
+                                                <div class="custom-control custom-checkbox pl-0">
+                                                    <input type="checkbox" class="custom-control-input" id="customCheck3">
+                                                    <label class="custom-control-label" for="customCheck3">Ice Hockey 25 Jun, 2018 - 5:30 pm</label>
+                                                </div>
+                                            </div>
 
+                                            <div class="slots-1">
+                                                <div class="custom-control custom-checkbox pl-0">
+                                                    <input type="checkbox" class="custom-control-input" id="customCheck4">
+                                                    <label class="custom-control-label" for="customCheck3">Gymnastics 25 Jun, 2018 - 5:30 pm</label>
+                                                </div>
+                                            </div>
 
-                                </table>
+                                        </div>
+
+                                    </div>
+                                </form>
+                                <img src="assets/img/olympic_rings.png" alt="Girl in a jacket" class="logob" width="180" height="130">
+
                             </div>
-
-
                         </div>
+                    </div>
+                    <!--  Left tab close  -->
 
+                    <div class="col-xl-9 col-lg-8 col-md-8 layout-spacing scheduled-appointments">
+                        <div class="card">
+                            <div class="card-body">
 
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                                    <div class="row">
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-12 margin-bottom-25">
+                                            <div class="row">
+                                                <div class="scheduled-appointments-item col-xl-2 mb-xl-0 col-lg-4 col-md-6 col-sm-4 col-6 mb-3">
+                                                    <button class="btn btn-meeting btn-gradient-primary btn-block">Staff Meeting<br>10:35 AM</button>
+                                                </div>
+                                                <div class="scheduled-appointments-item col-xl-2 mb-xl-0 col-lg-4 col-md-6 col-sm-4 col-6 mb-3">
+                                                    <button class="btn btn-outline-default btn-block">11:00 AM</button>
+                                                </div>
+                                                <div class="scheduled-appointments-item col-xl-2 mb-xl-0 col-lg-4 col-md-6 col-sm-4 col-6 mb-3">
+                                                    <button class="btn btn-outline-default btn-block">11:30 AM</button>
+                                                </div>
+                                                <div class="scheduled-appointments-item col-xl-2 mb-xl-0 col-lg-4 col-md-6 col-sm-4 col-6 mb-3">
+                                                    <button class="btn btn-meeting btn-gradient-dark btn-block">Client Welcome<br>12:00 PM</button>
+                                                </div>
+                                                <div class="scheduled-appointments-item col-xl-2 mb-xl-0 col-lg-4 col-md-6 col-sm-4 col-6 mb-3">
+                                                    <button class="btn btn-outline-default btn-block">12:30 PM</button>
+                                                </div>
+                                                <div class="scheduled-appointments-item col-xl-2 mb-xl-0 col-lg-4 col-md-6 col-sm-4 col-6 mb-3">
+                                                    <button class="btn btn-outline-default btn-block">01:30 PM</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-12 margin-bottom-25">
+                                            <div class="row">
+                                                <div class="scheduled-appointments-item item col-xl-2 mb-xl-0 col-lg-4 col-md-6 col-sm-4 col-6 mb-3 align-center">
+                                                    <button class="btn btn-gradient-danger btn-block">Archery<br>02:00 PM</button>
+                                                    <div class="meeting-profile mt-2">
+                                                        <img src="assets/img/90x90.jpg" class="meeting-img" alt="Image">
+                                                        <h6 class="mt-2 fg-green"><span>Beijing,china</span></h6>
+                                                        <p>25 June 2018</p>
+                                                        <p>2:00 - 3:00 PM</p>
+                                                        <div class="padding15">
+                                                            <button href="broadcasting.jsp" class="btn btn-gradient-warning btn-rounded btn-md">Watch</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="scheduled-appointments-item item col-xl-2 mb-xl-0 col-lg-4 col-md-6 col-sm-4 col-6 mb-3">
+                                                    <button class="btn btn-outline-default btn-block">02:30 PM</button>
+                                                </div>
+                                                <div class="scheduled-appointments-item item col-xl-2 mb-xl-0 col-lg-4 col-md-6 col-sm-4 col-6 mb-3">
+                                                    <button class="btn btn-meeting btn-gradient-danger btn-block">Team Motivation<br>03:00 PM</button>
+                                                </div>
+                                                <div class="scheduled-appointments-item item col-xl-2 mb-xl-0 col-lg-4 col-md-6 col-sm-4 col-6 mb-3">
+                                                    <button class="btn btn-outline-default btn-block">03:30 PM</button>
+                                                </div>
+                                                <div class="scheduled-appointments-item item col-xl-2 mb-xl-0 col-lg-4 col-md-6 col-sm-4 col-6 mb-3">
+                                                    <button class="btn btn-outline-default btn-block">04:00 PM</button>
+                                                </div>
+                                                <div class="scheduled-appointments-item item col-xl-2 mb-xl-0 col-lg-4 col-md-6 col-sm-4 col-6 mb-3 align-center">
+                                                    <button class="btn btn-danger-primary btn-block">Badminton<br>04:30 PM</button>
+                                                    <div class="meeting-profile meeting-profile-3 mt-2">
+                                                        <img src="assets/img/90x90.jpg" class="meeting-img" alt="Image">
+                                                        <h6 class="mt-2 fg-blue"><span>Shingin,China</span></h6>
+                                                        <p>25 June 2018</p>
+                                                        <p>4:30 - 5:30 PM</p>
+                                                        <div class="padding15">
+                                                            <button class="btn btn-gradient-warning btn-rounded btn-md">Watch</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-12 margin-bottom-25">
+                                            <div class="row">
+                                                <div class="scheduled-appointments-item item col-xl-2 mb-xl-0 col-lg-4 col-md-6 col-sm-4 col-6 mb-3">
+                                                    <button class="btn btn-outline-default btn-block">05:00 PM</button>
+                                                </div>
+                                                <div class="scheduled-appointments-item item col-xl-2 mb-xl-0 col-lg-4 col-md-6 col-sm-4 col-6 mb-3">
+                                                    <button class="btn btn-outline-default btn-block">05:30 PM</button>
+                                                </div>
+                                                <div class="scheduled-appointments-item item col-xl-2 mb-xl-0 col-lg-4 col-md-6 col-sm-4 col-6 mb-3 align-center">
+                                                    <button class="btn btn-gradient-info btn-block">Badminton<br>06:00 PM</button>
+                                                    <div class="meeting-profile mt-2">
+                                                        <img src="assets/img/90x90.jpg" class="meeting-img meeting-img-2" alt="Image">
+                                                        <h6 class="mt-2 fg-info"><span>Beijing,China</span></h6>
+                                                        <p>25 June 2018</p>
+                                                        <p>6:00 - 9:00 PM</p>
+                                                        <div class="padding15">
+                                                            <button class="btn btn-gradient-warning btn-rounded btn-md">Watch</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="scheduled-appointments-item item col-xl-2 mb-xl-0 col-lg-4 col-md-6 col-sm-4 col-6 mb-3">
+                                                    <button class="btn btn-outline-default btn-block">06:30 PM</button>
+                                                </div>
+                                                <div class="scheduled-appointments-item item col-xl-2 mb-xl-0 col-lg-4 col-md-6 col-sm-4 col-6 mb-3">
+                                                    <button class="btn btn-outline-default btn-block">07:00 PM</button>
+                                                </div>
+                                                <div class="scheduled-appointments-item item col-xl-2 mb-xl-0 col-lg-4 col-md-6 col-sm-4 col-6 mb-3">
+                                                    <button class="btn btn-outline-default btn-block">07:30 PM</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-12 margin-bottom-25">
+                                            <div class="row">
+                                                <div class="scheduled-appointments-item item col-xl-2 mb-xl-0 col-lg-4 col-md-6 col-sm-4 col-6 mb-3">
+                                                    <button class="btn btn-outline-default btn-block">08:00 PM</button>
+                                                </div>
+                                                <div class="scheduled-appointments-item item col-xl-2 mb-xl-0 col-lg-4 col-md-6 col-sm-4 col-6 mb-3">
+                                                    <button class="btn btn-outline-default btn-block">08:30 PM</button>
+                                                </div>
+                                                <div class="scheduled-appointments-item item col-xl-2 mb-xl-0 col-lg-4 col-md-6 col-sm-4 col-6 mb-3">
+                                                    <button class="btn btn-outline-default btn-block">09:00 PM</button>
+                                                </div>
+                                                <div class="scheduled-appointments-item item col-xl-2 mb-xl-0 col-lg-4 col-md-6 col-sm-4 col-6 mb-3">
+                                                    <button class="btn btn-outline-default btn-block">09:30 PM</button>
+                                                </div>
+                                                <div class="scheduled-appointments-item item col-xl-2 mb-xl-0 col-lg-4 col-md-6 col-sm-4 col-6 mb-3">
+                                                    <button class="btn btn-outline-default btn-block">10:00 PM</button>
+                                                </div>
+                                                <div class="scheduled-appointments-item item col-xl-2 mb-xl-0 col-lg-4 col-md-6 col-sm-4 col-6 mb-3">
+                                                    <button class="btn btn-outline-default btn-block">10:30 PM</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-12 margin-bottom-25">
+                                            <div class="row">
+                                                <div class="scheduled-appointments-item item col-xl-2 mb-xl-0 col-lg-4 col-md-6 col-sm-4 col-6 mb-3">
+                                                    <button class="btn btn-outline-default btn-block">11:00 PM</button>
+                                                </div>
+                                                <div class="scheduled-appointments-item item col-xl-2 mb-xl-0 col-lg-4 col-md-6 col-sm-4 col-6 mb-3">
+                                                    <button class="btn btn-outline-default btn-block">07:00 AM</button>
+                                                </div>
+                                                <div class="scheduled-appointments-item item col-xl-2 mb-xl-0 col-lg-4 col-md-6 col-sm-4 col-6 mb-3">
+                                                    <button class="btn btn-outline-default btn-block">07:30 AM</button>
+                                                </div>
+                                                <div class="scheduled-appointments-item item col-xl-2 mb-xl-0 col-lg-4 col-md-6 col-sm-4 col-6 mb-3">
+                                                    <button class="btn btn-outline-default btn-block">08:00 AM</button>
+                                                </div>
+                                                <div class="scheduled-appointments-item item col-xl-2 mb-xl-0 col-lg-4 col-md-6 col-sm-4 col-6 mb-3">
+                                                    <button class="btn btn-outline-default btn-block">08:30 AM</button>
+                                                </div>
+                                                <div class="scheduled-appointments-item item col-xl-2 mb-xl-0 col-lg-4 col-md-6 col-sm-4 col-6 mb-3">
+                                                    <button class="btn btn-outline-default btn-block">09:00 AM</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-12 margin-bottom-25">
+                                            <div class="row">
+                                                <div class="scheduled-appointments-item item col-xl-2 mb-xl-0 col-lg-4 col-md-6 col-sm-4 col-6 mb-3">
+                                                    <button class="btn btn-outline-default btn-block">09:30 AM</button>
+                                                </div>
+                                                <div class="scheduled-appointments-item item col-xl-2 mb-xl-0 col-lg-4 col-md-6 col-sm-4 col-6 mb-3">
+                                                    <button class="btn btn-outline-default btn-block">10:00 AM</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-12 margin-bottom-25">
+                                        </div>
+                                    </div>
+                                </div>
 
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
+
         </div>
     </div>
     <!--  END CONTENT PART  -->
@@ -571,7 +673,7 @@
         $("#action").val("updating");
         //$("#country").selectpicker("refresh");
         // Change Update Button Text
-       // $("#button").text("Update");
+        // $("#button").text("Update");
     }
 
 
@@ -683,5 +785,18 @@
     });
 </script>
 <!--  END CUSTOM SCRIPT FILE  -->
+
+<!-- END GLOBAL MANDATORY STYLES -->
+<script src="plugins/timepicker/jquery.timepicker.js"></script>
+<script src="plugins/date_time_pickers/bootstrap_date_range_picker/moment.min.js"></script>
+<script src="plugins/date_time_pickers/bootstrap_date_range_picker/daterangepicker.js"></script>
+
+<!--  BEGIN CUSTOM SCRIPTS FILE  -->
+<script>
+    $('#select-time').timepicker({ 'scrollDefault': 'now' });
+    $('#select-date').daterangepicker({ "singleDatePicker": true });
+</script>
+<!--  END CUSTOM SCRIPTS FILE  -->
+
 </body>
 </html>

@@ -41,11 +41,6 @@
     <link href="plugins/timepicker/jquery.timepicker.css" rel="stylesheet" type="text/css">
     <link href="plugins/date_time_pickers/custom_datetimepicker_style/custom_datetimepicker.css" rel="stylesheet" type="text/css">
     <!-- END THEME GLOBAL STYLES -->
-    <!-- BEGIN GLOBAL MANDATORY STYLES -->
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700' rel='stylesheet' type='text/css'>
-    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-    <link href="assets/css/plugins.css" rel="stylesheet" type="text/css" />
-    <!-- END GLOBAL MANDATORY STYLES -->
 
     <!--  BEGIN CUSTOM STYLE FILE  -->
     <link rel="stylesheet" type="text/css" href="plugins/bootstrap-select/bootstrap-select.min.css">
@@ -59,18 +54,6 @@
         .btn-group.bootstrap-select.dropup:focus { outline: none; }
     </style>
     <!--  END CUSTOM STYLE FILE  -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-
-    <link rel="stylesheet"
-          href=
-                  "https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css" />
-    <script src=
-                    "https://code.jquery.com/jquery-3.1.1.min.js">
-    </script>
-    <script src=
-                    "https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js">
-    </script>
 
 
 </head>
@@ -1388,6 +1371,14 @@
                 </div>
             </div>
 
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <label class="mdl-textfield__label" for="Venue">Venues</label>
+            <select name="Venue" class="mdl-textfield__input selectpicker" multiple >
+                <option>Mustard</option>
+                <option>Ketchup</option>
+                <option>Relish</option>
+            </select>
+        </div>
             <div class="widget-content widget-content-area">
                 <a class="btn btn-success ml-2 mb-4 mt-2" onclick="document.getElementById('action').value='registering'" data-toggle="modal" data-target="#formInputModal">Add</a>
             </div>
@@ -1416,7 +1407,7 @@
                                 <div class="form-group col-md-9">
                                     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                                         <label class="mdl-textfield__label" for="Sport">Sport</label>
-                                        <select name="Sport"  class="mdl-textfield__input " id="Sport">
+                                        <select name="Sport" class="mdl-textfield__input" id="Sport">
 
                                         </select>
                                     </div>
@@ -1440,8 +1431,7 @@
                                 <div class="form-group col-md-12">
                                     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label demo">
                                         <label class="mdl-textfield__label" for="">Date</label>
-                                        <input type='datetime-local' class="mdl-textfield__input"   value="01/01/2015 - 01/31/2015" />
-
+                                        <input type="text" class="mdl-textfield__input" name="daterange"  value="01/01/2015 - 01/31/2015" />
                                     </div>
                                 </div>
 
@@ -1458,12 +1448,9 @@
                                     </div>
                                 </div>
 
-                                <div class="form-group col-md-12">
+                                <div class="form-group col-md-9">
                                     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                        <select class="mdl-textfield__input selectpicker" multiple  name="Broadcast" type="text" id="Broadcast">
-
-
-                                        </select>
+                                        <input class="mdl-textfield__input"  name="fullName" type="text" id="Broadcast">
                                         <label class="mdl-textfield__label" for="Broadcast">Broadcast</label>
                                     </div>
                                 </div>
@@ -1627,21 +1614,6 @@
 <script src="assets/js/custom.js"></script>
 <!-- END GLOBAL MANDATORY STYLES -->
 
-<!-- BEGIN GLOBAL MANDATORY SCRIPTS -->
-<script src="assets/js/libs/jquery-3.1.1.min.js"></script>
-<script src="bootstrap/js/popper.min.js"></script>
-<script src="bootstrap/js/bootstrap.min.js"></script>
-<script src="plugins/scrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
-<script src="assets/js/app.js"></script>
-
-<script>
-    $(document).ready(function() {
-        App.init();
-    });
-</script>
-<script src="assets/js/custom.js"></script>
-<!-- END GLOBAL MANDATORY SCRIPTS -->
-
 <script>
 
     function productDisplay(ctl) {
@@ -1793,12 +1765,6 @@
     });
 </script>
 <!--  END CUSTOM SCRIPT FILE  -->
-
-<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-
-<script>
-    flatpickr("input[type=datetime-local]", {});
-</script>
 
 <!-- BEGIN PAGE LEVEL SCRIPTS -->
 <script src="assets/js/design-js/design.js"></script>

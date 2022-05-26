@@ -14,16 +14,13 @@
     <link href="assets/css/plugins.css" rel="stylesheet" type="text/css" />
     <!-- END GLOBAL MANDATORY STYLES -->
 
-    <!--  BEGIN CUSTOM STYLE FILE  -->
-    <link rel="stylesheet" type="text/css" href="plugins/table/datatable/datatables.css">
-    <link rel="stylesheet" type="text/css" href="assets/css/ecommerce/view_customers.css">
-    <!--  BEGIN CUSTOM STYLE FILE  -->
-
-    <!-- BEGIN PAGE LEVEL STYLES -->
-    <link href="plugins/popup/magnific-popup.css" rel="stylesheet" type="text/css" />
-    <link href="plugins/popup/style.css" rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="plugins/mdl/material.css">
-    <!-- END PAGE LEVEL STYLES -->
+    <!--  BEGIN CUSTOM STYLE/SCRIPTS FILE  -->
+    <script src="plugins/sweetalerts/promise-polyfill.js"></script>
+    <link rel="stylesheet" type="text/css" href="plugins/jquery-step/jquery.steps.css">
+    <link href="assets/css/ecommerce/ecommerce-wizards.css" rel="stylesheet" type="text/css">
+    <link href="plugins/sweetalerts/sweetalert2.min.css" rel="stylesheet" type="text/css" />
+    <link href="plugins/sweetalerts/sweetalert.css" rel="stylesheet" type="text/css" />
+    <!--  BEGIN CUSTOM STYLE/SCRIPTS FILE  -->
 
     <!-- BEGIN PAGE LEVEL PLUGINS -->
     <link href="plugins/animate/animate.css" rel="stylesheet" type="text/css" />
@@ -33,6 +30,11 @@
     <!--  BEGIN CUSTOM STYLE FILE  -->
     <link href="assets/css/ui-kit/custom-modal.css" rel="stylesheet" type="text/css" />
     <!--  END CUSTOM STYLE FILE  -->
+    <style>
+        .logob{
+            margin: 40px 0px 10px 50px;
+        }
+    </style>
 
 
 </head>
@@ -301,7 +303,7 @@
         <nav id="topbar">
             <ul class="list-unstyled menu-categories d-lg-flex justify-content-lg-around mb-0" id="topAccordion">
                 <li class="menu">
-                    <a href="#dashboard" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                    <a href="schedule.jsp" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
                         <div class="">
                             <i class="flaticon-home-line"></i>
                             <span>Home</span>
@@ -310,7 +312,7 @@
                 </li>
 
                 <li class="menu">
-                    <a href="#uiAndComponents" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                    <a href="results.jsp" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
                         <div class="">
                             <i class="flaticon-calendar-12"></i>
                             <span>Event Results</span>
@@ -319,7 +321,7 @@
                 </li>
 
                 <li class="menu">
-                    <a href="#tables-forms" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                    <a href="medals.jsp" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
                         <div class="">
                             <i class="flaticon-cup"></i>
                             <span>Medals</span>
@@ -328,10 +330,10 @@
                 </li>
 
                 <li class="menu">
-                    <a href="#pages" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                    <a href="athletes.jsp" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
                         <div class="">
-                            <i class="flaticon-file"></i>
-                            <span>About us</span>
+                            <i class="flaticon-user-group"></i>
+                            <span>Athletes</span>
                         </div>
                     </a>
                 </li>
@@ -354,142 +356,195 @@
         <div class="container">
             <div class="page-header">
                 <div class="page-title">
-                    <h3>View Country Representatives</h3>
-                </div>
-            </div>
-            <div class="widget-content widget-content-area" style="float: right">
-                <a class="btn btn-primary ml-2 mb-4 mt-2" class="flaticon-note-1" onclick="document.getElementById('action').value='registering'" data-toggle="modal" data-target="#formInputModal">Add</a>
-            </div>
-
-            <!-- Modal -->
-            <div class="modal fade" id="formInputModal" tabindex="-1" role="dialog" aria-labelledby="formInputModalLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="formInputModalLabel">Country's Representatives</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <form method="post" action="ServletLogin2">
-                        <div class="modal-body">
-
-                                <input type="hidden" name="command" value="Registering_User">
-                                <input type="hidden" name="action" id="action" value="">
-                                <input type="hidden" name="userType" value="${userInfo.userType}">
-                                <input type="hidden" name="password" value="2021">
-                                <input type="hidden" name="id" value="0" id="id">
-
-                                <div class="form-group col-md-9">
-                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                        <input class="mdl-textfield__input"  name="fullName" type="text" id="fullName">
-                                        <label class="mdl-textfield__label" for="fullName">Full Name *</label>
-                                    </div>
-                                </div>
-
-                                <div class="form-group col-md-12">
-                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                        <input class="mdl-textfield__input" name="email" type="email" id="email">
-                                        <label class="mdl-textfield__label" for="email">Email address *</label>
-                                    </div>
-                                </div>
-
-                                <div class="form-group col-md-9">
-                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                        <label class="mdl-textfield__label" for="country">Country</label>
-                                        <select name="country" class="mdl-textfield__input" id="country">
-
-                                        </select>
-                                    </div>
-                                </div>
-
-                        </div>
-                        <div class="modal-footer">
-                            <button type="submit" class="btn btn-primary btn-rounded mt-3 mb-3">Save changes</button>
-                            <button type="button" class="btn btn-dark btn-rounded mt-3 mb-3" data-dismiss="modal">Close</button>
-                        </div>
-                        </form>
-                    </div>
+                    <h3>Tickets</h3>
                 </div>
             </div>
 
-
-            <div class="row" id="cancel-row">
-                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 layout-spacing">
-                    <div class="statbox widget box box-shadow">
+            <div class="row margin-bottom-120" id="cancel-row">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                    <div class="statbox widget box box-shadow" id="form_wizard">
                         <div class="widget-header">
                             <div class="row">
                                 <div class="col-xl-12 col-md-12 col-sm-12 col-12">
-                                    <h4>Country Representatives </h4>
+                                    <h4>Tickets Payment <span class="step-title"></span></h4>
                                 </div>
                             </div>
                         </div>
                         <div class="widget-content widget-content-area">
-                            <div class="table-responsive mb-4">
-                                <table id="ecommerce-product-customers" class="table table-bordered table-hover">
-                                    <thead>
-                                    <tr>
-                                        <th class="checkbox-column"> Record No. </th>
-                                        <th>Full Name</th>
-                                        <th>Email</th>
-                                        <th>Country</th>
-                                        <th style="display: none">Country</th>
-                                        <th style="display: none">number</th>
-                                        <th class="">Action</th>
-
-                                    </tr>
-
-                                    </thead>
-                                    <tbody>
-                                    <c:set var="countRepre" value="0" scope="page"/>
-                                    <c:forEach var="Repr" items="${RepresentativeInfo}">
-                                        <c:set var="countRepre" value="${countRepre+1}" scope="page"/>
-                                        <tr>
-                                            <td class="checkbox-column"> ${Repr.id} </td>
-                                            <td class="customer-name-1 fullName">${Repr.fullName}</td>
-                                            <td class="email">${Repr.email}</td>
-                                            <td class="">
-                                                <div class="d-flex">
-                                                    <div class="usr-img-frame mr-2 rounded-circle">
-                                                        <img alt="admin-profile" class="img-fluid rounded-circle" src="assets/icons/${Repr.country.toLowerCase()}-circular.png">
-                                                    </div>
-                                                    <p class="align-self-center mb-0"> ${Repr.country} </p>
+                            <div id="circle-basic" class="mt-5 mb-5">
+                                <h3>
+                                        <span class="icon">
+                                            <i class="done flaticon-double-check" style="display: none;"></i>
+                                            <i class="active flaticon-placeholder-fill" style="display: none"></i>
+                                        </span>
+                                    <span class="mt-3">Address & sport</span>
+                                </h3>
+                                <section>
+                                    <h5 class="mt-5 mb-5 w-title">Address</h5>
+                                    <form>
+                                        <div class="row">
+                                            <div class="col-sm-6 col-12">
+                                                <input type="text" class="form-control mt-3 mb-5" placeholder="Postcode">
+                                            </div>
+                                            <div class="col-sm-6 col-12">
+                                                <input type="text" class="form-control mt-3 mb-5" placeholder="Sport">
+                                            </div>
+                                            <div class="col-sm-6 col-12">
+                                                <input type="text" class="form-control mt-3 mb-5" placeholder="State/Region">
+                                            </div>
+                                            <div class="col-sm-6 col-12">
+                                                <input type="text" class="form-control mt-3 mb-5" placeholder="Ticket plan">
+                                            </div>
+                                            <div class="col-sm-6 col-12">
+                                                <input type="text" class="form-control mt-3 mb-5" placeholder="Phone">
+                                            </div>
+                                            <div class="col-sm-6 col-12">
+                                                <input type="text" class="form-control mt-3 mb-5" placeholder="Number of pupils">
+                                            </div>
+                                        </div>
+                                    </form>
+                                </section>
+                                <h3>
+                                        <span class="icon">
+                                            <i class="done flaticon-double-check" style="display: none;"></i>
+                                            <i class="active flaticon-document-3" style="display: none"></i>
+                                        </span>
+                                    <span class="mt-3">Order Summary</span>
+                                </h3>
+                                <section>
+                                    <h5 class="mt-5 mb-5 w-title">Order</h5>
+                                    <div class="row">
+                                        <div class="col-xl-4 col-12">
+                                            <div class="total-amount text-center">
+                                                <i class="flaticon-cart-bag-1"></i>
+                                                <h6>Order Total</h6>
+                                                <p class="t-amount mb-2 mt-2">26,500</p>
+                                                <p class="t-product">7 Products</p>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-8 col-12 mt-xl-0 mt-4">
+                                            <div class="order-product-list">
+                                                <div class="table-responsive">
+                                                    <table class="table">
+                                                        <thead>
+                                                        <tr>
+                                                            <th scope="col">Product</th>
+                                                            <th scope="col">Qty</th>
+                                                            <th scope="col">Price</th>
+                                                            <th scope="col">Action</th>
+                                                        </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                        <tr>
+                                                            <th>
+                                                                <span>Gaming Monitor</span>
+                                                                <p>SKU-001</p>
+                                                            </th>
+                                                            <td>4</td>
+                                                            <td class="pricing">$3488</td>
+                                                            <td><i class="flaticon-cancel-12"></i></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>
+                                                                <span>Electric Shaver</span>
+                                                                <p>SKU-002</p>
+                                                            </th>
+                                                            <td>2</td>
+                                                            <td class="pricing">$105</td>
+                                                            <td><i class="flaticon-cancel-12"></i></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>
+                                                                <span>Microwave</span>
+                                                                <p>SKU-003</p>
+                                                            </th>
+                                                            <td>1</td>
+                                                            <td class="pricing">$999</td>
+                                                            <td><i class="flaticon-cancel-12"></i></td>
+                                                        </tr>
+                                                        </tbody>
+                                                    </table>
                                                 </div>
-                                            </td>
-                                            <td  style="display: none" class="country">${Repr.country} </td>
-                                            <td style="display: none"> ${Repr.id} </td>
-                                            <td class="">
-                                                <ul class="table-controls">
-                                                    <li>
-                                                        <a  data-toggle="modal" data-target="#formInputModal" id="${countRepre}" onclick="productDisplay(this)" data-placement="top" title="Edit">
-                                                            <i class="flaticon-edit"></i>
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="javascript:void(0);" class="warning confirm" id="" onclick="document.getElementById('delete_id').value='${Repr.id}'" data-toggle="tooltip" data-placement="top" title="Delete">
-                                                            <i class="flaticon-delete-5"></i>
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                            </td>
-                                        </tr>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </section>
+                                <h3>
+                                        <span class="icon">
+                                            <i class="done flaticon-double-check" style="display: none;"></i>
+                                            <i class="active flaticon-gift-fill" style="display: none"></i>
+                                        </span>
+                                    <span class="mt-3">Checkout</span>
+                                </h3>
+                                <section>
+                                    <h5 class="mt-5 mb-5 w-title">Payment Method</h5>
+                                    <div class="rounded-pills-icon checkout-method">
+                                        <ul class="nav nav-pills mb-4  justify-content-center" id="rounded-pills-icon-tab" role="tablist">
+                                            <li class="nav-item ml-2 mr-2">
+                                                <a class="nav-link mb-2 active text-center" id="rounded-pills-icon-home-tab" data-toggle="pill" href="#rounded-pills-icon-home" role="tab" aria-controls="rounded-pills-icon-home" aria-selected="true"><i class="flaticon-credit-card"></i> Credit Card</a>
+                                            </li>
+                                            <li class="nav-item ml-2 mr-2">
+                                                <a class="nav-link mb-2 text-center" id="rounded-pills-icon-profile-tab" data-toggle="pill" href="#rounded-pills-icon-profile" role="tab" aria-controls="rounded-pills-icon-profile" aria-selected="false"><i class="flaticon-paypal-logo"></i> PayPal</a>
+                                            </li>
+                                            <li class="nav-item ml-2 mr-2">
+                                                <a class="nav-link mb-2 text-center" id="rounded-pills-icon-contact-tab" data-toggle="pill" href="#rounded-pills-icon-contact" role="tab" aria-controls="rounded-pills-icon-contact" aria-selected="false"><i class="flaticon-dollar-coin"></i> Pay Cash</a>
+                                            </li>
+                                        </ul>
 
-                                    </c:forEach>
-
-                                    </tbody>
-
-
-                                </table>
+                                        <div class="tab-content" id="rounded-pills-icon-tabContent">
+                                            <div class="tab-pane fade show active" id="rounded-pills-icon-home" role="tabpanel" aria-labelledby="rounded-pills-icon-home-tab">
+                                                <h5 class="p-methods-title mb-5 mt-5 text-center">Credit Card</h5>
+                                                <div class="row">
+                                                    <div class="col-sm-6 col-12">
+                                                        <input type="text" class="form-control mt-3 mb-5" placeholder="Card Number">
+                                                    </div>
+                                                    <div class="col-sm-6 col-12">
+                                                        <input type="text" class="form-control sm-0 mt-3 mb-5" placeholder="Expiration Date">
+                                                    </div>
+                                                    <div class="col-sm-6 col-12">
+                                                        <input type="text" class="form-control mt-3 mb-5" placeholder="Card Holder Name">
+                                                    </div>
+                                                    <div class="col-sm-6 col-12">
+                                                        <input type="text" class="form-control mt-3 mb-5" placeholder="CVV">
+                                                    </div>
+                                                    <div class="col-md-12 text-center mt-4">
+                                                        <button class="btn btn-success btn-rounded my-5 confirm-credit">Confirm</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="tab-pane fade" id="rounded-pills-icon-profile" role="tabpanel" aria-labelledby="rounded-pills-icon-profile-tab">
+                                                <h5 class="p-methods-title mb-5 mt-4 text-center">Paypal</h5>
+                                                <div class="row">
+                                                    <div class="col-sm-6 col-12">
+                                                        <input type="text" class="form-control mt-4 mb-4" placeholder="Enter Your Paypal Email">
+                                                    </div>
+                                                    <div class="col-sm-6 col-12">
+                                                        <input type="password" class="form-control mt-4 mb-4" placeholder="Enter Your Paypal Password">
+                                                    </div>
+                                                    <div class="col-md-12 text-center mt-4">
+                                                        <button class="btn btn-success btn-rounded my-5 confirm-paypal">Confirm</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="tab-pane fade" id="rounded-pills-icon-contact" role="tabpanel" aria-labelledby="rounded-pills-icon-contact-tab">
+                                                <h5 class="p-methods-title mb-5 mt-4 text-center">Pay Cash</h5>
+                                                <div class="container">
+                                                    <div class="place-order-cash text-center mx-auto">
+                                                        <i class="flaticon-coin-icon mb-4"></i>
+                                                        <p class="mb-4 mt-4">Please click confirm button to accept package and pay cash at your delivery address.</p>
+                                                        <button class="btn btn-success btn-rounded my-4  confirm-cash">Confirm</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </section>
                             </div>
-
-
                         </div>
-
-
-
                     </div>
                 </div>
             </div>
+
         </div>
     </div>
     <!--  END CONTENT PART  -->
@@ -571,7 +626,7 @@
         $("#action").val("updating");
         //$("#country").selectpicker("refresh");
         // Change Update Button Text
-       // $("#button").text("Update");
+        // $("#button").text("Update");
     }
 
 
@@ -614,7 +669,6 @@
 <script src="plugins/blockui/jquery.blockUI.min.js"></script>
 <script src="assets/js/app.js"></script>
 
-<script src="plugins/table/datatable/datatables.js"></script>
 <script>
     var product_customers = $('#ecommerce-product-customers').DataTable({
         "lengthMenu": [ 5, 10, 20, 50, 100 ],
@@ -635,17 +689,6 @@
     multiCheck(product_customers);
 </script>
 <!--  BEGIN CUSTOM SCRIPT FILES  -->
-
-<!-- BEGIN PAGE LEVEL SCRIPTS pop up -->
-<script src="plugins/mdl/material.min.js"></script>
-<script src="plugins/popup/jquery.magnific-popup.min.js"></script>
-<script src="plugins/popup/custom-maginfic-popup.js"></script>
-<!-- END PAGE LEVEL SCRIPTS pop up-->
-
-<!-- BEGIN THEME GLOBAL STYLE -->
-<script src="plugins/sweetalerts/sweetalert2.min.js"></script>
-<script src="plugins/sweetalerts/custom-sweetalert.js"></script>
-<!-- END THEME GLOBAL STYLE -->
 
 <!-- BEGIN PAGE LEVEL PLUGINS -->
 <script src="assets/js/modal/classie.js"></script>
@@ -683,5 +726,52 @@
     });
 </script>
 <!--  END CUSTOM SCRIPT FILE  -->
+
+
+<script>
+    $('#multi-column-ordering').DataTable({
+        "language": {
+            "paginate": { "previous": "<i class='flaticon-arrow-left-1'></i>", "next": "<i class='flaticon-arrow-right'></i>" },
+            "info": "Showing page _PAGE_ of _PAGES_"
+        },
+        columnDefs: [ {
+            targets: [ 0 ],
+            orderData: [ 0, 1 ]
+        }, {
+            targets: [ 1 ],
+            orderData: [ 1, 0 ]
+        }, {
+            targets: [ 4 ],
+            orderData: [ 4, 0 ]
+        } ]
+    });
+</script>
+<!-- END PAGE LEVEL SCRIPTS -->
+
+<!--  BEGIN CUSTOM SCRIPT FILES  -->
+<script src="plugins/jquery-step/jquery.steps.min.js"></script>
+<script src="plugins/sweetalerts/sweetalert2.min.js"></script>
+<script>
+    $("#circle-basic").steps({
+        headerTag: "h3",
+        bodyTag: "section",
+        transitionEffect: "slideLeft",
+        autoFocus: true,
+        titleTemplate: '#title#',
+        cssClass: 'circle wizard',
+        onFinished: function(event, currentIndex) { swal('Order Placed!', 'Your order has been successfully placed', 'success') }
+    });
+    $('.confirm-credit').on('click', function () {
+        swal({ title: 'Your Credit Card Payment is Successfull!', text: "Please click on finish button to place your order.", type: 'success', })
+    })
+    $('.confirm-paypal').on('click', function () {
+        swal({ title: 'Your Credit Paypal Payment is Successfull!', text: "Please click on finish button to place your order.", type: 'success', })
+    })
+    $('.confirm-cash').on('click', function () {
+        swal({ title: 'Pay cash on delivery!', text: "Please click on finish button to place your order.", type: 'success', })
+    })
+</script>
+<!--  END CUSTOM SCRIPT FILES  -->
+
 </body>
 </html>
