@@ -439,149 +439,134 @@
                                     <div class="row">
                                         <div class="col-lg-12 col-md-12 col-sm-12 col-12 margin-bottom-25">
                                             <div class="row">
-                                                <div class="scheduled-appointments-item col-xl-2 mb-xl-0 col-lg-4 col-md-6 col-sm-4 col-6 mb-3">
-                                                    <button class="btn btn-meeting btn-gradient-primary btn-block">Staff Meeting<br>10:35 AM</button>
+                                                <div class="scheduled-appointments-category col-xl-3 mb-xl-0 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
+                                                    <button class="btn btn-info btn-block">Today</button>
                                                 </div>
-                                                <div class="scheduled-appointments-item col-xl-2 mb-xl-0 col-lg-4 col-md-6 col-sm-4 col-6 mb-3">
-                                                    <button class="btn btn-outline-default btn-block">11:00 AM</button>
-                                                </div>
-                                                <div class="scheduled-appointments-item col-xl-2 mb-xl-0 col-lg-4 col-md-6 col-sm-4 col-6 mb-3">
-                                                    <button class="btn btn-outline-default btn-block">11:30 AM</button>
-                                                </div>
-                                                <div class="scheduled-appointments-item col-xl-2 mb-xl-0 col-lg-4 col-md-6 col-sm-4 col-6 mb-3">
-                                                    <button class="btn btn-meeting btn-gradient-dark btn-block">Client Welcome<br>12:00 PM</button>
-                                                </div>
-                                                <div class="scheduled-appointments-item col-xl-2 mb-xl-0 col-lg-4 col-md-6 col-sm-4 col-6 mb-3">
-                                                    <button class="btn btn-outline-default btn-block">12:30 PM</button>
-                                                </div>
-                                                <div class="scheduled-appointments-item col-xl-2 mb-xl-0 col-lg-4 col-md-6 col-sm-4 col-6 mb-3">
-                                                    <button class="btn btn-outline-default btn-block">01:30 PM</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-12 col-md-12 col-sm-12 col-12 margin-bottom-25">
-                                            <div class="row">
+                                                <c:forEach var="event" items="${eventInfoDay1}">
                                                 <div class="scheduled-appointments-item item col-xl-2 mb-xl-0 col-lg-4 col-md-6 col-sm-4 col-6 mb-3 align-center">
-                                                    <button class="btn btn-gradient-danger btn-block">Archery<br>02:00 PM</button>
+                                                    <button class="btn btn-gradient-danger btn-block">${event.sport}<br>${event.startTime} - ${event.endTime}</button>
                                                     <div class="meeting-profile mt-2">
                                                         <img src="assets/img/90x90.jpg" class="meeting-img" alt="Image">
-                                                        <h6 class="mt-2 fg-green"><span>Beijing,china</span></h6>
-                                                        <p>25 June 2018</p>
-                                                        <p>2:00 - 3:00 PM</p>
+                                                        <h6 class="mt-2 fg-green"><span>${event.venue}</span></h6>
+                                                        <p>${event.date}</p>
+                                                        <p>${event.startTime} - ${event.endTime}</p>
+                                                        <c:if test="${event.status=='Finished'}">
                                                         <div class="padding15">
-                                                            <button href="broadcasting.jsp" class="btn btn-gradient-warning btn-rounded btn-md">Watch</button>
+                                                            <button class="btn btn-gradient-warning btn-rounded btn-md">Event is over</button>
                                                         </div>
+                                                        </c:if>
+                                                        <c:if test="${event.status=='On going'}">
+                                                            <div class="padding15">
+                                                                <button id="${event.id}" name="${event.sport}" onclick="watchEvent(this.id,this.name)" class="btn btn-gradient-warning btn-rounded btn-md">Watch</button>
+                                                            </div>
+                                                        </c:if>
+                                                        <c:if test="${event.status=='upcoming'}">
+                                                            <div class="padding15">
+                                                                <button  class="btn btn-gradient-warning btn-rounded btn-md">Event has not started</button>
+                                                            </div>
+                                                        </c:if>
                                                     </div>
                                                 </div>
-                                                <div class="scheduled-appointments-item item col-xl-2 mb-xl-0 col-lg-4 col-md-6 col-sm-4 col-6 mb-3">
-                                                    <button class="btn btn-outline-default btn-block">02:30 PM</button>
+                                                </c:forEach>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-12 margin-bottom-25">
+                                            <div class="row">
+                                                <div class="scheduled-appointments-category col-xl-3 mb-xl-0 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
+                                                    <button class="btn btn-primary btn-block">Tomorrow</button>
                                                 </div>
-                                                <div class="scheduled-appointments-item item col-xl-2 mb-xl-0 col-lg-4 col-md-6 col-sm-4 col-6 mb-3">
-                                                    <button class="btn btn-meeting btn-gradient-danger btn-block">Team Motivation<br>03:00 PM</button>
-                                                </div>
-                                                <div class="scheduled-appointments-item item col-xl-2 mb-xl-0 col-lg-4 col-md-6 col-sm-4 col-6 mb-3">
-                                                    <button class="btn btn-outline-default btn-block">03:30 PM</button>
-                                                </div>
-                                                <div class="scheduled-appointments-item item col-xl-2 mb-xl-0 col-lg-4 col-md-6 col-sm-4 col-6 mb-3">
-                                                    <button class="btn btn-outline-default btn-block">04:00 PM</button>
-                                                </div>
-                                                <div class="scheduled-appointments-item item col-xl-2 mb-xl-0 col-lg-4 col-md-6 col-sm-4 col-6 mb-3 align-center">
-                                                    <button class="btn btn-danger-primary btn-block">Badminton<br>04:30 PM</button>
-                                                    <div class="meeting-profile meeting-profile-3 mt-2">
-                                                        <img src="assets/img/90x90.jpg" class="meeting-img" alt="Image">
-                                                        <h6 class="mt-2 fg-blue"><span>Shingin,China</span></h6>
-                                                        <p>25 June 2018</p>
-                                                        <p>4:30 - 5:30 PM</p>
-                                                        <div class="padding15">
-                                                            <button class="btn btn-gradient-warning btn-rounded btn-md">Watch</button>
+                                                <c:forEach var="event" items="${eventInfoDay2}">
+                                                    <div class="scheduled-appointments-item item col-xl-2 mb-xl-0 col-lg-4 col-md-6 col-sm-4 col-6 mb-3 align-center">
+                                                        <button class="btn btn-gradient-danger btn-block">${event.event}<br>${event.startTime} - ${event.endTime}</button>
+                                                        <div class="meeting-profile mt-2">
+                                                            <img src="assets/img/90x90.jpg" class="meeting-img" alt="Image">
+                                                            <h6 class="mt-2 fg-green"><span>${event.venue}</span></h6>
+                                                            <p>${event.date}</p>
+                                                            <p>${event.startTime} - ${event.endTime}</p>
+                                                            <c:if test="${event.status=='Finished'}">
+                                                                <div class="padding15">
+                                                                    <button class="btn btn-gradient-warning btn-rounded btn-md">Event is over</button>
+                                                                </div>
+                                                            </c:if>
+                                                            <c:if test="${event.status=='On going'}">
+                                                                <div class="padding15">
+                                                                    <button id="${event.id}" onclick="watchEvent(this.id)" class="btn btn-gradient-warning btn-rounded btn-md">Watch</button>
+                                                                </div>
+                                                            </c:if>
+                                                            <c:if test="${event.status=='upcoming'}">
+                                                                <div class="padding15">
+                                                                    <button  class="btn btn-gradient-warning btn-rounded btn-md">Event has not started</button>
+                                                                </div>
+                                                            </c:if>
                                                         </div>
                                                     </div>
-                                                </div>
+                                                </c:forEach>
                                             </div>
                                         </div>
                                         <div class="col-lg-12 col-md-12 col-sm-12 col-12 margin-bottom-25">
                                             <div class="row">
-                                                <div class="scheduled-appointments-item item col-xl-2 mb-xl-0 col-lg-4 col-md-6 col-sm-4 col-6 mb-3">
-                                                    <button class="btn btn-outline-default btn-block">05:00 PM</button>
+                                                <div class="scheduled-appointments-category col-xl-3 mb-xl-0 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
+                                                    <button class="btn btn-primary btn-block">${eventInfoDay3[0].broadcast}</button>
                                                 </div>
-                                                <div class="scheduled-appointments-item item col-xl-2 mb-xl-0 col-lg-4 col-md-6 col-sm-4 col-6 mb-3">
-                                                    <button class="btn btn-outline-default btn-block">05:30 PM</button>
-                                                </div>
-                                                <div class="scheduled-appointments-item item col-xl-2 mb-xl-0 col-lg-4 col-md-6 col-sm-4 col-6 mb-3 align-center">
-                                                    <button class="btn btn-gradient-info btn-block">Badminton<br>06:00 PM</button>
-                                                    <div class="meeting-profile mt-2">
-                                                        <img src="assets/img/90x90.jpg" class="meeting-img meeting-img-2" alt="Image">
-                                                        <h6 class="mt-2 fg-info"><span>Beijing,China</span></h6>
-                                                        <p>25 June 2018</p>
-                                                        <p>6:00 - 9:00 PM</p>
-                                                        <div class="padding15">
-                                                            <button class="btn btn-gradient-warning btn-rounded btn-md">Watch</button>
+                                                <c:forEach var="event" items="${eventInfoDay3}">
+                                                    <div class="scheduled-appointments-item item col-xl-2 mb-xl-0 col-lg-4 col-md-6 col-sm-4 col-6 mb-3 align-center">
+                                                        <button class="btn btn-gradient-danger btn-block">${event.event}<br>${event.startTime} - ${event.endTime}</button>
+                                                        <div class="meeting-profile mt-2">
+                                                            <img src="assets/img/90x90.jpg" class="meeting-img" alt="Image">
+                                                            <h6 class="mt-2 fg-green"><span>${event.venue}</span></h6>
+                                                            <p>${event.date}</p>
+                                                            <p>${event.startTime} - ${event.endTime}</p>
+                                                            <c:if test="${event.status=='Finished'}">
+                                                                <div class="padding15">
+                                                                    <button class="btn btn-gradient-warning btn-rounded btn-md">Event is over</button>
+                                                                </div>
+                                                            </c:if>
+                                                            <c:if test="${event.status=='On going'}">
+                                                                <div class="padding15">
+                                                                    <button id="${event.id}" onclick="watchEvent(this.id)" class="btn btn-gradient-warning btn-rounded btn-md">Watch</button>
+                                                                </div>
+                                                            </c:if>
+                                                            <c:if test="${event.status=='upcoming'}">
+                                                                <div class="padding15">
+                                                                    <button  class="btn btn-gradient-warning btn-rounded btn-md">Event has not started</button>
+                                                                </div>
+                                                            </c:if>
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <div class="scheduled-appointments-item item col-xl-2 mb-xl-0 col-lg-4 col-md-6 col-sm-4 col-6 mb-3">
-                                                    <button class="btn btn-outline-default btn-block">06:30 PM</button>
-                                                </div>
-                                                <div class="scheduled-appointments-item item col-xl-2 mb-xl-0 col-lg-4 col-md-6 col-sm-4 col-6 mb-3">
-                                                    <button class="btn btn-outline-default btn-block">07:00 PM</button>
-                                                </div>
-                                                <div class="scheduled-appointments-item item col-xl-2 mb-xl-0 col-lg-4 col-md-6 col-sm-4 col-6 mb-3">
-                                                    <button class="btn btn-outline-default btn-block">07:30 PM</button>
-                                                </div>
+                                                </c:forEach>
                                             </div>
                                         </div>
                                         <div class="col-lg-12 col-md-12 col-sm-12 col-12 margin-bottom-25">
                                             <div class="row">
-                                                <div class="scheduled-appointments-item item col-xl-2 mb-xl-0 col-lg-4 col-md-6 col-sm-4 col-6 mb-3">
-                                                    <button class="btn btn-outline-default btn-block">08:00 PM</button>
+                                                <div class="scheduled-appointments-category col-xl-3 mb-xl-0 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
+                                                    <button class="btn btn-primary btn-block">${eventInfoDay4[0].broadcast}</button>
                                                 </div>
-                                                <div class="scheduled-appointments-item item col-xl-2 mb-xl-0 col-lg-4 col-md-6 col-sm-4 col-6 mb-3">
-                                                    <button class="btn btn-outline-default btn-block">08:30 PM</button>
-                                                </div>
-                                                <div class="scheduled-appointments-item item col-xl-2 mb-xl-0 col-lg-4 col-md-6 col-sm-4 col-6 mb-3">
-                                                    <button class="btn btn-outline-default btn-block">09:00 PM</button>
-                                                </div>
-                                                <div class="scheduled-appointments-item item col-xl-2 mb-xl-0 col-lg-4 col-md-6 col-sm-4 col-6 mb-3">
-                                                    <button class="btn btn-outline-default btn-block">09:30 PM</button>
-                                                </div>
-                                                <div class="scheduled-appointments-item item col-xl-2 mb-xl-0 col-lg-4 col-md-6 col-sm-4 col-6 mb-3">
-                                                    <button class="btn btn-outline-default btn-block">10:00 PM</button>
-                                                </div>
-                                                <div class="scheduled-appointments-item item col-xl-2 mb-xl-0 col-lg-4 col-md-6 col-sm-4 col-6 mb-3">
-                                                    <button class="btn btn-outline-default btn-block">10:30 PM</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-12 col-md-12 col-sm-12 col-12 margin-bottom-25">
-                                            <div class="row">
-                                                <div class="scheduled-appointments-item item col-xl-2 mb-xl-0 col-lg-4 col-md-6 col-sm-4 col-6 mb-3">
-                                                    <button class="btn btn-outline-default btn-block">11:00 PM</button>
-                                                </div>
-                                                <div class="scheduled-appointments-item item col-xl-2 mb-xl-0 col-lg-4 col-md-6 col-sm-4 col-6 mb-3">
-                                                    <button class="btn btn-outline-default btn-block">07:00 AM</button>
-                                                </div>
-                                                <div class="scheduled-appointments-item item col-xl-2 mb-xl-0 col-lg-4 col-md-6 col-sm-4 col-6 mb-3">
-                                                    <button class="btn btn-outline-default btn-block">07:30 AM</button>
-                                                </div>
-                                                <div class="scheduled-appointments-item item col-xl-2 mb-xl-0 col-lg-4 col-md-6 col-sm-4 col-6 mb-3">
-                                                    <button class="btn btn-outline-default btn-block">08:00 AM</button>
-                                                </div>
-                                                <div class="scheduled-appointments-item item col-xl-2 mb-xl-0 col-lg-4 col-md-6 col-sm-4 col-6 mb-3">
-                                                    <button class="btn btn-outline-default btn-block">08:30 AM</button>
-                                                </div>
-                                                <div class="scheduled-appointments-item item col-xl-2 mb-xl-0 col-lg-4 col-md-6 col-sm-4 col-6 mb-3">
-                                                    <button class="btn btn-outline-default btn-block">09:00 AM</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-12 col-md-12 col-sm-12 col-12 margin-bottom-25">
-                                            <div class="row">
-                                                <div class="scheduled-appointments-item item col-xl-2 mb-xl-0 col-lg-4 col-md-6 col-sm-4 col-6 mb-3">
-                                                    <button class="btn btn-outline-default btn-block">09:30 AM</button>
-                                                </div>
-                                                <div class="scheduled-appointments-item item col-xl-2 mb-xl-0 col-lg-4 col-md-6 col-sm-4 col-6 mb-3">
-                                                    <button class="btn btn-outline-default btn-block">10:00 AM</button>
-                                                </div>
+                                                <c:forEach var="event" items="${eventInfoDay4}">
+                                                    <div class="scheduled-appointments-item item col-xl-2 mb-xl-0 col-lg-4 col-md-6 col-sm-4 col-6 mb-3 align-center">
+                                                        <button class="btn btn-gradient-danger btn-block">${event.event}<br>${event.startTime} - ${event.endTime}</button>
+                                                        <div class="meeting-profile mt-2">
+                                                            <img src="assets/img/90x90.jpg" class="meeting-img" alt="Image">
+                                                            <h6 class="mt-2 fg-green"><span>${event.venue}</span></h6>
+                                                            <p>${event.date}</p>
+                                                            <p>${event.startTime} - ${event.endTime}</p>
+                                                            <c:if test="${event.status=='Finished'}">
+                                                                <div class="padding15">
+                                                                    <button class="btn btn-gradient-warning btn-rounded btn-md">Event is over</button>
+                                                                </div>
+                                                            </c:if>
+                                                            <c:if test="${event.status=='On going'}">
+                                                                <div class="padding15">
+                                                                    <button id="${event.id}" onclick="watchEvent(this.id)" class="btn btn-gradient-warning btn-rounded btn-md">Watch</button>
+                                                                </div>
+                                                            </c:if>
+                                                            <c:if test="${event.status=='upcoming'}">
+                                                                <div class="padding15">
+                                                                    <button  class="btn btn-gradient-warning btn-rounded btn-md">Event has not started</button>
+                                                                </div>
+                                                            </c:if>
+                                                        </div>
+                                                    </div>
+                                                </c:forEach>
                                             </div>
                                         </div>
                                         <div class="col-lg-12 col-md-12 col-sm-12 col-12 margin-bottom-25">
@@ -604,6 +589,12 @@
     <input type="hidden" name="command" value="deleteRepresentative">
     <input type="hidden" name="userType" value="${userInfo.userType}">
     <input type="hidden" name="id" id="delete_id" value="">
+</form>
+
+<form method="post" id="watching" action="ServletLogin2">
+    <input type="hidden" name="command" value="watchSingleBroadcast">
+    <input type="hidden" value="" id="id_watching" name="id">
+    <input type="hidden" value="" id="sport_id" name="sport">
 </form>
 
 
@@ -646,7 +637,13 @@
     </div>
 </footer>
 <!--  END FOOTER  -->
-
+<script>
+    function watchEvent(id_br,sport){
+        $("#id_watching").val(id_br);
+        $("#sport_id").val(sport);
+        document.getElementById("watching").submit();
+    }
+</script>
 
 <!-- BEGIN GLOBAL MANDATORY STYLES -->
 <script src="assets/js/libs/jquery-3.1.1.min.js"></script>

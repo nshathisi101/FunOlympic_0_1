@@ -4,9 +4,13 @@ import com.example.funolympic_0_1.model.bean.*;
 
 import javax.sql.DataSource;
 import java.sql.*;
+import java.text.Format;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
@@ -330,19 +334,48 @@ public class Connection_Util {
     public List<Events> getEvent(Events events, String action) throws Exception{
         String msg="Something";
 
-        if (!action.equals("login")){
+        if (action.equals("deleting")||action.equals("updating")||action.equals("uploading")){
             System.out.println(action);
             msg=setEvent(events,action);
         }
         List<Events> eventsList=new ArrayList<>();
         System.out.println(msg);
-        if(msg.equals("Successful")||action.equals("login")) {
+        if(msg.equals("Successful")||action.equals("login")||action.equals("login1")||action.equals("login2")||action.equals("login3")||action.equals("login4")) {
             Connection myConn = null;
             ResultSet myRs = null;
             PreparedStatement myStmt = null;
             try {
+                String sql =null;
                 myConn = dataSource.getConnection();
-                String sql = "SELECT * FROM FunOlmpic.Event";
+                String dayName="Nothing";
+                if(action.equals("login1")){
+                    java.util.Date date = new Date();
+                    SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+                    String  strDate = formatter.format(date);
+                    Format f = new SimpleDateFormat("EEEE");
+                    sql = "SELECT * FROM FunOlmpic.Event where date like '%"+strDate+"%'";
+                }else if(action.equals("login2")){
+                    DateTimeFormatter dateTimeFormatter=DateTimeFormatter.ofPattern("yyyy-MM-dd");
+                    LocalDate today = LocalDate.now();
+                    String tomorrow = (today.plusDays(1)).format(dateTimeFormatter);
+                    sql = "SELECT * FROM FunOlmpic.Event where date like '%"+tomorrow+"%'";
+                }else if(action.equals("login3")){
+                    DateTimeFormatter dateTimeFormatter=DateTimeFormatter.ofPattern("yyyy-MM-dd");
+                    LocalDate today = LocalDate.now();
+                    String tomorrow = (today.plusDays(2)).format(dateTimeFormatter);
+                    DateTimeFormatter dateTimeFormatter2=DateTimeFormatter.ofPattern("EEE");
+                    dayName=(today.plusDays(2)).format(dateTimeFormatter2);
+                    sql = "SELECT * FROM FunOlmpic.Event where date like '%"+tomorrow+"%'";
+                }else if(action.equals("login4")){
+                    DateTimeFormatter dateTimeFormatter=DateTimeFormatter.ofPattern("yyyy-MM-dd");
+                    LocalDate today = LocalDate.now();
+                    String tomorrow = (today.plusDays(3)).format(dateTimeFormatter);
+                    DateTimeFormatter dateTimeFormatter2=DateTimeFormatter.ofPattern("EEE");
+                    dayName=(today.plusDays(3)).format(dateTimeFormatter2);
+                    sql = "SELECT * FROM FunOlmpic.Event where date like '%"+tomorrow+"%'";
+                }else{
+                    sql = "SELECT * FROM FunOlmpic.Event";
+                }
                 myStmt = myConn.prepareStatement(sql);
                 myRs = myStmt.executeQuery();
                 System.out.println("get "+sql);
@@ -376,7 +409,7 @@ public class Connection_Util {
                     }else{
                         status="On going";
                     }
-                    Events events1=new Events(id,sport,event,date,startTime,EndTime,venue,"Nothing",status);
+                    Events events1=new Events(id,sport,event,date,startTime,EndTime,venue,dayName,status);
                     eventsList.add(events1);
 
                 }
@@ -622,5 +655,40 @@ public class Connection_Util {
             close(myConn,myStmt,null);
         }
         return msg;
+    }
+
+    public List<Broadcast> getWatchSingleBroadcast(String id,String sport) {
+        Connection myConn = null;
+        PreparedStatement myStmt = null;
+        ResultSet myRS = null;
+        List<Broadcast> event_single = new ArrayList<>();
+        try {
+            myConn = dataSource.getConnection();
+            String sql = "Select * from Broadcast b, url u,Event e where e.sport=u.sport and b.sport like '%"+sport+"%' and e.id=?";
+
+            myStmt = myConn.prepareStatement(sql);
+            myStmt.setString(1, id);
+            myRS = myStmt.executeQuery();
+            System.out.println(myStmt);
+
+            while (myRS.next()) {
+                String id2=myRS.getString("id");
+                String url=myRS.getString("url");
+                String broadcastname=myRS.getString("broadcastName");
+                String event=myRS.getString("event");
+                String date=myRS.getString("date");
+                String startTime=myRS.getString("startTime");
+                String venue=myRS.getString("venue");
+                String endTime=myRS.getString("endTime");
+                Broadcast event_single1 = new Broadcast(id2,broadcastname,sport,url.replace("watch?v=", "embed/"),event,date,startTime,endTime,venue);
+                event_single.add(event_single1);
+            }
+
+        } catch (Exception e) {
+            System.out.println(e);
+        } finally {
+            close(myConn, myStmt, myRS);
+        }
+        return event_single;
     }
 }

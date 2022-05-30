@@ -109,6 +109,8 @@ public class ServletLogin2 extends HttpServlet {
                 //medal
                 getMedalSummary(request,response);
 
+                onLogin(request,response);
+
                 getAllAthletes(request,response,userinfo.getUserType());
                 request.getRequestDispatcher("Country_representatives.jsp").forward(request, response);
             }else if(userinfo.getUserType().equals("Representatives")){
@@ -173,7 +175,7 @@ public class ServletLogin2 extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             String theCommand = request.getParameter("command");
-
+            System.out.println(theCommand);
             if (theCommand == null) {
 
                 theCommand = "display_List";
@@ -227,6 +229,9 @@ public class ServletLogin2 extends HttpServlet {
                 case "volunteer":
                     volunteer(request,response);
                     break;
+                case "watchSingleBroadcast":
+                    watchSingleBroadcast(request,response);
+                    break;
             }
 
             // listStudents(request, response);String fileName = null;
@@ -235,6 +240,21 @@ public class ServletLogin2 extends HttpServlet {
             exc.printStackTrace();
 
         }
+    }
+
+    private void watchSingleBroadcast(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        HttpSession session = request.getSession();
+        String id=request.getParameter("id");
+        String sport=request.getParameter("sport");
+        System.out.println("Id "+id+" Sport "+sport);
+        List<Broadcast> msg=connectionUtil.getWatchSingleBroadcast(id,sport);
+        if(msg!=null){
+            session.setAttribute("watchBroadcastInfo",msg);
+            request.getRequestDispatcher("broadcasting.jsp").forward(request, response);
+        }else{
+            request.getRequestDispatcher("index.jsp").forward(request, response);
+        }
+
     }
 
     private void volunteer(HttpServletRequest request, HttpServletResponse response) throws Exception  {
@@ -366,6 +386,7 @@ public class ServletLogin2 extends HttpServlet {
                 session.setAttribute("alertError","Something is wrong");
                 request.getRequestDispatcher("EventForm.jsp").forward(request, response);
             }else{
+                onLogin(request,response);
                 session.setAttribute("eventInfo",eventsList);
                 request.getRequestDispatcher("EventForm.jsp").forward(request, response);
             }
@@ -409,6 +430,7 @@ public class ServletLogin2 extends HttpServlet {
                 session.setAttribute("alertError","Something is wrong");
                 request.getRequestDispatcher("broadcast_form.jsp").forward(request, response);
             }else{
+                onLogin(request,response);
                 session.setAttribute("broadcastInfo",broadcasts);
                 request.getRequestDispatcher("broadcast_form.jsp").forward(request, response);
             }
@@ -635,6 +657,26 @@ public class ServletLogin2 extends HttpServlet {
         HttpSession session=request.getSession();
         List<Medal> medals=connectionUtil.getMedals();
         session.setAttribute("medalInfo",medals);
+    }
+    private void onLogin(HttpServletRequest request, HttpServletResponse response)throws Exception
+    {
+        HttpSession session=request.getSession();
+
+
+        Events events=new Events();
+        List<Events> eventsList=connectionUtil.getEvent(events,"login1");
+        session.setAttribute("eventInfoDay1",eventsList);
+
+        List<Events> eventsList2=connectionUtil.getEvent(events,"login2");
+        session.setAttribute("eventInfoDay2",eventsList2);
+
+        List<Events> eventsList3=connectionUtil.getEvent(events,"login3");
+        session.setAttribute("eventInfoDay3",eventsList3);
+
+        List<Events> eventsList4=connectionUtil.getEvent(events,"login4");
+        session.setAttribute("eventInfoDay4",eventsList4);
+
+
     }
 
 }

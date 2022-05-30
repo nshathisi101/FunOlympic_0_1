@@ -400,33 +400,15 @@
 
                                         <div class="a-slots">
 
+                                            <c:forEach var="watchBroadcast" items="${watchBroadcastInfo}">
                                             <div class="slots-1">
                                                 <div class="custom-control custom-checkbox pl-0">
                                                     <input type="checkbox" class="custom-control-input" id="customCheck1">
-                                                    <label class="custom-control-label" for="customCheck1">Badminton 23 Jun, 2018 - 9:30 am</label>
+                                                    <label class="custom-control-label" for="customCheck1">${watchBroadcast.broadcastName}, ${watchBroadcast.startTime}-${watchBroadcast.startTime}</label>
                                                 </div>
                                             </div>
+                                            </c:forEach>
 
-                                            <div class="slots-1">
-                                                <div class="custom-control custom-checkbox pl-0">
-                                                    <input type="checkbox" class="custom-control-input" id="customCheck2">
-                                                    <label class="custom-control-label" for="customCheck2">Swimming 24 Jun, 2018 - 10:30 am</label>
-                                                </div>
-                                            </div>
-
-                                            <div class="slots-1">
-                                                <div class="custom-control custom-checkbox pl-0">
-                                                    <input type="checkbox" class="custom-control-input" id="customCheck3">
-                                                    <label class="custom-control-label" for="customCheck3">Ice Hockey 25 Jun, 2018 - 5:30 pm</label>
-                                                </div>
-                                            </div>
-
-                                            <div class="slots-1">
-                                                <div class="custom-control custom-checkbox pl-0">
-                                                    <input type="checkbox" class="custom-control-input" id="customCheck4">
-                                                    <label class="custom-control-label" for="customCheck3">Gymnastics 25 Jun, 2018 - 5:30 pm</label>
-                                                </div>
-                                            </div>
 
                                         </div>
 
@@ -450,7 +432,7 @@
                                         </div>
                                         <div class="widget-content widget-content-area">
                                             <div class="video-container mb-5">
-                                                <iframe width="860" height="615" src="https://www.youtube.com/embed/YE7VzlLtp-4" allow="autoplay; encrypted-media" allowfullscreen style="border: 0;"></iframe>
+                                                <iframe width="860" height="615" src="${watchBroadcastInfo[0].url}" allow="autoplay; encrypted-media" allowfullscreen style="border: 0;"></iframe>
                                             </div>
                                         </div>
                                     </div>
