@@ -1,6 +1,7 @@
 package com.example.funolympic_0_1.controller;
 
 import com.example.funolympic_0_1.model.bean.*;
+import com.twilio.rest.chat.v1.service.User;
 
 import javax.sql.DataSource;
 import java.sql.*;
@@ -71,7 +72,7 @@ public class Connection_Util {
                         myStmt.setString(6, userinfo.getAge());
                 }
                     else{
-                        sql = "INSERT INTO `FunOlmpic`.`User_accounting` (`fullName`, `email`, `password`, `UserType`,`country`,`sport`,`userImage`) VALUES (?,?,?,?,?,?,?);";
+                        sql = "INSERT INTO `FunOlmpic`.`User_accounting` (`fullName`, `email`, `password`, `UserType`,`country`,`sport`,`userImage`,`statues`) VALUES (?,?,?,?,?,?,?,?);";
                         myStmt = myConn.prepareStatement(sql);
                         String user = null;
                         if (Objects.equals(userinfo.getUserType(), "Admin") || Objects.equals(userinfo.getUserType(), "Representatives")) {
@@ -86,13 +87,15 @@ public class Connection_Util {
                         myStmt.setString(3, userinfo.getPassword());
                         myStmt.setString(6, userinfo.getSport());
                         myStmt.setString(7, userinfo.getDp());
+                        myStmt.setString(8, "verified");
 
                 }
 
             }else{
-                sql="INSERT INTO `FunOlmpic`.`User_accounting` (`fullName`, `email`, `password`, `UserType`) VALUES (?,?,?,?);";
+                sql="INSERT INTO `FunOlmpic`.`User_accounting` (`fullName`, `email`, `password`, `UserType`,`statues`) VALUES (?,?,?,?,?);";
                 myStmt = myConn.prepareStatement(sql);
                 myStmt.setString(4, userinfo.getUserType());
+                myStmt.setString(5, userinfo.getAge());
                 myStmt.setString(3, userinfo.getPassword());
 
             }
@@ -102,7 +105,7 @@ public class Connection_Util {
 
             myStmt.execute();
             msg="Successful";
-            System.out.println("eerr "+sql);
+            System.out.println("eerr "+myStmt);
 
         }catch (Exception e){
             System.out.println(userinfo.getId()+" "+e);
@@ -129,7 +132,8 @@ public class Connection_Util {
         String dp=myRs.getString("userImage");
         String sex=myRs.getString("sex");
         String age=myRs.getString("age");
-        Userinfo userinfo=new Userinfo(id,fullName,email,"null",userType,country,sport,dp,sex,age);
+        String statues=myRs.getString("statues");
+        Userinfo userinfo=new Userinfo(id,fullName,email,"null",userType,country,sport,dp,sex,age,statues);
         return userinfo;
 
     }
@@ -155,6 +159,31 @@ public class Connection_Util {
         }
 
         return userinfo;
+    }
+
+    public List<Userinfo> getUsers() throws Exception {
+        String login="login";
+        Userinfo userinfo=null;
+        List<Userinfo> userinfoList=new ArrayList<>();
+        Connection myConn=null;
+        ResultSet myRs=null;
+        PreparedStatement myStmt=null;
+        try{
+            myConn=dataSource.getConnection();
+            String sql ="SELECT * FROM FunOlmpic.User_accounting";
+            myStmt=myConn.prepareStatement(sql);
+            myRs=myStmt.executeQuery();
+            while(myRs.next()) {
+                userinfo=userinfoReuse(myRs);
+                userinfoList.add(userinfo);
+            }
+        }catch (Exception e){
+            System.out.println(e);
+        }finally {
+            close(myConn,myStmt,myRs);
+        }
+
+        return userinfoList;
     }
 
     public List<Userinfo> setRepresentatives(Userinfo userinfo,String action) throws Exception {
@@ -186,26 +215,33 @@ public class Connection_Util {
         }
         return userinfo2;
     }
+
+
     public List<Userinfo> getAthlete(Userinfo userinfo,String action) throws Exception {
         String msg="Something";
 
-        if (!action.equals("login")){
+        if (action.equals("deleteAthlete")||action.equals("updateAthlete")||action.equals("setAthlete")){
             System.out.println(action);
             msg=setUserInfo(userinfo,action);
         }
         List<Userinfo> userinfo2=new ArrayList<>();
         System.out.println(msg);
-        if(msg.equals("Successful")||action.equals("login")) {
+        System.out.println(action);
+        if(msg.equals("Successful")||action.equals("login")||action.equals("login1")) {
             Connection myConn = null;
             ResultSet myRs = null;
             PreparedStatement myStmt = null;
             try {
                 myConn = dataSource.getConnection();
                 String sql =null;
-                if (userinfo.getId().equals("Admin")){
+                if(action.equals("login1")){
                     sql = "SELECT * FROM FunOlmpic.User_accounting where `UserType`='Athlete'";
-                }else{
-                    sql = "SELECT * FROM FunOlmpic.User_accounting where `UserType`='Athlete' and country='" + userinfo.getCountry() + "'";
+                }else {
+                    if (userinfo.getId().equals("Admin")) {
+                        sql = "SELECT * FROM FunOlmpic.User_accounting where `UserType`='Athlete'";
+                    } else {
+                        sql = "SELECT * FROM FunOlmpic.User_accounting where `UserType`='Athlete' and country='" + userinfo.getCountry() + "'";
+                    }
                 }
                 myStmt = myConn.prepareStatement(sql);
                 myRs = myStmt.executeQuery();
@@ -330,6 +366,7 @@ public class Connection_Util {
         }
         return msg;
     }
+
 
     public List<Events> getEvent(Events events, String action) throws Exception{
         String msg="Something";
@@ -690,5 +727,49 @@ public class Connection_Util {
             close(myConn, myStmt, myRS);
         }
         return event_single;
+    }
+
+
+    public Userinfo getVerifiedUser(String email) throws Exception{
+        verifyEmailCom(email);
+        Userinfo userinfo=null;
+        Connection myConn=null;
+        ResultSet myRs=null;
+        PreparedStatement myStmt=null;
+        try{
+            myConn=dataSource.getConnection();
+            String sql ="SELECT * FROM FunOlmpic.User_accounting where `email`='"+email+"'";
+            myStmt=myConn.prepareStatement(sql);
+            myRs=myStmt.executeQuery();
+            while(myRs.next()) {
+                userinfo=userinfoReuse(myRs);
+            }
+        }catch (Exception e){
+            System.out.println(e);
+        }finally {
+            close(myConn,myStmt,myRs);
+        }
+
+        return userinfo;
+    }
+    public String verifyEmailCom( String email) throws Exception{
+        Connection myConn=null;
+        ResultSet myRs=null;
+        PreparedStatement myStmt=null;
+        String msg=null;
+        try {
+            myConn = dataSource.getConnection();
+            String sql = "UPDATE `FunOlmpic`.`User_accounting` SET `statues` = ? WHERE (`email` = '" + email + "');";
+            myStmt = myConn.prepareStatement(sql);
+            myStmt.setString(1,"verified");
+            myStmt.execute();
+            msg="Successful";
+        }catch (Exception e){
+            System.out.println(e);
+            msg="Error";
+        }finally {
+            close(myConn, myStmt, null);
+        }
+        return msg;
     }
 }

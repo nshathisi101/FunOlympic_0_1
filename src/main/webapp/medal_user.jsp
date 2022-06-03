@@ -70,8 +70,8 @@
                 <div class="media">
                     <img src="assets/img/90x90.jpg" class="img-fluid mr-2" alt="admin-profile">
                     <div class="media-body align-self-center">
-                        <h6 class="mb-1">Alan Green</h6>
-                        <p class="mb-0">UI/UX Designer</p>
+                        <h6 class="mb-1">${userInfo.fullName}</h6>
+                        <p class="mb-0">${userInfo.userType}</p>
                     </div>
                 </div>
             </a>
@@ -305,7 +305,7 @@
             </a>
         </li>
     </ul>
-    <form action="ServletLogin2" method="post" style="display: none">
+    <form action="ServletLogin2" id="logout" method="post" style="display: none">
         <input type="hidden" name="command" value="logout">
     </form>
 </header>
@@ -323,7 +323,7 @@
         <nav id="topbar">
             <ul class="list-unstyled menu-categories d-lg-flex justify-content-lg-around mb-0" id="topAccordion">
                 <li class="menu">
-                    <a href="schedule.jsp" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                    <a href="#dashboard" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
                         <div class="">
                             <i class="flaticon-home-line"></i>
                             <span>Home</span>
@@ -332,7 +332,15 @@
                 </li>
 
                 <li class="menu">
-                    <a href="results.jsp" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                    <a href="${pageContext.request.contextPath}/EventForm.jsp">
+                        <div class="">
+                            <i class="flaticon-calendar-12"></i>
+                            <span>Event</span>
+                        </div>
+                    </a>
+                </li>
+                <li class="menu">
+                    <a href="${pageContext.request.contextPath}/event_results_form.jsp">
                         <div class="">
                             <i class="flaticon-calendar-12"></i>
                             <span>Event Results</span>
@@ -341,28 +349,35 @@
                 </li>
 
                 <li class="menu">
-                    <a href="medals.jsp" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                    <a href="${pageContext.request.contextPath}/broadcast_form.jsp" >
+                        <div class="">
+                            <i class="flaticon-calendar-12"></i>
+                            <span>Broadcasts</span>
+                        </div>
+                    </a>
+                </li>
+
+                <li class="menu">
+                    <a href="${pageContext.request.contextPath}/medal_user.jsp" >
                         <div class="">
                             <i class="flaticon-cup"></i>
                             <span>Medals</span>
                         </div>
                     </a>
                 </li>
-
                 <li class="menu">
-                    <a href="athletes.jsp" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                    <a href="${pageContext.request.contextPath}/Country_representatives.jsp" >
                         <div class="">
-                            <i class="flaticon-user-group"></i>
-                            <span>Athletes</span>
+                            <i class="flaticon-map-1"></i>
+                            <span>Country Representatives</span>
                         </div>
                     </a>
                 </li>
-
                 <li class="menu">
-                    <a href="#more" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                    <a href="${pageContext.request.contextPath}/allUserInfor.jsp">
                         <div class="">
-                            <i class="flaticon-plus"></i>
-                            <span class="d-lg-none">More</span>
+                            <i class="flaticon-user-group"></i>
+                            <span>Users</span>
                         </div>
                     </a>
                 </li>

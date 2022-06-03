@@ -2,16 +2,14 @@ html, body { height: 100%; }
 body {
     padding-top: 40px;
     padding-bottom: 40px;
-    background-image: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    background-repeat: no-repeat;
-    background-attachment: fixed;
+    background: #1b1c25 url("../../../assets/img/olympic-gold-medal-2021-08-26-22-30-00-utc.jpg") no-repeat fixed center;
+    background-size: cover;
     display: -ms-flexbox;
     display: flex;
     -ms-flex-align: center;
     align-items: center;
     padding-top: 40px;
     padding-bottom: 40px;
-    background-color: #b4b1b1;
 }
 h5 { font-size: 0.875rem; }
 .form-login {

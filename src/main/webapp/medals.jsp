@@ -115,26 +115,6 @@
             </div>
         </li>
 
-        <li class="nav-item dropdown app-dropdown">
-            <a href="javascript:void(0);" class="nav-link dropdown-toggle" id="app-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="flaticon-star-circle-line"></span>
-            </a>
-            <div class="dropdown-menu  position-absolute" aria-labelledby="app-dropdown">
-                <a class="dropdown-item d-flex" href="apps_drag_n_drop_calendar.html">
-                    <i class="mr-3 flaticon-calendar-1"></i><span>Calendar</span>
-                </a>
-                <a class="dropdown-item d-flex" href="dragndrop_scrumboard.html">
-                    <i class="mr-3 flaticon-edit-3"></i><span>Scrumboard</span>
-                </a>
-                <a class="dropdown-item d-flex" href="pages_helpdesk.html">
-                    <i class="mr-3 flaticon-copy"></i><span>Helpdesk</span>
-                </a>
-                <a class="dropdown-item d-flex" href="pages_contact_us.html">
-                    <i class="mr-3 flaticon-location-1"></i><span>Contact Us</span>
-                </a>
-            </div>
-        </li>
-
         <li class="nav-item ml-4 d-lg-none">
             <form class="form-inline search-full form-inline search animated-search" role="search">
                 <i class="flaticon-search-1 d-lg-none d-block"></i>
@@ -142,6 +122,7 @@
             </form>
         </li>
     </ul>
+
 
     <ul class="navbar-nav flex-row ml-lg-auto">
         <li class="nav-item mr-5 d-lg-block d-none">
@@ -161,145 +142,9 @@
                     </div>
                 </div>
             </a>
-            <div class="dropdown-menu  position-absolute p-0" aria-labelledby="user-profile-dropdown">
-                <div class="dropdown-item d-flex justify-content-around">
-                    <p class="mb-0 align-self-center">Your Account</p>
-                    <div class="">
-                        <i class="flaticon-star-outline"></i>
-                    </div>
-                </div>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item d-flex" href="user_profile.html">
-                    <i class="mr-3 flaticon-user-11"></i> <span class="align-self-center">Profile Setting</span>
-                </a>
-                <a class="dropdown-item d-flex" href="apps_scheduler.html">
-                    <i class="mr-3 flaticon-calendar"></i> <span class="align-self-center">Schedule</span>
-                </a>
-                <a class="dropdown-item d-flex" href="apps_mailbox.html">
-                    <i class="mr-3 flaticon-mail-22"></i> <span class="align-self-center">Inbox</span>
-                </a>
-                <a class="dropdown-item d-flex" href="user_lockscreen_1.html">
-                    <i class="mr-3 flaticon-lock-1"></i> <span class="align-self-center">Lock Screen</span>
-                </a>
-
-                <div class="dropdown-item dropdown-item-btn d-flex justify-content-around">
-                    <a class="" href="user_login_1.html">
-                        <i class="mr-2 flaticon-power-off"></i> <span class="align-self-center">Logout</span>
-                    </a>
-                </div>
-            </div>
         </li>
 
-        <li class="nav-item dropdown message-dropdown ml-lg-4 mr-lg-4">
-            <a href="javascript:void(0);" class="nav-link dropdown-toggle" id="message-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="icon flaticon-mail-1"></span><span class="badge badge-primary">13</span>
-            </a>
-            <div class="dropdown-menu  position-absolute p-0" aria-labelledby="message-dropdown">
-                <div class="dropdown-item dropdown-header d-flex justify-content-between">
-                    <p class="mb-0 align-self-center">You have 13 new messages</p>
-                    <div class="">
-                        <i class="flaticon-chat-bubble"></i>
-                    </div>
-                </div>
-                <div class="dropdown-divider"></div>
-                <div class="message-scroll">
-                    <div class="dropdown-item">
-                        <div class="">
-                            <div class="media">
-                                <div class="usr-img online mr-3">
-                                    <img class="usr-img rounded-circle" src="assets/img/90x90.jpg" alt="profile">
-                                </div>
-                                <div class="media-body">
-                                    <div class="d-flex">
-                                        <p class="meta-user-name mr-3">Kara Young</p>
-                                        <p class="meta-time align-self-center mb-1">2 mins ago</p>
-                                    </div>
-                                    <p class="message-text mb-0 ">Simple and clean! Nice I'd like to </p>
-                                    <a href="javascript:void(0);" class="see-more">See More</a>
-                                </div>
-                            </div>
-                            <div class="d-flex justify-content-between dropdown-action">
-                                <a href="javascript:void(0);" class="">View Details</a>
-                                <i class="flaticon-delete"></i>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="dropdown-item">
-                        <div class="">
-                            <div class="media">
-                                <div class="usr-img online mr-3">
-                                    <img class="usr-img rounded-circle" src="assets/img/90x90.jpg" alt="profile">
-                                </div>
-                                <div class="media-body">
-                                    <div class="d-flex">
-                                        <p class="meta-user-name mr-3">Oscar Garner</p>
-                                        <p class="meta-time align-self-center mb-1">5 mins ago</p>
-                                    </div>
-                                    <p class="message-text mb-0 ">Simple and clean! Nice I'd like to </p>
-                                    <a href="javascript:void(0);" class="see-more">See More</a>
-                                </div>
-                            </div>
-                            <div class="d-flex justify-content-between dropdown-action">
-                                <a href="javascript:void(0);" class="">View Details</a>
-                                <i class="flaticon-delete"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="footer dropdown-item text-center">
-                    <a class="btn btn-info my-3 btn-rounded" href="javascript:void(0);">More...</a>
-                </div>
-            </div>
-        </li>
-
-        <li class="nav-item dropdown notification-dropdown ml-3 mr-lg-4">
-            <a href="javascript:void(0);" class="nav-link dropdown-toggle" id="notification-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="icon flaticon-bell-24"></span><span class="badge badge-success">15</span>
-            </a>
-            <div class="dropdown-menu position-absolute p-0" aria-labelledby="notification-dropdown">
-                <div class="dropdown-item dropdown-header d-flex justify-content-between">
-                    <p class="mb-0 align-self-center">Notifications</p>
-                    <div class="">
-                        <i class="flaticon-gear-1"></i>
-                    </div>
-                </div>
-                <div class="dropdown-divider"></div>
-                <div class="notification-scroll">
-                    <div class="dropdown-item">
-                        <div class="">
-                            <div class="d-flex dropdown-action justify-content-between">
-                                <span class="badge badge-info mb-3">6 Request</span>
-                                <i class="flaticon-cancel-12"></i>
-                            </div>
-                            <p class="notification-text"><span class="meta-usrname">Kara Young</span>, <span class="meta-usrname">Xavier</span>, <span class="meta-usrname">Lila Perry</span> and <span class="meta-usrname">3 others</span> send a friend request.</p>
-                            <p class="meta-time">6 mins ago</p>
-                        </div>
-                    </div>
-                    <div class="dropdown-item">
-                        <div class="">
-                            <div class="d-flex dropdown-action justify-content-between">
-                                <span class="badge badge-primary mb-3">Invoice</span>
-                                <i class="flaticon-cancel-12"></i>
-                            </div>
-                            <p class="notification-text"> <span class="meta-usrname">Shaun</span>, <span class="meta-usrname">Amy Diaz</span> and <span class="meta-usrname">3 others</span> send a friend request.</p>
-                            <p class="meta-time">10 mins ago</p>
-                        </div>
-                    </div>
-                    <div class="dropdown-item">
-                        <div class="">
-                            <div class="d-flex dropdown-action justify-content-between">
-                                <span class="badge badge-secondary mb-3">Task</span>
-                                <i class="flaticon-cancel-12"></i>
-                            </div>
-                            <p class="notification-text"><span class="meta-usrname">Marry McDonald</span>, <span class="meta-usrname">Shaun Park</span>, <span class="meta-usrname">Kara</span> and <span class="meta-usrname">3 others</span> send a friend request.</p>
-                            <p class="meta-time">1 hour ago</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </li>
-
-        <li class="nav-item dropdown cs-toggle ml-3 mr-lg-4">
+        <li style="cursor: pointer" class="nav-item dropdown cs-toggle ml-3 mr-lg-4">
             <a onclick="document.getElementById('logout').submit()">
                 <span class="icon flaticon-log-3"></span>
             </a>
@@ -317,13 +162,14 @@
     <div class="cs-overlay"></div>
     <div class="search-overlay"></div>
 
+    <c:if test="${userInfo.userType!='Admin'}">
     <!--  BEGIN TOPBAR  -->
     <div class="topbar-nav header navbar fixed-top" role="banner">
         <div id="dismiss" class="d-lg-none text-right"><i class="flaticon-cancel-12 mr-3"></i></div>
         <nav id="topbar">
             <ul class="list-unstyled menu-categories d-lg-flex justify-content-lg-around mb-0" id="topAccordion">
                 <li class="menu">
-                    <a href="#dashboard" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                    <a href="schedule.jsp" >
                         <div class="">
                             <i class="flaticon-home-line"></i>
                             <span>Home</span>
@@ -332,15 +178,7 @@
                 </li>
 
                 <li class="menu">
-                    <a href="${pageContext.request.contextPath}/EventForm.jsp">
-                        <div class="">
-                            <i class="flaticon-calendar-12"></i>
-                            <span>Event</span>
-                        </div>
-                    </a>
-                </li>
-                <li class="menu">
-                    <a href="${pageContext.request.contextPath}/event_results_form.jsp">
+                    <a href="results.jsp" >
                         <div class="">
                             <i class="flaticon-calendar-12"></i>
                             <span>Event Results</span>
@@ -349,44 +187,126 @@
                 </li>
 
                 <li class="menu">
-                    <a href="${pageContext.request.contextPath}/broadcast_form.jsp" >
-                        <div class="">
-                            <i class="flaticon-calendar-12"></i>
-                            <span>Broadcasts</span>
-                        </div>
-                    </a>
-                </li>
-
-                <li class="menu">
-                    <a href="${pageContext.request.contextPath}/medals.jsp" >
+                    <a href="medals.jsp" >
                         <div class="">
                             <i class="flaticon-cup"></i>
                             <span>Medals</span>
                         </div>
                     </a>
                 </li>
+
                 <li class="menu">
-                    <a href="${pageContext.request.contextPath}/all_Users.jsp">
+                    <a href="athletes.jsp">
                         <div class="">
                             <i class="flaticon-user-group"></i>
-                            <span>Users</span>
+                            <span>Athletes</span>
                         </div>
                     </a>
                 </li>
 
                 <li class="menu">
-                    <a href="#pages" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                    <a href="tickets.jsp">
                         <div class="">
-                            <i class="flaticon-file"></i>
-                            <span>About us</span>
+                            <i class="flaticon-credit-card-1"></i>
+                            <span>Buy Ticket</span>
                         </div>
                     </a>
                 </li>
+                <li class="menu">
+                    <a href="volunteers.jsp">
+                        <div class="">
+                            <i class="flaticon-heart-1"></i>
+                            <span>Volunteer</span>
+                        </div>
+                    </a>
+                </li>
+
+                <c:if test="${userInfo.userType=='Representatives'}">
+                    <li class="menu">
+                        <a href="athletes_form.jsp">
+                            <div class="">
+                                <i class="flaticon-user-group"></i>
+                                <span>Athletes Form</span>
+                            </div>
+                        </a>
+                    </li>
+                </c:if>
+
             </ul>
         </nav>
     </div>
     <!--  END TOPBAR  -->
+    </c:if>
+    <c:if test="${userInfo.userType=='Admin'}">
+        <!--  BEGIN TOPBAR  -->
+        <div class="topbar-nav header navbar fixed-top" role="banner">
+            <div id="dismiss" class="d-lg-none text-right"><i class="flaticon-cancel-12 mr-3"></i></div>
+            <nav id="topbar">
+                <ul class="list-unstyled menu-categories d-lg-flex justify-content-lg-around mb-0" id="topAccordion">
+                    <li class="menu">
+                        <a href="#dashboard" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                            <div class="">
+                                <i class="flaticon-home-line"></i>
+                                <span>Home</span>
+                            </div>
+                        </a>
+                    </li>
 
+                    <li class="menu">
+                        <a href="${pageContext.request.contextPath}/EventForm.jsp">
+                            <div class="">
+                                <i class="flaticon-calendar-12"></i>
+                                <span>Event</span>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="menu">
+                        <a href="${pageContext.request.contextPath}/event_results_form.jsp">
+                            <div class="">
+                                <i class="flaticon-calendar-12"></i>
+                                <span>Event Results</span>
+                            </div>
+                        </a>
+                    </li>
+
+                    <li class="menu">
+                        <a href="${pageContext.request.contextPath}/broadcast_form.jsp" >
+                            <div class="">
+                                <i class="flaticon-calendar-12"></i>
+                                <span>Broadcasts</span>
+                            </div>
+                        </a>
+                    </li>
+
+                    <li class="menu">
+                        <a href="${pageContext.request.contextPath}/medal_user.jsp" >
+                            <div class="">
+                                <i class="flaticon-cup"></i>
+                                <span>Medals</span>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="menu">
+                        <a href="${pageContext.request.contextPath}/Country_representatives.jsp" >
+                            <div class="">
+                                <i class="flaticon-map-1"></i>
+                                <span>Country Representatives</span>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="menu">
+                        <a href="${pageContext.request.contextPath}/allUserInfor.jsp">
+                            <div class="">
+                                <i class="flaticon-user-group"></i>
+                                <span>Users</span>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        <!--  END TOPBAR  -->
+    </c:if>
     <!--  BEGIN CONTENT PART  -->
     <div id="content" class="main-content">
         <div class="container">

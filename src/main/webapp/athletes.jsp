@@ -305,11 +305,11 @@
             </a>
         </li>
     </ul>
-    <form action="ServletLogin2" method="post" style="display: none">
+    <form action="ServletLogin2" id="logout" method="post" style="display: none">
         <input type="hidden" name="command" value="logout">
     </form>
 </header>
-<!--  END NAVBAR  -->
+<!--  END NAVBAR  -->>
 
 <!--  BEGIN MAIN CONTAINER  -->
 <div class="main-container" id="container">
@@ -317,13 +317,12 @@
     <div class="cs-overlay"></div>
     <div class="search-overlay"></div>
 
-    <!--  BEGIN TOPBAR  -->
     <div class="topbar-nav header navbar fixed-top" role="banner">
         <div id="dismiss" class="d-lg-none text-right"><i class="flaticon-cancel-12 mr-3"></i></div>
         <nav id="topbar">
             <ul class="list-unstyled menu-categories d-lg-flex justify-content-lg-around mb-0" id="topAccordion">
                 <li class="menu">
-                    <a href="schedule.jsp" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                    <a href="schedule.jsp" >
                         <div class="">
                             <i class="flaticon-home-line"></i>
                             <span>Home</span>
@@ -332,7 +331,7 @@
                 </li>
 
                 <li class="menu">
-                    <a href="results.jsp" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                    <a href="results.jsp" >
                         <div class="">
                             <i class="flaticon-calendar-12"></i>
                             <span>Event Results</span>
@@ -341,7 +340,7 @@
                 </li>
 
                 <li class="menu">
-                    <a href="medals.jsp" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                    <a href="medals.jsp" >
                         <div class="">
                             <i class="flaticon-cup"></i>
                             <span>Medals</span>
@@ -350,7 +349,7 @@
                 </li>
 
                 <li class="menu">
-                    <a href="athletes.jsp" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                    <a href="athletes.jsp">
                         <div class="">
                             <i class="flaticon-user-group"></i>
                             <span>Athletes</span>
@@ -359,17 +358,36 @@
                 </li>
 
                 <li class="menu">
-                    <a href="#more" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                    <a href="tickets.jsp">
                         <div class="">
-                            <i class="flaticon-plus"></i>
-                            <span class="d-lg-none">More</span>
+                            <i class="flaticon-credit-card-1"></i>
+                            <span>Buy Ticket</span>
                         </div>
                     </a>
                 </li>
+                <li class="menu">
+                    <a href="volunteers.jsp">
+                        <div class="">
+                            <i class="flaticon-heart-1"></i>
+                            <span>Volunteer</span>
+                        </div>
+                    </a>
+                </li>
+
+                <c:if test="${userInfo.userType=='Representatives'}">
+                    <li class="menu">
+                        <a href="athletes_form.jsp">
+                            <div class="">
+                                <i class="flaticon-user-group"></i>
+                                <span>Athletes Form</span>
+                            </div>
+                        </a>
+                    </li>
+                </c:if>
+
             </ul>
         </nav>
     </div>
-    <!--  END TOPBAR  -->
 
     <!--  BEGIN CONTENT PART  -->
     <div id="content" class="main-content">
@@ -398,74 +416,34 @@
                                         <th>Name</th>
                                         <th>Age</th>
                                         <th>Gender</th>
-                                        <th>Email</th>
+                                        <th>Country</th>
                                         <th>Sport</th>
                                     </tr>
                                     </thead>
                                     <tbody>
+                                    <c:forEach var="athlete" items="${athleteInfo1}">
                                     <tr>
                                         <td>
                                             <div class="d-flex">
                                                 <div class="usr-img-frame mr-2 rounded-circle">
                                                     <img alt="admin-profile" class="img-fluid rounded-circle" src="assets/img/90x90.jpg">
                                                 </div>
-                                                <p class="align-self-center mb-0"> Max Holgate </p>
+                                                <p class="align-self-center mb-0"> ${athlete.fullName} </p>
                                             </div>
                                         </td>
-                                        <td>19</td>
-                                        <td>Male</td>
-                                        <td>Maxholgate@gmail.com</td>
-                                        <td>Sprint</td>
+                                        <td>${athlete.age}</td>
+                                        <td>${athlete.sex}</td>
+                                        <td>${athlete.country}</td>
+                                        <td>${athlete.sport}</td>
                                     </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="d-flex">
-                                                <div class="usr-img-frame mr-2 rounded-circle">
-                                                    <img alt="admin-profile" class="img-fluid rounded-circle" src="assets/img/90x90.jpg">
-                                                </div>
-                                                <p class="align-self-center mb-0"> Sarah Tin </p>
-                                            </div>
-                                        </td>
-                                        <td>26</td>
-                                        <td>Female</td>
-                                        <td>Sarahatin@gmail.com</td>
-                                        <td>Gymnastics</td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="d-flex">
-                                                <div class="usr-img-frame mr-2 rounded-circle">
-                                                    <img alt="admin-profile" class="img-fluid rounded-circle" src="assets/img/90x90.jpg">
-                                                </div>
-                                                <p class="align-self-center mb-0"> Pan Peer</p>
-                                            </div>
-                                        </td>
-                                        <td>23</td>
-                                        <td>Male</td>
-                                        <td>Panpeer@gmail.com</td>
-                                        <td>Sprint</td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="d-flex">
-                                                <div class="usr-img-frame mr-2 rounded-circle">
-                                                    <img alt="admin-profile" class="img-fluid rounded-circle" src="assets/img/90x90.jpg">
-                                                </div>
-                                                <p class="align-self-center mb-0"> Colin Dagba </p>
-                                            </div>
-                                        </td>
-                                        <td>22</td>
-                                        <td>Male</td>
-                                        <td>ColinDagba@gmail.com</td>
-                                        <td>Sprint</td>
-                                    </tr>
+                                    </c:forEach>
                                     </tbody>
                                     <tfoot>
                                     <tr>
                                         <th>Name</th>
                                         <th>Age</th>
                                         <th>Gender</th>
-                                        <th>Email</th>
+                                        <th>Country</th>
                                         <th>Sport</th>
                                     </tr>
                                     </tfoot>

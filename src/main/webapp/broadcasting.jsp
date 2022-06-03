@@ -308,7 +308,7 @@
             </a>
         </li>
     </ul>
-    <form action="ServletLogin2" method="post" style="display: none">
+    <form action="ServletLogin2" id="logout" method="post" style="display: none">
         <input type="hidden" name="command" value="logout">
     </form>
 </header>
@@ -326,7 +326,7 @@
         <nav id="topbar">
             <ul class="list-unstyled menu-categories d-lg-flex justify-content-lg-around mb-0" id="topAccordion">
                 <li class="menu">
-                    <a href="schedule.jsp" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                    <a href="schedule.jsp" >
                         <div class="">
                             <i class="flaticon-home-line"></i>
                             <span>Home</span>
@@ -335,7 +335,7 @@
                 </li>
 
                 <li class="menu">
-                    <a href="results.jsp" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                    <a href="results.jsp" >
                         <div class="">
                             <i class="flaticon-calendar-12"></i>
                             <span>Event Results</span>
@@ -344,7 +344,7 @@
                 </li>
 
                 <li class="menu">
-                    <a href="medals.jsp" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                    <a href="medals.jsp" >
                         <div class="">
                             <i class="flaticon-cup"></i>
                             <span>Medals</span>
@@ -353,22 +353,24 @@
                 </li>
 
                 <li class="menu">
-                    <a href="athletes.jsp" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                    <a href="athletes.jsp">
                         <div class="">
                             <i class="flaticon-user-group"></i>
                             <span>Athletes</span>
                         </div>
                     </a>
                 </li>
+                <c:if test="${userInfo.userType=='Representatives'}">
+                    <li class="menu">
+                        <a href="athletes_form.jsp">
+                            <div class="">
+                                <i class="flaticon-user-group"></i>
+                                <span>Athletes Form</span>
+                            </div>
+                        </a>
+                    </li>
+                </c:if>
 
-                <li class="menu">
-                    <a href="#more" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
-                        <div class="">
-                            <i class="flaticon-plus"></i>
-                            <span class="d-lg-none">More</span>
-                        </div>
-                    </a>
-                </li>
             </ul>
         </nav>
     </div>
@@ -404,7 +406,7 @@
                                             <div class="slots-1">
                                                 <div class="custom-control custom-checkbox pl-0">
                                                     <input type="checkbox" class="custom-control-input" id="customCheck1">
-                                                    <label class="custom-control-label" for="customCheck1">${watchBroadcast.broadcastName}, ${watchBroadcast.startTime}-${watchBroadcast.startTime}</label>
+                                                    <label class="custom-control-label" for="customCheck1">${watchBroadcast.broadcastName}, ${watchBroadcast.startTime}-${watchBroadcast.endTime}</label>
                                                 </div>
                                             </div>
                                             </c:forEach>

@@ -286,7 +286,7 @@
             </a>
         </li>
     </ul>
-    <form action="ServletLogin2" method="post" style="display: none">
+    <form action="ServletLogin2" id="logout" method="post" style="display: none">
         <input type="hidden" name="command" value="logout">
     </form>
 </header>
@@ -339,7 +339,7 @@
                 </li>
 
                 <li class="menu">
-                    <a href="${pageContext.request.contextPath}/medals.jsp" >
+                    <a href="${pageContext.request.contextPath}/medal_user.jsp" >
                         <div class="">
                             <i class="flaticon-cup"></i>
                             <span>Medals</span>
@@ -347,19 +347,18 @@
                     </a>
                 </li>
                 <li class="menu">
-                    <a href="${pageContext.request.contextPath}/all_Users.jsp">
+                    <a href="${pageContext.request.contextPath}/Country_representatives.jsp" >
                         <div class="">
-                            <i class="flaticon-user-group"></i>
-                            <span>Users</span>
+                            <i class="flaticon-map-1"></i>
+                            <span>Country Representatives</span>
                         </div>
                     </a>
                 </li>
-
                 <li class="menu">
-                    <a href="#pages" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                    <a href="${pageContext.request.contextPath}/allUserInfor.jsp">
                         <div class="">
-                            <i class="flaticon-file"></i>
-                            <span>About us</span>
+                            <i class="flaticon-user-group"></i>
+                            <span>Users</span>
                         </div>
                     </a>
                 </li>
@@ -367,7 +366,6 @@
         </nav>
     </div>
     <!--  END TOPBAR  -->
-
 
     <!--  BEGIN CONTENT PART  -->
     <div id="content" class="main-content">
@@ -506,6 +504,8 @@
                     </div>
                 </div>
             </div>
+
+
         </div>
     </div>
     <!--  END CONTENT PART  -->
@@ -583,7 +583,8 @@
         $("#fullName").val($(cols[1]).text());
         $("#email").val($(cols[2]).text());
         $("#country").val($(cols[4]).text());
-        alert($(cols[4]).text())
+        const $select = document.querySelector('#country');
+        $select.value = $(cols[4]).text();
         $("#action").val("updating");
         //$("#country").selectpicker("refresh");
         // Change Update Button Text

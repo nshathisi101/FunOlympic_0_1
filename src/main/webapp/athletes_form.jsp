@@ -29,6 +29,15 @@
     <link rel="stylesheet" type="text/css" href="plugins/dropify/dropify.min.css">
     <link href="assets/css/users/account-setting.css" rel="stylesheet" type="text/css" />
     <!--  END CUSTOM STYLE FILE  -->
+
+    <!-- BEGIN PAGE LEVEL PLUGINS -->
+    <link href="plugins/animate/animate.css" rel="stylesheet" type="text/css" />
+    <link href="assets/css/modals/component.css" rel="stylesheet" type="text/css" />
+    <!-- END PAGE LEVEL PLUGINS -->
+
+    <!--  BEGIN CUSTOM STYLE FILE  -->
+    <link href="assets/css/ui-kit/custom-modal.css" rel="stylesheet" type="text/css" />
+    <!--  END CUSTOM STYLE FILE  -->
 </head>
 <body>
 <!-- Tab Mobile View Header -->
@@ -280,7 +289,7 @@
             </a>
         </li>
     </ul>
-    <form action="ServletLogin2" method="post" style="display: none">
+    <form action="ServletLogin2" id="logout" method="post" style="display: none">
         <input type="hidden" name="command" value="logout">
     </form>
 </header>
@@ -315,7 +324,7 @@
                     </a>
                 </li>
                 <li class="menu">
-                    <a href="${pageContext.request.contextPath}/results.jsp">
+                    <a href="${pageContext.request.contextPath}/event_results_form.jsp">
                         <div class="">
                             <i class="flaticon-calendar-12"></i>
                             <span>Event Results</span>
@@ -333,7 +342,7 @@
                 </li>
 
                 <li class="menu">
-                    <a href="${pageContext.request.contextPath}/medals.jsp" >
+                    <a href="${pageContext.request.contextPath}/medal_user.jsp" >
                         <div class="">
                             <i class="flaticon-cup"></i>
                             <span>Medals</span>
@@ -341,19 +350,18 @@
                     </a>
                 </li>
                 <li class="menu">
-                    <a href="${pageContext.request.contextPath}/athletes_form.jsp">
+                    <a href="${pageContext.request.contextPath}/Country_representatives.jsp" >
                         <div class="">
-                            <i class="flaticon-user-group"></i>
-                            <span>Athletes</span>
+                            <i class="flaticon-map-1"></i>
+                            <span>Country Representatives</span>
                         </div>
                     </a>
                 </li>
-
                 <li class="menu">
-                    <a href="#pages" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                    <a href="${pageContext.request.contextPath}/allUserInfor.jsp">
                         <div class="">
-                            <i class="flaticon-file"></i>
-                            <span>About us</span>
+                            <i class="flaticon-user-group"></i>
+                            <span>Users</span>
                         </div>
                     </a>
                 </li>
@@ -368,11 +376,12 @@
         <div class="container">
             <div class="page-header">
                 <div class="page-title">
-                    <h3>View Country Representatives</h3>
+                    <h3>Athletes for ${userInfo.country}</h3>
                 </div>
             </div>
-            <div class="widget-content widget-content-area">
-                <a class="btn btn-success ml-2 mb-4 mt-2  popup-with-form" id="popup" onclick="cleanForm();" href="#test-form">Add</a>
+
+            <div class="widget-content widget-content-area" style="float: right">
+                <a class="btn btn-primary ml-2 mb-4 mt-2" class="flaticon-note-1" onclick="cleanForm()"  data-toggle="modal" data-target="#formInputModal">Add</a>
             </div>
 
             <!-- Modal -->
@@ -394,8 +403,6 @@
                                 <input type="hidden" name="id" id="id" value="0">
                                 <input type="hidden" name="action" id="action" value="setAthlete">
 
-
-
                                 <div class="form-group mb-4">
                                     <label for="fullName">Full Name</label>
                                     <input type="text" name="fullName" class="form-control" id="fullName" placeholder="">
@@ -409,7 +416,7 @@
 
 
                                 <div class="form-group mb-4">
-                                    <label for="sport">Country</label>
+                                    <label for="sport">Sport</label>
                                     <select name="sport" class="form-control" id="sport">
 
                                     </select>
@@ -424,7 +431,6 @@
                     </div>
                 </div>
             </div>
-
 
             <div class="row" id="cancel-row">
                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 layout-spacing">
@@ -472,7 +478,7 @@
                                             <td class="">
                                                 <ul class="table-controls">
                                                     <li>
-                                                        <a href="#test-form" class="popup-with-form" data-toggle="tooltip" id="${athletes.id}" onclick="productDisplay(this,this.id)" data-placement="top" title="Edit">
+                                                        <a href="#test-form" data-toggle="modal" data-target="#formInputModal" id="${athletes.id}" onclick="productDisplay(this,this.id)" data-placement="top" title="Edit">
                                                             <i class="flaticon-edit"></i>
                                                         </a>
                                                     </li>
@@ -485,19 +491,15 @@
                                             </td>
                                         </tr>
                                     </c:forEach>
-
                                     </tbody>
-
-
                                 </table>
                             </div>
-
-
                         </div>
 
                     </div>
                 </div>
             </div>
+
         </div>
     </div>
     <!--  END CONTENT PART  -->
@@ -1168,7 +1170,7 @@
 
     function productDisplay(ctl,id) {
         var imageName=document.getElementById("imageName"+id).innerHTML;
-        document.getElementById("input-file-max-fs").setAttribute("data-default-file","UserImages/"+imageName);
+        //document.getElementById("input-file-max-fs").setAttribute("data-default-file","UserImages/"+imageName);
         _row = $(ctl).parents("tr");
         var cols = _row.children("td");
         $("#id").val($(cols[6]).text());
@@ -1176,6 +1178,8 @@
         $("#email").val($(cols[3]).text());
         $("#country").val($(cols[4]).text());
         $("#sport").val($(cols[5]).text());
+        const $select = document.querySelector('#sport');
+        $select.value = $(cols[5]).text();
         $("#action").val("updateAthlete");
         var imageName=document.getElementById("imageName"+id).innerHTML;
         document.getElementById("input-file-max-fs").setAttribute("data-default-file","UserImages/"+imageName);
@@ -1190,7 +1194,9 @@
         document.getElementById("email").value=null;
         document.getElementById("country").value=null;
         document.getElementById("sport").value="3x3 Basketball";
-        document.getElementById("action").value="registering";
+        const $select = document.querySelector('#sport');
+        $select.value = "3x3 Basketball";
+        document.getElementById("action").value="setAthlete";
     }
 
     let tableRowElement;
@@ -1276,5 +1282,42 @@
 <script src="plugins/sweetalerts/sweetalert2.min.js"></script>
 <script src="plugins/sweetalerts/custom-sweetalert.js"></script>
 <!-- END THEME GLOBAL STYLE -->
+
+<!-- BEGIN PAGE LEVEL PLUGINS -->
+<script src="assets/js/modal/classie.js"></script>
+<script src="assets/js/modal/modalEffects.js"></script>
+<!-- END PAGE LEVEL PLUGINS -->
+
+<!--  BEGIN CUSTOM SCRIPT FILE  -->
+<script>
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+        $('[data-toggle="popover"]').popover()
+    })
+    $('#yt-video-link').click(function () {
+        var src = 'https://www.youtube.com/embed/YE7VzlLtp-4';
+        $('#videoMedia1').modal('show');
+        $('<iframe>').attr({
+            'src': src,
+            'width': '560',
+            'height': '315',
+            'allow': 'encrypted-media'
+        }).css('border', '0').appendTo('#videoMedia1 .video-container');
+    });
+    $('#vimeo-video-link').click(function () {
+        var src = 'https://player.vimeo.com/video/1084537';
+        $('#videoMedia2').modal('show');
+        $('<iframe>').attr({
+            'src': src,
+            'width': '560',
+            'height': '315',
+            'allow': 'encrypted-media'
+        }).css('border', '0').appendTo('#videoMedia2 .video-container');
+    });
+    $('#videoMedia1 button, #videoMedia2 button').click(function () {
+        $('#videoMedia1 iframe, #videoMedia2 iframe').removeAttr('src');
+    });
+</script>
+<!--  END CUSTOM SCRIPT FILE  -->
 </body>
 </html>

@@ -1,10 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: NITRO5
-  Date: 5/26/2022
-  Time: 4:23 AM
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
@@ -21,6 +14,11 @@
     <link href="assets/css/plugins.css" rel="stylesheet" type="text/css" />
     <!-- END GLOBAL MANDATORY STYLES -->
 
+    <!-- BEGIN PAGE LEVEL STYLES -->
+    <link href="plugins/timepicker/jquery.timepicker.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="plugins/date_time_pickers/bootstrap_date_range_picker/daterangepicker.css">
+    <!-- END PAGE LEVEL STYLES -->
+
     <!--  BEGIN CUSTOM STYLE FILE  -->
     <link rel="stylesheet" type="text/css" href="plugins/table/datatable/datatables.css">
     <link rel="stylesheet" type="text/css" href="assets/css/ecommerce/view_customers.css">
@@ -32,61 +30,28 @@
     <link rel="stylesheet" type="text/css" href="plugins/mdl/material.css">
     <!-- END PAGE LEVEL STYLES -->
 
+    <!-- BEGIN PAGE LEVEL STYLES -->
+    <link rel="stylesheet" type="text/css" href="plugins/table/datatable/datatables.css">
+    <link rel="stylesheet" type="text/css" href="plugins/table/datatable/custom_dt_multi_col_ordering.css">
+    <!-- END PAGE LEVEL STYLES -->
+
     <!-- BEGIN PAGE LEVEL PLUGINS -->
     <link href="plugins/animate/animate.css" rel="stylesheet" type="text/css" />
     <link href="assets/css/modals/component.css" rel="stylesheet" type="text/css" />
     <!-- END PAGE LEVEL PLUGINS -->
 
     <!--  BEGIN CUSTOM STYLE FILE  -->
+    <link href="assets/css/apps/scheduler.css" rel="stylesheet" type="text/css" />
+    <!--  END CUSTOM STYLE FILE  -->
+
+    <!--  BEGIN CUSTOM STYLE FILE  -->
     <link href="assets/css/ui-kit/custom-modal.css" rel="stylesheet" type="text/css" />
     <!--  END CUSTOM STYLE FILE  -->
-
-    <!--  BEGIN CUSTOM STYLE FILE  -->
     <style>
-        .form-control {
-            border: 1px solid #ccc;
-            color: #888ea8;
-            font-size: 15px;
-        }
-        .form-vertical .form-group .control-label { color: #3b3f5c; }
-        label { color: #3b3f5c; margin-bottom: 14px; }
-        .form-control::-webkit-input-placeholder { color: #888ea8; font-size: 15px; }
-        .form-control::-ms-input-placeholder { color: #888ea8; font-size: 15px; }
-        .form-control::-moz-placeholder { color: #888ea8; font-size: 15px; }
-        .form-control:focus { border-color: #3862f5; }
-
-        select.form-control {
-            display: inline-block;
-            width: 100%;
-            height: calc(2.25rem + 2px);
-            vertical-align: middle;
-            background: #fff url(assets/img/arrow-down.png) no-repeat right .75rem center;
-            background-size: 13px 14px;
-            -webkit-appearance: none;
-            -moz-appearance: none;
-            appearance: none;
+        .logob{
+            margin: 40px 0px 10px 50px;
         }
     </style>
-    <!--  BEGIN CUSTOM STYLE FILE  -->
-
-    <!--  BEGIN CUSTOM STYLE FILE  -->
-    <link href="plugins/multi-select/multi-select.css" rel="stylesheet" type="text/css">
-    <style>
-        .widget-content-area { padding: 20px 40px; }
-    </style>
-    <!--  END CUSTOM STYLE FILE  -->
-
-    <!-- BEGIN THEME GLOBAL STYLES Date-->
-    <link href="assets/css/design-css/design.css" rel="stylesheet" type="text/css" />
-    <link href="plugins/date_time_pickers/bootstrap_date_range_picker/daterangepicker.css" rel="stylesheet" type="text/css">
-    <link href="plugins/date_time_pickers/bootstrap-datetimepicker/bootstrap-datetimepicker.min.css" rel="stylesheet" type="text/css">
-    <link href="plugins/timepicker/jquery.timepicker.css" rel="stylesheet" type="text/css">
-    <link href="plugins/date_time_pickers/custom_datetimepicker_style/custom_datetimepicker.css" rel="stylesheet" type="text/css">
-    <!-- END THEME GLOBAL STYLES -->
-
-    <!--  END CUSTOM STYLE FILE  -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 
 
 </head>
@@ -132,7 +97,6 @@
 </header>
 <!-- Tab Mobile View Header -->
 
-
 <!--  BEGIN NAVBAR  -->
 <header class="desktop-nav header navbar fixed-top">
     <div class="nav-logo mr-5 ml-4 d-lg-inline-block d-none">
@@ -151,6 +115,26 @@
             </div>
         </li>
 
+        <li class="nav-item dropdown app-dropdown">
+            <a href="javascript:void(0);" class="nav-link dropdown-toggle" id="app-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span class="flaticon-star-circle-line"></span>
+            </a>
+            <div class="dropdown-menu  position-absolute" aria-labelledby="app-dropdown">
+                <a class="dropdown-item d-flex" href="apps_drag_n_drop_calendar.html">
+                    <i class="mr-3 flaticon-calendar-1"></i><span>Calendar</span>
+                </a>
+                <a class="dropdown-item d-flex" href="dragndrop_scrumboard.html">
+                    <i class="mr-3 flaticon-edit-3"></i><span>Scrumboard</span>
+                </a>
+                <a class="dropdown-item d-flex" href="pages_helpdesk.html">
+                    <i class="mr-3 flaticon-copy"></i><span>Helpdesk</span>
+                </a>
+                <a class="dropdown-item d-flex" href="pages_contact_us.html">
+                    <i class="mr-3 flaticon-location-1"></i><span>Contact Us</span>
+                </a>
+            </div>
+        </li>
+
         <li class="nav-item ml-4 d-lg-none">
             <form class="form-inline search-full form-inline search animated-search" role="search">
                 <i class="flaticon-search-1 d-lg-none d-block"></i>
@@ -158,7 +142,6 @@
             </form>
         </li>
     </ul>
-
 
     <ul class="navbar-nav flex-row ml-lg-auto">
         <li class="nav-item mr-5 d-lg-block d-none">
@@ -178,15 +161,151 @@
                     </div>
                 </div>
             </a>
+            <div class="dropdown-menu  position-absolute p-0" aria-labelledby="user-profile-dropdown">
+                <div class="dropdown-item d-flex justify-content-around">
+                    <p class="mb-0 align-self-center">Your Account</p>
+                    <div class="">
+                        <i class="flaticon-star-outline"></i>
+                    </div>
+                </div>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item d-flex" href="user_profile.html">
+                    <i class="mr-3 flaticon-user-11"></i> <span class="align-self-center">Profile Setting</span>
+                </a>
+                <a class="dropdown-item d-flex" href="apps_scheduler.html">
+                    <i class="mr-3 flaticon-calendar"></i> <span class="align-self-center">Schedule</span>
+                </a>
+                <a class="dropdown-item d-flex" href="apps_mailbox.html">
+                    <i class="mr-3 flaticon-mail-22"></i> <span class="align-self-center">Inbox</span>
+                </a>
+                <a class="dropdown-item d-flex" href="user_lockscreen_1.html">
+                    <i class="mr-3 flaticon-lock-1"></i> <span class="align-self-center">Lock Screen</span>
+                </a>
+
+                <div class="dropdown-item dropdown-item-btn d-flex justify-content-around">
+                    <a class="" href="user_login_1.html">
+                        <i class="mr-2 flaticon-power-off"></i> <span class="align-self-center">Logout</span>
+                    </a>
+                </div>
+            </div>
         </li>
 
-        <li style="cursor: pointer" class="nav-item dropdown cs-toggle ml-3 mr-lg-4">
+        <li class="nav-item dropdown message-dropdown ml-lg-4 mr-lg-4">
+            <a href="javascript:void(0);" class="nav-link dropdown-toggle" id="message-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span class="icon flaticon-mail-1"></span><span class="badge badge-primary">13</span>
+            </a>
+            <div class="dropdown-menu  position-absolute p-0" aria-labelledby="message-dropdown">
+                <div class="dropdown-item dropdown-header d-flex justify-content-between">
+                    <p class="mb-0 align-self-center">You have 13 new messages</p>
+                    <div class="">
+                        <i class="flaticon-chat-bubble"></i>
+                    </div>
+                </div>
+                <div class="dropdown-divider"></div>
+                <div class="message-scroll">
+                    <div class="dropdown-item">
+                        <div class="">
+                            <div class="media">
+                                <div class="usr-img online mr-3">
+                                    <img class="usr-img rounded-circle" src="assets/img/90x90.jpg" alt="profile">
+                                </div>
+                                <div class="media-body">
+                                    <div class="d-flex">
+                                        <p class="meta-user-name mr-3">Kara Young</p>
+                                        <p class="meta-time align-self-center mb-1">2 mins ago</p>
+                                    </div>
+                                    <p class="message-text mb-0 ">Simple and clean! Nice I'd like to </p>
+                                    <a href="javascript:void(0);" class="see-more">See More</a>
+                                </div>
+                            </div>
+                            <div class="d-flex justify-content-between dropdown-action">
+                                <a href="javascript:void(0);" class="">View Details</a>
+                                <i class="flaticon-delete"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="dropdown-item">
+                        <div class="">
+                            <div class="media">
+                                <div class="usr-img online mr-3">
+                                    <img class="usr-img rounded-circle" src="assets/img/90x90.jpg" alt="profile">
+                                </div>
+                                <div class="media-body">
+                                    <div class="d-flex">
+                                        <p class="meta-user-name mr-3">Oscar Garner</p>
+                                        <p class="meta-time align-self-center mb-1">5 mins ago</p>
+                                    </div>
+                                    <p class="message-text mb-0 ">Simple and clean! Nice I'd like to </p>
+                                    <a href="javascript:void(0);" class="see-more">See More</a>
+                                </div>
+                            </div>
+                            <div class="d-flex justify-content-between dropdown-action">
+                                <a href="javascript:void(0);" class="">View Details</a>
+                                <i class="flaticon-delete"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer dropdown-item text-center">
+                    <a class="btn btn-info my-3 btn-rounded" href="javascript:void(0);">More...</a>
+                </div>
+            </div>
+        </li>
+
+        <li class="nav-item dropdown notification-dropdown ml-3 mr-lg-4">
+            <a href="javascript:void(0);" class="nav-link dropdown-toggle" id="notification-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span class="icon flaticon-bell-24"></span><span class="badge badge-success">15</span>
+            </a>
+            <div class="dropdown-menu position-absolute p-0" aria-labelledby="notification-dropdown">
+                <div class="dropdown-item dropdown-header d-flex justify-content-between">
+                    <p class="mb-0 align-self-center">Notifications</p>
+                    <div class="">
+                        <i class="flaticon-gear-1"></i>
+                    </div>
+                </div>
+                <div class="dropdown-divider"></div>
+                <div class="notification-scroll">
+                    <div class="dropdown-item">
+                        <div class="">
+                            <div class="d-flex dropdown-action justify-content-between">
+                                <span class="badge badge-info mb-3">6 Request</span>
+                                <i class="flaticon-cancel-12"></i>
+                            </div>
+                            <p class="notification-text"><span class="meta-usrname">Kara Young</span>, <span class="meta-usrname">Xavier</span>, <span class="meta-usrname">Lila Perry</span> and <span class="meta-usrname">3 others</span> send a friend request.</p>
+                            <p class="meta-time">6 mins ago</p>
+                        </div>
+                    </div>
+                    <div class="dropdown-item">
+                        <div class="">
+                            <div class="d-flex dropdown-action justify-content-between">
+                                <span class="badge badge-primary mb-3">Invoice</span>
+                                <i class="flaticon-cancel-12"></i>
+                            </div>
+                            <p class="notification-text"> <span class="meta-usrname">Shaun</span>, <span class="meta-usrname">Amy Diaz</span> and <span class="meta-usrname">3 others</span> send a friend request.</p>
+                            <p class="meta-time">10 mins ago</p>
+                        </div>
+                    </div>
+                    <div class="dropdown-item">
+                        <div class="">
+                            <div class="d-flex dropdown-action justify-content-between">
+                                <span class="badge badge-secondary mb-3">Task</span>
+                                <i class="flaticon-cancel-12"></i>
+                            </div>
+                            <p class="notification-text"><span class="meta-usrname">Marry McDonald</span>, <span class="meta-usrname">Shaun Park</span>, <span class="meta-usrname">Kara</span> and <span class="meta-usrname">3 others</span> send a friend request.</p>
+                            <p class="meta-time">1 hour ago</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </li>
+
+        <li class="nav-item dropdown cs-toggle ml-3 mr-lg-4">
             <a onclick="document.getElementById('logout').submit()">
                 <span class="icon flaticon-log-3"></span>
             </a>
         </li>
     </ul>
-    <form action="ServletLogin2" method="post" style="display: none">
+    <form action="ServletLogin2" id="logout" method="post" style="display: none">
         <input type="hidden" name="command" value="logout">
     </form>
 </header>
@@ -267,187 +386,112 @@
     </div>
     <!--  END TOPBAR  -->
 
+    <!-- Modal -->
+    <div class="modal fade" id="formInputModal" tabindex="-1" role="dialog" aria-labelledby="formInputModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="formInputModalLabel">Broadcast</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form method="post" action="ServletLogin2">
+                    <div class="modal-body">
+
+                        <input type="hidden" name="command" value="changePassword2">
+                        <input type="hidden" name="action" id="action" value="">
+                        <input type="hidden" name="userType" value="${userInfo.userType}">
+                        <input type="hidden" name="EmailVerified" value="0" id="id">
+
+                        <div class="form-group mb-4">
+                            <label for="broadcast">New Password</label>
+                            <input type="password" name="password" class="form-control" id="broadcast" placeholder="">
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary btn-rounded mt-3 mb-3">Submit</button>
+                        <button type="button" class="btn btn-dark btn-rounded mt-3 mb-3" data-dismiss="modal">Close</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
 
     <!--  BEGIN CONTENT PART  -->
     <div id="content" class="main-content">
         <div class="container">
             <div class="page-header">
                 <div class="page-title">
-                    <h3>View Broadcasts Available</h3>
+                    <h3>Athletes</h3>
                 </div>
             </div>
-            <div class="widget-content widget-content-area" style="float: right">
-                <a class="btn btn-primary ml-2 mb-4 mt-2 flaticon-note-1" onclick="clearData()" data-toggle="modal" data-target="#formInputModal">Add</a>
-            </div>
-
-            <!-- Modal -->
-            <div class="modal fade" id="formInputModal" tabindex="-1" role="dialog" aria-labelledby="formInputModalLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="formInputModalLabel">Event</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <form method="post" action="ServletLogin2">
-                            <div class="modal-body">
-
-                                <input type="hidden" name="command" value="EventResults">
-                                <input type="hidden" name="action" id="action" value="">
-                                <input type="hidden" name="userType" value="${userInfo.userType}">
-                                <input type="hidden" name="id" value="0" id="id">
-
-
-                                <div class="form-group mb-4">
-                                    <label for="athlete">Athlete</label>
-                                    <select name="athlete" class="form-control" id="athlete">
-                                        <c:forEach var="athlete" items="${allAthletes}">
-                                            <option value="${athlete.id}">${athlete.fullName}</option>
-                                        </c:forEach>
-                                    </select>
-                                </div>
-
-
-                                <div class="form-group mb-4">
-                                    <label for="event">Event</label>
-                                    <select name="event" class="form-control" id="event">
-                                        <c:forEach var="event" items="${eventInfo}">
-                                            <option value="${event.id}">${event.event}</option>
-                                        </c:forEach>
-                                    </select>
-                                </div>
-
-                                <div class="form-group mb-4">
-                                    <label for="event">position</label>
-                                    <input type="text" name="position" class="form-control" id="position" placeholder="">
-                                </div>
-
-                                <div class="form-group mb-4">
-                                    <label for="medal">Medal</label>
-                                    <select name="medal" class="form-control" id="medal">
-                                        <option value="Gold">Gold</option>
-                                        <option value="Silver">Silver</option>
-                                        <option value="Bronze">Bronze</option>
-                                        <option value="No Medal">No Medal</option>
-                                    </select>
-                                </div>
-
-                            </div>
-                            <div class="modal-footer">
-                                <button type="submit" class="btn btn-primary btn-rounded mt-3 mb-3">Submit</button>
-                                <button type="button" class="btn btn-dark btn-rounded mt-3 mb-3" data-dismiss="modal">Close</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-
 
             <div class="row" id="cancel-row">
-                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 layout-spacing">
+                <div class="col-xl-12 col-lg-12 col-sm-12  layout-spacing">
                     <div class="statbox widget box box-shadow">
                         <div class="widget-header">
                             <div class="row">
                                 <div class="col-xl-12 col-md-12 col-sm-12 col-12">
-                                    <h4>Events</h4>
+                                    <h4>Athletes Details</h4>
                                 </div>
                             </div>
                         </div>
                         <div class="widget-content widget-content-area">
                             <div class="table-responsive mb-4">
-                                <table id="ecommerce-product-customers" class="table table-bordered table-hover">
+                                <table id="multi-column-ordering" class="table table-striped table-bordered table-hover" style="width:100%">
                                     <thead>
                                     <tr>
-                                        <th>record</th>
                                         <th>Name</th>
-                                        <th>Sport</th>
-                                        <th>Event</th>
-                                        <th>Medal</th>
-                                        <th>Position</th>
-                                        <th>Country</th>
-                                        <th style="display: none">id</th>
-                                        <th style="display: none">iduser</th>
-                                        <th style="display: none">idevent</th>
-                                        <th style="display: none">medal</th>
-                                        <th class="">Action</th>
+                                        <th>Email</th>
+                                        <th>User Type</th>
+                                        <th>Reset Password</th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <c:set var="countRepre" value="0" scope="page"/>
-                                    <c:forEach var="results" items="${resultsInfo}">
-                                        <c:set var="countRepre" value="${countRepre+1}" scope="page"/>
-                                        <tr>
-                                            <td class="checkbox-column"> ${results.id} </td>
-                                            <td>
-                                                <div class="d-flex">
-                                                    <div class="usr-img-frame mr-2 rounded-circle">
-                                                        <img alt="admin-profile" class="img-fluid rounded-circle" src="assets/img/90x90.jpg">
-                                                    </div>
-                                                    <p class="align-self-center mb-0"> ${results.fullName} </p>
+                                    <c:forEach var="allUser" items="${allUserInfo}">
+                                    <tr>
+                                        <td>
+                                            <div class="d-flex">
+                                                <div class="usr-img-frame mr-2 rounded-circle">
+                                                    <img alt="admin-profile" class="img-fluid rounded-circle" src="assets/img/90x90.jpg">
                                                 </div>
-                                            </td>
-                                            <td>${results.sport}</td>
-                                            <td>${results.event}</td>
-                                            <td>
-                                                <div class="d-flex">
-                                                    <div style="size: 1px">
-                                                        <img alt="admin-profile" class="img-fluid " src="assets/img/${results.medal}.png">
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td>${results.position}</td>
-                                            <td>
-                                                <div class="d-flex">
-                                                    <div class="usr-img-frame mr-2 rounded-circle">
-                                                        <img alt="admin-profile" class="img-fluid rounded-circle" src="assets/icons/${results.country.toLowerCase()}-circular.png">
-                                                    </div>
-                                                    <p class="align-self-center mb-0"> ${results.country} </p>
-                                                </div>
-                                            </td>
-                                            <td style="display: none">${results.id}</td>
-                                            <td style="display: none">${results.iduser}</td>
-                                            <td style="display: none">${results.idevent}</td>
-                                            <td style="display: none">${results.medal}</td>
-                                            <td class="">
-                                                <ul class="table-controls">
-                                                    <li>
-                                                        <a  data-toggle="modal" data-target="#formInputModal" id="${countRepre}" onclick="productDisplay(this)" data-placement="top" title="Edit">
-                                                            <i class="flaticon-edit"></i>
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="javascript:void(0);" class="warning confirm"  onclick="document.getElementById('delete_id').value='${results.id}'" data-toggle="tooltip" data-placement="top" title="Delete">
-                                                            <i class="flaticon-delete-5"></i>
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                            </td>
-                                        </tr>
+                                                <p class="align-self-center mb-0"> ${allUser.fullName}</p>
+                                            </div>
+                                        </td>
+                                        <td>${allUser.email}</td>
+                                        <td>${allUser.userType}</td>
+                                        <td style="cursor: pointer" onclick="productDisplay(this)" data-toggle="modal" data-target="#formInputModal">Change password</td>
+                                    </tr>
                                     </c:forEach>
                                     </tbody>
+                                    <tfoot>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Email</th>
+                                        <th>User Type</th>
+                                        <th>Reset Password</th>
+                                    </tr>
+                                    </tfoot>
                                 </table>
                             </div>
-
-
                         </div>
-
-
-
                     </div>
                 </div>
             </div>
+
         </div>
     </div>
     <!--  END CONTENT PART  -->
 </div>
 <!-- END MAIN CONTAINER -->
 <form style="display:none;" id="deletingRepresentative" method="post" action="ServletLogin2">
-    <input type="hidden" name="command" value="deleteResults">
+    <input type="hidden" name="command" value="deleteRepresentative">
     <input type="hidden" name="userType" value="${userInfo.userType}">
     <input type="hidden" name="id" id="delete_id" value="">
 </form>
-
 
 
 <!--  BEGIN FOOTER  -->
@@ -511,28 +555,9 @@
     function productDisplay(ctl) {
         _row = $(ctl).parents("tr");
         var cols = _row.children("td");
-        $("#id").val($(cols[7]).text());
-        $("#athlete").val($(cols[8]).text());
-        const $select2 = document.querySelector('#athlete');
-        $select2.value = $(cols[8]).text();
-        $("#event").val($(cols[9]).text());
-        const $select1 = document.querySelector('#event');
-        $select1.value = $(cols[9]).text();
-        $("#position").val($(cols[4]).text().trim());
-        $("#medal").val($(cols[10]).text());
-        const $select = document.querySelector('#medal');
-        $select.value = $(cols[10]).text();
-        $("#action").val("updating");
-    }
-    function clearData(){
-        $("#id").val('0');
-        $("#athlete").val(null);
-        $("#event").val(null);
-        $("#position").val(null);
-        $("#medal").val(null);
-        $("#action").val("uploading");
-    }
+        $("#id").val($(cols[1]).text());
 
+    }
 
 
     let tableRowElement;
@@ -553,27 +578,15 @@
 
     }
 
-    var select = document.getElementById("sport");
-    var select_location = document.getElementById("Venue");
-    var location_Se=["National Aquatics Centre","National Indoor Stadium","Wukesong Sports Centre","National Speed Skating Oval","Capital Indoor Stadium","Big Air Shougang","National Sliding Centre","National Alpine Ski Centre","National Biathlon Centre","National Ski Jumping Centre","National Cross-Country Centre","Genting Snow Park"];
-
-
-    var Sport = ["3x3 Basketball", "Acrobatic Gymnastic","Apline Skiing", "Archery", "Artistic Gymnastics", "Artistic Swimming","Athletics Swimming", "Athletics", "Badminton", "Baseball Softball", "Basketball","Beach handball", "Beach volleyball", " Biathlon", "BMX freestyle", "BMX racing", "Bobsleigh", "Boxing Breaking", "Canoe/Kayak flatwater", "Canoe/kayak slamo", "Cross-country skiing", "Curling, Diving", "Equestrian", "Fencing", "Figure skating", "Football", "Freestyle skiing", "Futsal", "Golf", "Handball", "Hockey", "Ice hockey", "Judo", "Karate", "Luge", "Marathon swimming", "Modern pentathlon", "Mountain bike",  "Nordic combined" , "Rhythmic gymnastics", "Road Cycling", "Roller speed skating", "Rowing", "Rugby", " Sailing, Shooting", "Short track speed racing", "skateboarding", "skeleton", " ski jumping", " ski mountaineering", "Snowboard", "speed skating", " sport climbing", "Surfing", "Swimming", "Table tennis", "Taekwondo", "Tennis", " Track cycling", "Trampoline", "Triathlon", "Volleyball", " Water polo", "Weight lifting","Wrestling"];
-    for(var i = 0; i < Sport.length; i++) {
-        var opt = Sport[i];
+    var select = document.getElementById("country");
+    var country_list = ["Afghanistan","Albania","Algeria","Andorra","Angola","Anguilla","Antigua &amp; Barbuda","Argentina","Armenia","Aruba","Australia","Austria","Azerbaijan","Bahamas","Bahrain","Bangladesh","Barbados","Belarus","Belgium","Belize","Benin","Bermuda","Bhutan","Bolivia","Bosnia &amp; Herzegovina","Botswana","Brazil","British Virgin Islands","Brunei","Bulgaria","Burkina Faso","Burundi","Cambodia","Cameroon","Cape Verde","Cayman Islands","Chad","Chile","China","Colombia","Congo","Cook Islands","Costa Rica","Cote D Ivoire","Croatia","Cruise Ship","Cuba","Cyprus","Czech Republic","Denmark","Djibouti","Dominica","Dominican Republic","Ecuador","Egypt","El Salvador","Equatorial Guinea","Estonia","Ethiopia","Falkland Islands","Faroe Islands","Fiji","Finland","France","French Polynesia","French West Indies","Gabon","Gambia","Georgia","Germany","Ghana","Gibraltar","Greece","Greenland","Grenada","Guam","Guatemala","Guernsey","Guinea","Guinea Bissau","Guyana","Haiti","Honduras","Hong Kong","Hungary","Iceland","India","Indonesia","Iran","Iraq","Ireland","Isle of Man","Israel","Italy","Jamaica","Japan","Jersey","Jordan","Kazakhstan","Kenya","Kuwait","Kyrgyz Republic","Laos","Latvia","Lebanon","Lesotho","Liberia","Libya","Liechtenstein","Lithuania","Luxembourg","Macau","Macedonia","Madagascar","Malawi","Malaysia","Maldives","Mali","Malta","Mauritania","Mauritius","Mexico","Moldova","Monaco","Mongolia","Montenegro","Montserrat","Morocco","Mozambique","Namibia","Nepal","Netherlands","Netherlands Antilles","New Caledonia","New Zealand","Nicaragua","Niger","Nigeria","Norway","Oman","Pakistan","Palestine","Panama","Papua New Guinea","Paraguay","Peru","Philippines","Poland","Portugal","Puerto Rico","Qatar","Reunion","Romania","Russia","Rwanda","Saint Pierre &amp; Miquelon","Samoa","San Marino","Satellite","Saudi Arabia","Senegal","Serbia","Seychelles","Sierra Leone","Singapore","Slovakia","Slovenia","South Africa","South Korea","Spain","Sri Lanka","St Kitts &amp; Nevis","St Lucia","St Vincent","St. Lucia","Sudan","Suriname","Swaziland","Sweden","Switzerland","Syria","Taiwan","Tajikistan","Tanzania","Thailand","Timor L'Este","Togo","Tonga","Trinidad &amp; Tobago","Tunisia","Turkey","Turkmenistan","Turks &amp; Caicos","Uganda","Ukraine","United Arab Emirates","United Kingdom","Uruguay","Uzbekistan","Venezuela","Vietnam","Virgin Islands (US)","Yemen","Zambia","Zimbabwe"];
+    for(var i = 0; i < country_list.length; i++) {
+        var opt = country_list[i];
         var el = document.createElement("option");
         el.textContent = opt;
         el.value = opt;
         select.appendChild(el);
     }
-    for(var i = 0; i < location_Se.length; i++) {
-        var opt = location_Se[i];
-        var el = document.createElement("option");
-        el.textContent = opt;
-        el.value = opt;
-        select_location.appendChild(el);
-    }
-
 
 
 </script>
@@ -656,27 +669,32 @@
 </script>
 <!--  END CUSTOM SCRIPT FILE  -->
 
-
-<!--  BEGIN CUSTOM SCRIPTS FILE  -->
-<script src="plugins/multi-select/jquery.multi-select.js"></script>
-<script>
-    $('#my-select').multiSelect();
-</script>
-
-<!-- BEGIN PAGE LEVEL SCRIPTS -->
-<script src="assets/js/design-js/design.js"></script>
+<!-- END GLOBAL MANDATORY STYLES -->
+<script src="plugins/timepicker/jquery.timepicker.js"></script>
 <script src="plugins/date_time_pickers/bootstrap_date_range_picker/moment.min.js"></script>
 <script src="plugins/date_time_pickers/bootstrap_date_range_picker/daterangepicker.js"></script>
-<script src="plugins/timepicker/jquery.timepicker.js"></script>
-<script src="plugins/date_time_pickers/bootstrap-datetimepicker/bootstrap-datetimepicker.min.js"></script>
-<script src="plugins/date_time_pickers/bootstrap_date_range_picker/daterangepicker_examples.js"></script>
-<script src="plugins/timepicker/custom-timepicker.js"></script>
+
+<!-- BEGIN PAGE LEVEL SCRIPTS -->
+<script src="plugins/table/datatable/datatables.js"></script>
+<script>
+    $('#multi-column-ordering').DataTable({
+        "language": {
+            "paginate": { "previous": "<i class='flaticon-arrow-left-1'></i>", "next": "<i class='flaticon-arrow-right'></i>" },
+            "info": "Showing page _PAGE_ of _PAGES_"
+        },
+        columnDefs: [ {
+            targets: [ 0 ],
+            orderData: [ 0, 1 ]
+        }, {
+            targets: [ 1 ],
+            orderData: [ 1, 0 ]
+        }, {
+            targets: [ 4 ],
+            orderData: [ 4, 0 ]
+        } ]
+    });
+</script>
 <!-- END PAGE LEVEL SCRIPTS -->
 
-<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-
-<script>
-    flatpickr("input[type=datetime-local]", {});
-</script>
 </body>
 </html>

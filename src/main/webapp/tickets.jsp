@@ -288,7 +288,7 @@
             </a>
         </li>
     </ul>
-    <form action="ServletLogin2" method="post" style="display: none">
+    <form action="ServletLogin2" id="logout" method="post" style="display: none">
         <input type="hidden" name="command" value="logout">
     </form>
 </header>
@@ -306,7 +306,7 @@
         <nav id="topbar">
             <ul class="list-unstyled menu-categories d-lg-flex justify-content-lg-around mb-0" id="topAccordion">
                 <li class="menu">
-                    <a href="schedule.jsp" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                    <a href="schedule.jsp" >
                         <div class="">
                             <i class="flaticon-home-line"></i>
                             <span>Home</span>
@@ -315,7 +315,7 @@
                 </li>
 
                 <li class="menu">
-                    <a href="results.jsp" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                    <a href="results.jsp" >
                         <div class="">
                             <i class="flaticon-calendar-12"></i>
                             <span>Event Results</span>
@@ -324,7 +324,7 @@
                 </li>
 
                 <li class="menu">
-                    <a href="medals.jsp" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                    <a href="medals.jsp" >
                         <div class="">
                             <i class="flaticon-cup"></i>
                             <span>Medals</span>
@@ -333,7 +333,7 @@
                 </li>
 
                 <li class="menu">
-                    <a href="athletes.jsp" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                    <a href="athletes.jsp">
                         <div class="">
                             <i class="flaticon-user-group"></i>
                             <span>Athletes</span>
@@ -342,13 +342,33 @@
                 </li>
 
                 <li class="menu">
-                    <a href="#more" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                    <a href="tickets.jsp">
                         <div class="">
-                            <i class="flaticon-plus"></i>
-                            <span class="d-lg-none">More</span>
+                            <i class="flaticon-credit-card-1"></i>
+                            <span>Buy Ticket</span>
                         </div>
                     </a>
                 </li>
+                <li class="menu">
+                    <a href="volunteers.jsp">
+                        <div class="">
+                            <i class="flaticon-heart-1"></i>
+                            <span>Volunteer</span>
+                        </div>
+                    </a>
+                </li>
+
+                <c:if test="${userInfo.userType=='Representatives'}">
+                    <li class="menu">
+                        <a href="athletes_form.jsp">
+                            <div class="">
+                                <i class="flaticon-user-group"></i>
+                                <span>Athletes Form</span>
+                            </div>
+                        </a>
+                    </li>
+                </c:if>
+
             </ul>
         </nav>
     </div>
@@ -412,7 +432,7 @@
                                             <i class="done flaticon-double-check" style="display: none;"></i>
                                             <i class="active flaticon-document-3" style="display: none"></i>
                                         </span>
-                                    <span class="mt-3">Order Summary</span>
+                                    <span class="mt-3">Order Ticket</span>
                                 </h3>
                                 <section>
                                     <h5 class="mt-5 mb-5 w-title">Order</h5>
@@ -420,55 +440,58 @@
                                         <div class="col-xl-4 col-12">
                                             <div class="total-amount text-center">
                                                 <i class="flaticon-cart-bag-1"></i>
-                                                <h6>Order Total</h6>
-                                                <p class="t-amount mb-2 mt-2">26,500</p>
-                                                <p class="t-product">7 Products</p>
                                             </div>
                                         </div>
                                         <div class="col-xl-8 col-12 mt-xl-0 mt-4">
                                             <div class="order-product-list">
-                                                <div class="table-responsive">
-                                                    <table class="table">
-                                                        <thead>
-                                                        <tr>
-                                                            <th scope="col">Product</th>
-                                                            <th scope="col">Qty</th>
-                                                            <th scope="col">Price</th>
-                                                            <th scope="col">Action</th>
-                                                        </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                        <tr>
-                                                            <th>
-                                                                <span>Gaming Monitor</span>
-                                                                <p>SKU-001</p>
-                                                            </th>
-                                                            <td>4</td>
-                                                            <td class="pricing">$3488</td>
-                                                            <td><i class="flaticon-cancel-12"></i></td>
-                                                        </tr>
-                                                        <tr>
-                                                            <th>
-                                                                <span>Electric Shaver</span>
-                                                                <p>SKU-002</p>
-                                                            </th>
-                                                            <td>2</td>
-                                                            <td class="pricing">$105</td>
-                                                            <td><i class="flaticon-cancel-12"></i></td>
-                                                        </tr>
-                                                        <tr>
-                                                            <th>
-                                                                <span>Microwave</span>
-                                                                <p>SKU-003</p>
-                                                            </th>
-                                                            <td>1</td>
-                                                            <td class="pricing">$999</td>
-                                                            <td><i class="flaticon-cancel-12"></i></td>
-                                                        </tr>
-                                                        </tbody>
-                                                    </table>
+
+                                                <div class="form-group mb-4">
+                                                    <label for="sport">Sport</label>
+                                                    <select name="sport" class="form-control" id="sport">
+
+                                                    </select>
                                                 </div>
+
+                                                <div class="form-group mb-4">
+                                                    <label for="Ticket_price">Ticket type</label>
+                                                    <select name="sport" onchange="vip()" class="form-control" id="Ticket_price">
+                                                        <option value="P 1 000">VIP</option>
+                                                        <option value="P 500">First Class</option>
+                                                        <option value="P 350">Second Class</option>
+                                                    </select>
+                                                </div>
+
+
+                                                <div class="form-group mb-4">
+                                                    <label for="Ticket_price">Ticket type</label>
+                                                    <select name="sport" onchange="vip()"  class="form-control" id="Ticket_Number">
+                                                        <option>1</option>
+                                                        <option>2</option>
+                                                        <option>5</option>
+                                                    </select>
+                                                </div>
+
+                                                <br>
+                                                <p>Total : </p><p id="info"> </p>
                                             </div>
+                                            <script>
+                                                var select = document.getElementById('Ticket_price');
+                                                var select2 = document.getElementById('Ticket_Number');
+
+                                                function vip(){
+                                                    document.getElementById('info').innerHTML=select.value+' x '+select2.value;
+
+                                                }
+                                                var select22 = document.getElementById("sport");
+                                                var Sport = ["3x3 Basketball", "Acrobatic Gymnastic","Apline Skiing", "Archery", "Artistic Gymnastics", "Artistic Swimming","Athletics Swimming", "Athletics", "Badminton", "Baseball Softball", "Basketball","Beach handball", "Beach volleyball", " Biathlon", "BMX freestyle", "BMX racing", "Bobsleigh", "Boxing Breaking", "Canoe/Kayak flatwater", "Canoe/kayak slamo", "Cross-country skiing", "Curling, Diving", "Equestrian", "Fencing", "Figure skating", "Football", "Freestyle skiing", "Futsal", "Golf", "Handball", "Hockey", "Ice hockey", "Judo", "Karate", "Luge", "Marathon swimming", "Modern pentathlon", "Mountain bike",  "Nordic combined" , "Rhythmic gymnastics", "Road Cycling", "Roller speed skating", "Rowing", "Rugby", " Sailing, Shooting", "Short track speed racing", "skateboarding", "skeleton", " ski jumping", " ski mountaineering", "Snowboard", "speed skating", " sport climbing", "Surfing", "Swimming", "Table tennis", "Taekwondo", "Tennis", " Track cycling", "Trampoline", "Triathlon", "Volleyball", " Water polo", "Weight lifting","Wrestling"];
+                                                for(var i = 0; i < Sport.length; i++) {
+                                                    var opt = Sport[i];
+                                                    var el = document.createElement("option");
+                                                    el.textContent = opt;
+                                                    el.value = opt;
+                                                    select22.appendChild(el);
+                                                }
+                                            </script>
                                         </div>
                                     </div>
                                 </section>
@@ -633,6 +656,7 @@
     }
 
 
+
     let tableRowElement;
     function toggleModal(element) {
 
@@ -649,16 +673,6 @@
         document.getElementById('action').value = "updating";
 
 
-    }
-
-    var select = document.getElementById("country");
-    var country_list = ["Afghanistan","Albania","Algeria","Andorra","Angola","Anguilla","Antigua &amp; Barbuda","Argentina","Armenia","Aruba","Australia","Austria","Azerbaijan","Bahamas","Bahrain","Bangladesh","Barbados","Belarus","Belgium","Belize","Benin","Bermuda","Bhutan","Bolivia","Bosnia &amp; Herzegovina","Botswana","Brazil","British Virgin Islands","Brunei","Bulgaria","Burkina Faso","Burundi","Cambodia","Cameroon","Cape Verde","Cayman Islands","Chad","Chile","China","Colombia","Congo","Cook Islands","Costa Rica","Cote D Ivoire","Croatia","Cruise Ship","Cuba","Cyprus","Czech Republic","Denmark","Djibouti","Dominica","Dominican Republic","Ecuador","Egypt","El Salvador","Equatorial Guinea","Estonia","Ethiopia","Falkland Islands","Faroe Islands","Fiji","Finland","France","French Polynesia","French West Indies","Gabon","Gambia","Georgia","Germany","Ghana","Gibraltar","Greece","Greenland","Grenada","Guam","Guatemala","Guernsey","Guinea","Guinea Bissau","Guyana","Haiti","Honduras","Hong Kong","Hungary","Iceland","India","Indonesia","Iran","Iraq","Ireland","Isle of Man","Israel","Italy","Jamaica","Japan","Jersey","Jordan","Kazakhstan","Kenya","Kuwait","Kyrgyz Republic","Laos","Latvia","Lebanon","Lesotho","Liberia","Libya","Liechtenstein","Lithuania","Luxembourg","Macau","Macedonia","Madagascar","Malawi","Malaysia","Maldives","Mali","Malta","Mauritania","Mauritius","Mexico","Moldova","Monaco","Mongolia","Montenegro","Montserrat","Morocco","Mozambique","Namibia","Nepal","Netherlands","Netherlands Antilles","New Caledonia","New Zealand","Nicaragua","Niger","Nigeria","Norway","Oman","Pakistan","Palestine","Panama","Papua New Guinea","Paraguay","Peru","Philippines","Poland","Portugal","Puerto Rico","Qatar","Reunion","Romania","Russia","Rwanda","Saint Pierre &amp; Miquelon","Samoa","San Marino","Satellite","Saudi Arabia","Senegal","Serbia","Seychelles","Sierra Leone","Singapore","Slovakia","Slovenia","South Africa","South Korea","Spain","Sri Lanka","St Kitts &amp; Nevis","St Lucia","St Vincent","St. Lucia","Sudan","Suriname","Swaziland","Sweden","Switzerland","Syria","Taiwan","Tajikistan","Tanzania","Thailand","Timor L'Este","Togo","Tonga","Trinidad &amp; Tobago","Tunisia","Turkey","Turkmenistan","Turks &amp; Caicos","Uganda","Ukraine","United Arab Emirates","United Kingdom","Uruguay","Uzbekistan","Venezuela","Vietnam","Virgin Islands (US)","Yemen","Zambia","Zimbabwe"];
-    for(var i = 0; i < country_list.length; i++) {
-        var opt = country_list[i];
-        var el = document.createElement("option");
-        el.textContent = opt;
-        el.value = opt;
-        select.appendChild(el);
     }
 
 
@@ -762,10 +776,12 @@
         autoFocus: true,
         titleTemplate: '#title#',
         cssClass: 'circle wizard',
-        onFinished: function(event, currentIndex) { swal('Order Placed!', 'Your order has been successfully placed', 'success') }
+        onFinished: function(event, currentIndex) { swal('Order Placed!', 'Your order has been successfully placed. Check your Email', 'success').then(function(result){
+            window.open('schedule.jsp', "_parent");
+        }); }
     });
     $('.confirm-credit').on('click', function () {
-        swal({ title: 'Your Credit Card Payment is Successfull!', text: "Please click on finish button to place your order.", type: 'success', })
+        swal({ title: 'Your Credit Card Payment is Successfull!', text: "Please click on finish button to place your order.", type: 'success'})
     })
     $('.confirm-paypal').on('click', function () {
         swal({ title: 'Your Credit Paypal Payment is Successfull!', text: "Please click on finish button to place your order.", type: 'success', })

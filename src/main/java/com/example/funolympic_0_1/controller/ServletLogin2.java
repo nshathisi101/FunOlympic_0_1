@@ -79,6 +79,8 @@ public class ServletLogin2 extends HttpServlet {
             session.setAttribute("alertErrorLogin","Incorrect password or email");
             request.getRequestDispatcher("user_login.jsp").forward(request, response);
         }else{
+            if(userinfo.getStatus().equals("verified")){
+            onLogin(request,response);
             if (session.getAttribute("email") != null){
                 session.removeAttribute("email");
                 session.removeAttribute("alertErrorLogin");
@@ -96,16 +98,6 @@ public class ServletLogin2 extends HttpServlet {
                 session.setAttribute("RepresentativeInfo",userinfos);
                 session.setAttribute("athleteInfo",athleteInfo);
 
-                //event List
-                Events events=new Events();
-                List<Events> eventsList=connectionUtil.getEvent(events,"login");
-                session.setAttribute("eventInfo",eventsList);
-
-                //event List
-                Results results=new Results();
-                List<Results> resultsList=connectionUtil.getEventResult(results,"login");
-                session.setAttribute("resultsInfo",resultsList);
-
                 //medal
                 getMedalSummary(request,response);
 
@@ -116,11 +108,17 @@ public class ServletLogin2 extends HttpServlet {
             }else if(userinfo.getUserType().equals("Representatives")){
                 List<Userinfo> athleteInfo=connectionUtil.getAthlete(userinfo,"login");
                 session.setAttribute("athleteInfo",athleteInfo);
-                request.getRequestDispatcher("athletes_form.jsp").forward(request, response);
+                onLogin(request,response);
+                request.getRequestDispatcher("schedule.jsp").forward(request, response);
             }else{
-                request.getRequestDispatcher("user_login.jsp").forward(request, response);
+                onLogin(request,response);
+                request.getRequestDispatcher("schedule.jsp").forward(request, response);
             }
-
+        }else{
+                Otp_send.emailVerification(userinfo.getEmail());
+                session.setAttribute("EmailSent",userinfo.getEmail());
+                request.getRequestDispatcher("verifyEmail.jsp").forward(request, response);
+            }
         }
     }
 
@@ -138,7 +136,7 @@ public class ServletLogin2 extends HttpServlet {
             String id_String=request.getParameter("id");
             id_String.replace(" ","");
             System.out.println(action);
-            userinfo=new Userinfo(id_String,fullName,email,password,userType,country,null,null,null,null);
+            userinfo=new Userinfo(id_String,fullName,email,password,userType,country,null,null,null,null,null);
             List<Userinfo> userinfos=connectionUtil.setRepresentatives(userinfo,action);
             if(userinfos!=null){
                 if (session.getAttribute("alertError") != null){
@@ -152,15 +150,17 @@ public class ServletLogin2 extends HttpServlet {
                 request.getRequestDispatcher("Country_representatives.jsp").forward(request, response);
             }
         }else{
-            userinfo=new Userinfo("null",fullName,email,password,userType,null,null,null,null,null);
+            userinfo=new Userinfo("null",fullName,email,password,userType,null,null,null,null,"Not verified",null);
             String msg=connectionUtil.setUserInfo(userinfo,"upload");
             if(msg.equals("Successful")){
                 if (session.getAttribute("userInfo") != null){
                     session.removeAttribute("userInfo");
                     session.removeAttribute("alertError");
                 }
+                session.setAttribute("EmailSent",email);
+                Otp_send.emailVerification(email);
                 session.setAttribute("alertSuccessful","Successfully registered");
-                request.getRequestDispatcher("user_register.jsp").forward(request, response);
+                request.getRequestDispatcher("verifyEmail.jsp").forward(request, response);
             }else {
                 session.setAttribute("userInfo",userinfo);
                 session.setAttribute("alertError","Failed registered");
@@ -208,6 +208,9 @@ public class ServletLogin2 extends HttpServlet {
                 case "changePassword":
                     changePassword(request,response);
                     break;
+                case "changePassword2":
+                    changePassword2(request,response);
+                    break;
                 case "Broadcast":
                     Broadcast(request,response);
                     break;
@@ -232,6 +235,9 @@ public class ServletLogin2 extends HttpServlet {
                 case "watchSingleBroadcast":
                     watchSingleBroadcast(request,response);
                     break;
+                case "verifyEmail":
+                    verifyEmail(request,response);
+                    break;
             }
 
             // listStudents(request, response);String fileName = null;
@@ -248,11 +254,13 @@ public class ServletLogin2 extends HttpServlet {
         String sport=request.getParameter("sport");
         System.out.println("Id "+id+" Sport "+sport);
         List<Broadcast> msg=connectionUtil.getWatchSingleBroadcast(id,sport);
-        if(msg!=null){
+
+        if(!msg.isEmpty()){
+            onLogin(request,response);
             session.setAttribute("watchBroadcastInfo",msg);
             request.getRequestDispatcher("broadcasting.jsp").forward(request, response);
         }else{
-            request.getRequestDispatcher("index.jsp").forward(request, response);
+            request.getRequestDispatcher("schedule.jsp").forward(request, response);
         }
 
     }
@@ -298,6 +306,7 @@ public class ServletLogin2 extends HttpServlet {
                 session.setAttribute("alertError","Something is wrong");
                 request.getRequestDispatcher("event_results_form.jsp").forward(request, response);
             }else{
+                onLogin(request,response);
                 session.setAttribute("resultsInfo",eventsList);
                 request.getRequestDispatcher("event_results_form.jsp").forward(request, response);
             }
@@ -316,6 +325,7 @@ public class ServletLogin2 extends HttpServlet {
             List<Results> resultsList=connectionUtil.getEventResult(results,"deleting");
             if(resultsList.isEmpty()){
                 System.out.println("Empty ");
+                onLogin(request,response);
                 session.setAttribute("resultsInfo",resultsList);
                 request.getRequestDispatcher("event_results_form.jsp").forward(request, response);
             }else{
@@ -325,6 +335,7 @@ public class ServletLogin2 extends HttpServlet {
                     session.setAttribute("alertError","Something is wrong");
                     request.getRequestDispatcher("event_results_form.jsp").forward(request, response);
                 }else{
+                    onLogin(request,response);
                     System.out.println("No errors");
                     session.setAttribute("resultsInfo",resultsList);
                     request.getRequestDispatcher("event_results_form.jsp").forward(request, response);
@@ -346,6 +357,7 @@ public class ServletLogin2 extends HttpServlet {
             List<Events> eventsList=connectionUtil.getEvent(events,"deleting");
             if(eventsList.isEmpty()){
                 System.out.println("Empty ");
+                onLogin(request,response);
                 session.setAttribute("eventInfo",eventsList);
                 request.getRequestDispatcher("EventForm.jsp").forward(request, response);
             }else{
@@ -355,6 +367,7 @@ public class ServletLogin2 extends HttpServlet {
                     session.setAttribute("alertError","Something is wrong");
                     request.getRequestDispatcher("EventForm.jsp").forward(request, response);
                 }else{
+                    onLogin(request,response);
                     System.out.println("No errors");
                     session.setAttribute("eventInfo",eventsList);
                     request.getRequestDispatcher("EventForm.jsp").forward(request, response);
@@ -449,6 +462,7 @@ public class ServletLogin2 extends HttpServlet {
             Broadcast broadcast1=new Broadcast(id);
             List<Broadcast> broadcasts=connectionUtil.getBroadcast(broadcast1,"deleting");
             if(broadcasts.isEmpty()){
+                onLogin(request,response);
                 session.setAttribute("broadcastInfo",broadcasts);
                 request.getRequestDispatcher("broadcast_form.jsp").forward(request, response);
             }else{
@@ -457,6 +471,7 @@ public class ServletLogin2 extends HttpServlet {
                     session.setAttribute("alertError","Something is wrong");
                     request.getRequestDispatcher("broadcast_form.jsp").forward(request, response);
                 }else{
+                    onLogin(request,response);
                     session.setAttribute("broadcastInfo",broadcasts);
                     request.getRequestDispatcher("broadcast_form.jsp").forward(request, response);
                 }
@@ -468,6 +483,49 @@ public class ServletLogin2 extends HttpServlet {
         }
     }
 
+    private void verifyEmail(HttpServletRequest request, HttpServletResponse response)throws Exception {
+        HttpSession session=request.getSession();
+        String email= (String) session.getAttribute("EmailSent");
+        String code =request.getParameter("codeVerify");
+        System.out.println("email verification for "+email);
+        String msg=verifyOtp.sentVerifyEmail(code,email);
+        if(msg.equals("Incorrect code")){
+            session.setAttribute("alertWaring", "The provided code is incorrect");
+            request.getRequestDispatcher("user_passcode_verification.jsp").forward(request, response);
+        }else if(msg.equals("error unknown code")){
+            session.setAttribute("alertWaring", "The code has expired");
+            request.getRequestDispatcher("user_passcode_verification.jsp").forward(request, response);
+        }else if(msg.equals("Correct code")){
+            if (session.getAttribute("alertWaring") != null){
+                session.removeAttribute("alertWaring");
+                session.removeAttribute("EmailSent");
+            }
+            Userinfo userinfo=connectionUtil.getVerifiedUser(email);
+            session.setAttribute("userInfo",userinfo);
+            request.getRequestDispatcher("schedule.jsp").forward(request, response);
+        }
+
+    }
+
+    private void changePassword2(HttpServletRequest request, HttpServletResponse response)throws Exception {
+        HttpSession session=request.getSession();
+        String email= request.getParameter("EmailVerified").trim();
+        String password =request.getParameter("password");
+        String msg=connectionUtil.changePassword(password,email);
+        if(msg.equals("Successful")){
+            if (session.getAttribute("EmailVerified") != null){
+                session.removeAttribute("EmailVerified");
+            }
+            session.setAttribute("alertSuccessful","Password Change");
+            onLogin(request,response);
+            request.getRequestDispatcher("allUserInfor.jsp").forward(request, response);
+        }else{
+            session.setAttribute("alertWaring","Something went wrong");
+            request.getRequestDispatcher("allUserInfor.jsp").forward(request, response);
+        }
+
+
+    }
 
     private void changePassword(HttpServletRequest request, HttpServletResponse response)throws Exception {
         HttpSession session=request.getSession();
@@ -568,11 +626,13 @@ public class ServletLogin2 extends HttpServlet {
         String userType =request.getParameter("userType");
         Userinfo emtry=new Userinfo(id);
         if(userType.equals("Admin")){
+            onLogin(request,response);
             List<Userinfo> listRepresentatives= connectionUtil.setRepresentatives(emtry,"delete");
             session.setAttribute("RepresentativeInfo",listRepresentatives);
             session.setAttribute("alertWaring", "Successfully delete Representative");
             request.getRequestDispatcher("Country_representatives.jsp").forward(request, response);
         }else{
+            onLogin(request,response);
             session.setAttribute("alertErrorLogin","Your not login Please login");
             request.getRequestDispatcher("user_login.jsp").forward(request, response);
         }
@@ -586,6 +646,7 @@ public class ServletLogin2 extends HttpServlet {
         Userinfo emtry=new Userinfo(id,country);
         if(userType.equals("Representatives")){
             List<Userinfo> listAthletes= connectionUtil.getAthlete(emtry,"delete");
+            onLogin(request,response);
             session.setAttribute("athleteInfo",listAthletes);
             session.setAttribute("alertWaring", "Successfully delete Representative");
             request.getRequestDispatcher("athletes_form.jsp").forward(request, response);
@@ -618,17 +679,19 @@ public class ServletLogin2 extends HttpServlet {
                 dir6.mkdirs();
             }
 
-            Part hazardous_waste=request.getPart("image");
-            InputStream hazardous_waste1 = hazardous_waste.getInputStream();
-            fileName=fullName2+"_UserImager"+ApplicationDate+".jpg";
-            Files.copy(hazardous_waste1, Paths.get(uploadPath6 + File.separator + fileName), StandardCopyOption.REPLACE_EXISTING);
-            Userinfo user=new Userinfo(id,fullName11,email,"2021","Athlete",country,sport,fileName,gender,age);
+//            Part hazardous_waste=request.getPart("image");
+         //   InputStream hazardous_waste1 = hazardous_waste.getInputStream();
+      //      fileName=fullName2+"_UserImager"+ApplicationDate+".jpg";
+        //    Files.copy(hazardous_waste1, Paths.get(uploadPath6 + File.separator + fileName), StandardCopyOption.REPLACE_EXISTING);
+            Userinfo user=new Userinfo(id,fullName11,email,"2021","Athlete",country,sport,"Nothing",gender,age,"verified");
+            System.out.println(action);
             List<Userinfo>  userinfos=connectionUtil.getAthlete(user,action);
             if(!userinfos.isEmpty()){
                 if (session.getAttribute("alertEmailError") != null){
                     session.removeAttribute("alertEmailError");
                     session.removeAttribute("alertEmailError2");
                 }
+                onLogin(request,response);
                 session.setAttribute("athleteInfo",userinfos);
                 request.getRequestDispatcher("athletes_form.jsp").forward(request, response);
             }else{
@@ -663,9 +726,23 @@ public class ServletLogin2 extends HttpServlet {
         HttpSession session=request.getSession();
 
 
+
+        Broadcast broadcast1=new Broadcast();
+        List<Broadcast> broadcasts=connectionUtil.getBroadcast(broadcast1,"login");
+        session.setAttribute("broadcastInfo",broadcasts);
+
+        //event List
         Events events=new Events();
-        List<Events> eventsList=connectionUtil.getEvent(events,"login1");
-        session.setAttribute("eventInfoDay1",eventsList);
+        List<Events> eventsList=connectionUtil.getEvent(events,"login");
+        session.setAttribute("eventInfo",eventsList);
+
+        //event List
+        Results results=new Results();
+        List<Results> resultsList=connectionUtil.getEventResult(results,"login");
+        session.setAttribute("resultsInfo",resultsList);
+
+        List<Events> eventsList11=connectionUtil.getEvent(events,"login1");
+        session.setAttribute("eventInfoDay1",eventsList11);
 
         List<Events> eventsList2=connectionUtil.getEvent(events,"login2");
         session.setAttribute("eventInfoDay2",eventsList2);
@@ -675,6 +752,15 @@ public class ServletLogin2 extends HttpServlet {
 
         List<Events> eventsList4=connectionUtil.getEvent(events,"login4");
         session.setAttribute("eventInfoDay4",eventsList4);
+
+        //All Athlests users
+        Userinfo userinfo=new Userinfo();
+        List<Userinfo> athlete=connectionUtil.getAthlete(userinfo,"login1");
+        session.setAttribute("athleteInfo1",athlete);
+
+        //All users
+        List<Userinfo> userlist=connectionUtil.getUsers();
+        session.setAttribute("allUserInfo",userlist);
 
 
     }

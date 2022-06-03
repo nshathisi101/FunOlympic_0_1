@@ -305,7 +305,7 @@
             </a>
         </li>
     </ul>
-    <form action="ServletLogin2" method="post" style="display: none">
+    <form action="ServletLogin2" id="logout" method="post" style="display: none">
         <input type="hidden" name="command" value="logout">
     </form>
 </header>
@@ -323,7 +323,7 @@
         <nav id="topbar">
             <ul class="list-unstyled menu-categories d-lg-flex justify-content-lg-around mb-0" id="topAccordion">
                 <li class="menu">
-                    <a href="schedule.jsp" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                    <a href="schedule.jsp" >
                         <div class="">
                             <i class="flaticon-home-line"></i>
                             <span>Home</span>
@@ -332,7 +332,7 @@
                 </li>
 
                 <li class="menu">
-                    <a href="results.jsp" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                    <a href="results.jsp" >
                         <div class="">
                             <i class="flaticon-calendar-12"></i>
                             <span>Event Results</span>
@@ -341,7 +341,7 @@
                 </li>
 
                 <li class="menu">
-                    <a href="medals.jsp" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                    <a href="medals.jsp" >
                         <div class="">
                             <i class="flaticon-cup"></i>
                             <span>Medals</span>
@@ -350,7 +350,7 @@
                 </li>
 
                 <li class="menu">
-                    <a href="athletes.jsp" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                    <a href="athletes.jsp">
                         <div class="">
                             <i class="flaticon-user-group"></i>
                             <span>Athletes</span>
@@ -359,13 +359,33 @@
                 </li>
 
                 <li class="menu">
-                    <a href="#more" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                    <a href="tickets.jsp">
                         <div class="">
-                            <i class="flaticon-plus"></i>
-                            <span class="d-lg-none">More</span>
+                            <i class="flaticon-credit-card-1"></i>
+                            <span>Buy Ticket</span>
                         </div>
                     </a>
                 </li>
+                <li class="menu">
+                    <a href="volunteers.jsp">
+                        <div class="">
+                            <i class="flaticon-heart-1"></i>
+                            <span>Volunteer</span>
+                        </div>
+                    </a>
+                </li>
+
+                <c:if test="${userInfo.userType=='Representatives'}">
+                    <li class="menu">
+                        <a href="athletes_form.jsp">
+                            <div class="">
+                                <i class="flaticon-user-group"></i>
+                                <span>Athletes Form</span>
+                            </div>
+                        </a>
+                    </li>
+                </c:if>
+
             </ul>
         </nav>
     </div>
@@ -560,7 +580,6 @@
         $("#fullName").val($(cols[1]).text());
         $("#email").val($(cols[2]).text());
         $("#country").val($(cols[4]).text());
-        alert($(cols[4]).text())
         $("#action").val("updating");
         //$("#country").selectpicker("refresh");
         // Change Update Button Text

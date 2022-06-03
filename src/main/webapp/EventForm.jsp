@@ -131,7 +131,6 @@
     </ul>
 </header>
 <!-- Tab Mobile View Header -->
-
 <!--  BEGIN NAVBAR  -->
 <header class="desktop-nav header navbar fixed-top">
     <div class="nav-logo mr-5 ml-4 d-lg-inline-block d-none">
@@ -340,7 +339,7 @@
             </a>
         </li>
     </ul>
-    <form action="ServletLogin2" method="post" style="display: none">
+    <form action="ServletLogin2" id="logout" method="post" style="display: none">
         <input type="hidden" name="command" value="logout">
     </form>
 </header>
@@ -393,7 +392,7 @@
                 </li>
 
                 <li class="menu">
-                    <a href="${pageContext.request.contextPath}/medals.jsp" >
+                    <a href="${pageContext.request.contextPath}/medal_user.jsp" >
                         <div class="">
                             <i class="flaticon-cup"></i>
                             <span>Medals</span>
@@ -401,19 +400,18 @@
                     </a>
                 </li>
                 <li class="menu">
-                    <a href="${pageContext.request.contextPath}/all_Users.jsp">
+                    <a href="${pageContext.request.contextPath}/Country_representatives.jsp" >
                         <div class="">
-                            <i class="flaticon-user-group"></i>
-                            <span>Users</span>
+                            <i class="flaticon-map-1"></i>
+                            <span>Country Representatives</span>
                         </div>
                     </a>
                 </li>
-
                 <li class="menu">
-                    <a href="#pages" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                    <a href="${pageContext.request.contextPath}/allUserInfor.jsp">
                         <div class="">
-                            <i class="flaticon-file"></i>
-                            <span>About us</span>
+                            <i class="flaticon-user-group"></i>
+                            <span>Users</span>
                         </div>
                     </a>
                 </li>
@@ -428,7 +426,7 @@
         <div class="container">
             <div class="page-header">
                 <div class="page-title">
-                    <h3>View Broadcasts Available</h3>
+                    <h3>View Event</h3>
                 </div>
             </div>
             <div class="widget-content widget-content-area" style="float: right">
@@ -556,7 +554,7 @@
                                                         </a>
                                                     </li>
                                                     <li>
-                                                        <a href="javascript:void(0);" class="warning confirm" id="" onclick="document.getElementById('delete_id').value='${event.id}'" data-toggle="tooltip" data-placement="top" title="Delete">
+                                                        <a class="warning confirm" id="" onclick="document.getElementById('delete_id').value='${event.id}'" data-toggle="tooltip" data-placement="top" title="Delete">
                                                             <i class="flaticon-delete-5"></i>
                                                         </a>
                                                     </li>
@@ -657,6 +655,8 @@
         $("#action").val("updating");
         $("#id").val($(cols[7]).text());
         $("#sport").val($(cols[8]).text());
+        const $select = document.querySelector('#sport');
+        $select.value = $(cols[8]).text();
         $("#event").val($(cols[2]).text());
         $("#date").val($(cols[3]).text());
         var time=$(cols[4].text());
@@ -664,6 +664,8 @@
         $("#TimeStart").val(time[0]);
         $("#TimeEnd").val(time[1]);
         $("#Venue").val($(cols[5]).text());
+        const $select2 = document.querySelector('#Venue');
+        $select2.value = $(cols[5]).text();
         document.getElementById("action").value="updating";
         //$("#country").selectpicker("refresh");
         // Change Update Button Text

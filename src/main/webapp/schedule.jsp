@@ -300,7 +300,7 @@
             </a>
         </li>
     </ul>
-    <form action="ServletLogin2" method="post" style="display: none">
+    <form action="ServletLogin2" id="logout" method="post" style="display: none">
         <input type="hidden" name="command" value="logout">
     </form>
 </header>
@@ -318,7 +318,7 @@
         <nav id="topbar">
             <ul class="list-unstyled menu-categories d-lg-flex justify-content-lg-around mb-0" id="topAccordion">
                 <li class="menu">
-                    <a href="schedule.jsp" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                    <a href="schedule.jsp" >
                         <div class="">
                             <i class="flaticon-home-line"></i>
                             <span>Home</span>
@@ -327,7 +327,7 @@
                 </li>
 
                 <li class="menu">
-                    <a href="results.jsp" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                    <a href="results.jsp" >
                         <div class="">
                             <i class="flaticon-calendar-12"></i>
                             <span>Event Results</span>
@@ -336,7 +336,7 @@
                 </li>
 
                 <li class="menu">
-                    <a href="medals.jsp" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                    <a href="medals.jsp" >
                         <div class="">
                             <i class="flaticon-cup"></i>
                             <span>Medals</span>
@@ -345,7 +345,7 @@
                 </li>
 
                 <li class="menu">
-                    <a href="athletes.jsp" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                    <a href="athletes.jsp">
                         <div class="">
                             <i class="flaticon-user-group"></i>
                             <span>Athletes</span>
@@ -354,13 +354,33 @@
                 </li>
 
                 <li class="menu">
-                    <a href="#more" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                    <a href="tickets.jsp">
                         <div class="">
-                            <i class="flaticon-plus"></i>
-                            <span class="d-lg-none">More</span>
+                            <i class="flaticon-credit-card-1"></i>
+                            <span>Buy Ticket</span>
                         </div>
                     </a>
                 </li>
+                <li class="menu">
+                    <a href="volunteers.jsp">
+                        <div class="">
+                            <i class="flaticon-heart-1"></i>
+                            <span>Volunteer</span>
+                        </div>
+                    </a>
+                </li>
+
+                <c:if test="${userInfo.userType=='Representatives'}">
+                    <li class="menu">
+                        <a href="athletes_form.jsp">
+                            <div class="">
+                                <i class="flaticon-user-group"></i>
+                                <span>Athletes Form</span>
+                            </div>
+                        </a>
+                    </li>
+                </c:if>
+
             </ul>
         </nav>
     </div>
@@ -395,28 +415,28 @@
                                             <div class="slots-1">
                                                 <div class="custom-control custom-checkbox pl-0">
                                                     <input type="checkbox" class="custom-control-input" id="customCheck1">
-                                                    <label class="custom-control-label" for="customCheck1">Badminton 23 Jun, 2018 - 9:30 am</label>
+                                                    <label class="custom-control-label" for="customCheck1">Badminton 23 Jun, 2022- 9:30 am</label>
                                                 </div>
                                             </div>
 
                                             <div class="slots-1">
                                                 <div class="custom-control custom-checkbox pl-0">
                                                     <input type="checkbox" class="custom-control-input" id="customCheck2">
-                                                    <label class="custom-control-label" for="customCheck2">Swimming 24 Jun, 2018 - 10:30 am</label>
+                                                    <label class="custom-control-label" for="customCheck2">Swimming 24 Jun, 2022- 10:30 am</label>
                                                 </div>
                                             </div>
 
                                             <div class="slots-1">
                                                 <div class="custom-control custom-checkbox pl-0">
                                                     <input type="checkbox" class="custom-control-input" id="customCheck3">
-                                                    <label class="custom-control-label" for="customCheck3">Ice Hockey 25 Jun, 2018 - 5:30 pm</label>
+                                                    <label class="custom-control-label" for="customCheck3">Ice Hockey 25 Jun, 2022- 5:30 pm</label>
                                                 </div>
                                             </div>
 
                                             <div class="slots-1">
                                                 <div class="custom-control custom-checkbox pl-0">
                                                     <input type="checkbox" class="custom-control-input" id="customCheck4">
-                                                    <label class="custom-control-label" for="customCheck3">Gymnastics 25 Jun, 2018 - 5:30 pm</label>
+                                                    <label class="custom-control-label" for="customCheck3">Gymnastics 25 Jun, 2022- 5:30 pm</label>
                                                 </div>
                                             </div>
 
